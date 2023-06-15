@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 
 class BannerV6 extends Component {
   render() {
@@ -45,7 +45,7 @@ class BannerV6 extends Component {
                             <a
                               data-bs-toggle="tab"
                               href="#ltn__form_tab_1_2"
-                              className
+                              className=""
                             >
                               <i className="fas fa-home" />
                               Di Sewakan

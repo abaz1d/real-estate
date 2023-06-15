@@ -37,7 +37,7 @@ class Navbar extends Component {
                           <div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
                             <ul>
                               <li>
-                                <a href="#" className="dropdown-toggle">
+                                <a href="/#" className="dropdown-toggle">
                                   <span className="active-currency">
                                     English
                                   </span>
@@ -126,7 +126,7 @@ class Navbar extends Component {
                             <Link to="/contact">Contact</Link>
                           </li>
                           <li className="menu-icon">
-                            <a href="#">Lainya</a>
+                            <a href="/#">Lainya</a>
                             <ul>
                               <li>
                                 <Link to="/blog">News</Link>
@@ -272,7 +272,7 @@ class Navbar extends Component {
                   <Link to="/contact">Contact</Link>
                 </li>
                 <li className="menu-icon">
-                  <a href="#">Lainya</a>
+                  <a href="/#">Lainya</a>
                   <ul>
                     <li>
                       <Link to="/blog">News</Link>
@@ -329,22 +329,22 @@ class Navbar extends Component {
             <div className="ltn__social-media-2">
               <ul>
                 <li>
-                  <a href="#" title="Facebook">
+                  <a href="/#" title="Facebook">
                     <i className="fab fa-facebook-f" />
                   </a>
                 </li>
                 <li>
-                  <a href="#" title="Twitter">
+                  <a href="/#" title="Twitter">
                     <i className="fab fa-twitter" />
                   </a>
                 </li>
                 <li>
-                  <a href="#" title="Linkedin">
+                  <a href="/#" title="Linkedin">
                     <i className="fab fa-linkedin" />
                   </a>
                 </li>
                 <li>
-                  <a href="#" title="Instagram">
+                  <a href="/#" title="Instagram">
                     <i className="fab fa-instagram" />
                   </a>
                 </li>
@@ -369,7 +369,7 @@ class Navbar extends Component {
                   <Link to="/product-details">
                     <img
                       src={publicUrl + "assets/img/product/1.png"}
-                      alt="Image"
+                      alt="Gambar"
                     />
                   </Link>
                   <span className="mini-cart-item-delete">
@@ -388,7 +388,7 @@ class Navbar extends Component {
                   <Link to="/product-details">
                     <img
                       src={publicUrl + "assets/img/product/2.png"}
-                      alt="Image"
+                      alt="Gambar"
                     />
                   </Link>
                   <span className="mini-cart-item-delete">
@@ -407,7 +407,7 @@ class Navbar extends Component {
                   <Link to="/product-details">
                     <img
                       src={publicUrl + "assets/img/product/3.png"}
-                      alt="Image"
+                      alt="Gambar"
                     />
                   </Link>
                   <span className="mini-cart-item-delete">
@@ -426,7 +426,7 @@ class Navbar extends Component {
                   <Link to="/product-details">
                     <img
                       src={publicUrl + "assets/img/product/4.png"}
-                      alt="Image"
+                      alt="Gambar"
                     />
                   </Link>
                   <span className="mini-cart-item-delete">

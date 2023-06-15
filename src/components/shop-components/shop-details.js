@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 
 class ShopDetails extends Component {
   render() {
@@ -48,7 +48,7 @@ class ShopDetails extends Component {
                       <ul>
                         <li>
                           <a
-                            href="#"
+                            href="/#"
                             title="Tambahkan ke wishlist"
                             className="mx-3"
                           >
@@ -57,7 +57,7 @@ class ShopDetails extends Component {
                           </a>
                         </li>
                         <li>
-                          <a href="#" title="Bagikan" className="mx-3">
+                          <a href="/#" title="Bagikan" className="mx-3">
                             <i className="fa fa-share me-1 mt-1" /> Bagikan
                           </a>
                         </li>
@@ -631,7 +631,7 @@ class ShopDetails extends Component {
                         <img
                           className="mb-30"
                           src={publicUrl + "assets/img/others/14.jpg"}
-                          alt="Image"
+                          alt="gambar"
                         />
                       </a>
                       <a
@@ -641,7 +641,7 @@ class ShopDetails extends Component {
                         <img
                           className="mb-30"
                           src={publicUrl + "assets/img/others/15.jpg"}
-                          alt="Image"
+                          alt="gambar"
                         />
                       </a>
                     </div>
@@ -653,7 +653,7 @@ class ShopDetails extends Component {
                         <img
                           className="mb-30"
                           src={publicUrl + "assets/img/others/16.jpg"}
-                          alt="Image"
+                          alt="gambar"
                         />
                       </a>
                     </div>
@@ -661,7 +661,7 @@ class ShopDetails extends Component {
                 </div>
                 <h4 className="title-2">Video Properti</h4>
                 <div
-                  className="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60"
+                  className="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-gambar mb-60"
                   data-bs-bg={publicUrl + "assets/img/others/5.jpg"}
                 >
                   <a
@@ -676,6 +676,7 @@ class ShopDetails extends Component {
                 <h4 className="title-2">Lokasi</h4>
                 <div className="property-details-google-map mb-60">
                   <iframe
+                    title="maps"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd"
                     width="100%"
                     height="100%"
@@ -697,19 +698,19 @@ class ShopDetails extends Component {
                   <div className="ltn__author-widget-inner text-center">
                     <img
                       src={publicUrl + "assets/img/team/4.jpg"}
-                      alt="Image"
+                      alt="gambar"
                     />
                     <h5>Rosalina D. Willaimson</h5>
                     <small>Traveller/Photographer</small>
                     <a
-                      href="#"
+                      href="/#"
                       className="btn btn-outline-secondary rounded-3 w-100 mt-4"
                       role="button"
                     >
                       <i className="fab fa-whatsapp me-1 mt-1" /> WhatsApp
                     </a>
                     <a
-                      href="#"
+                      href="/#"
                       className="btn btn-outline-secondary rounded-3 w-100 mt-2"
                       role="button"
                     >
@@ -720,7 +721,7 @@ class ShopDetails extends Component {
                       No Telephone
                     </a>
                     <a
-                      href="#"
+                      href="/#"
                       className="btn btn-outline-secondary rounded-3 w-100 mt-2"
                       role="button"
                     >
@@ -730,7 +731,7 @@ class ShopDetails extends Component {
                       <ul>
                         <li>
                           <a
-                            href="#"
+                            href="/#"
                             title="Tambahkan ke wishlist"
                             className="mx-3"
                           >
@@ -739,7 +740,7 @@ class ShopDetails extends Component {
                           </a>
                         </li>
                         <li>
-                          <a href="#" title="Bagikan" className="mx-3">
+                          <a href="/#" title="Bagikan" className="mx-3">
                             <i className="fa fa-share me-1 mt-1" /> Bagikan
                           </a>
                         </li>

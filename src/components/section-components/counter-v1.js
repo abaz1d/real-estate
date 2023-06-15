@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+// import { Link } from "react-router-dom";
+// import parse from "html-react-parser";
 
 class CounterV1 extends Component {
   render() {
-    let publicUrl = process.env.PUBLIC_URL + "/";
+    // let publicUrl = process.env.PUBLIC_URL + "/";
 
     return (
       <div className="ltn__counterup-area section-bg-1 pt-120 pb-70">

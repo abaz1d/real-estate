@@ -6,7 +6,7 @@ import Featuresv1 from "./section-components/features-v1";
 import CallToActionV1 from "./section-components/call-to-action-v1";
 import Footer from "./global-components/footer";
 
-const Home_V5 = () => {
+const Home_V6 = () => {
   return (
     <div>
       <Navbar CustomClass="ltn__header-transparent gradient-color-2" />
@@ -19,4 +19,4 @@ const Home_V5 = () => {
   );
 };
 
-export default Home_V5;
+export default Home_V6;
