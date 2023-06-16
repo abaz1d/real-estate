@@ -14,13 +14,12 @@ class Login extends Component {
               <div className="col-lg-12">
                 <div className="section-title-area text-center">
                   <h1 className="section-title">
-                    Sign In <br />
-                    To Your Account
+                    Masuk <br />
+                    Kedalam Akun Anda
                   </h1>
                   <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.{" "}
-                    <br />
-                    Sit aliquid, Non distinctio vel iste.
+                    Untuk memosting/ menambahkan Properti, Anda harus Login
+                    terlebih dahulu
                   </p>
                 </div>
               </div>
@@ -50,7 +49,7 @@ class Login extends Component {
                         data-bs-toggle="modal"
                         data-bs-target="#ltn_forget_password_modal"
                       >
-                        <small>FORGOTTEN YOUR PASSWORD?</small>
+                        <small>LUPA KATA SANDI ?</small>
                       </a>
                     </div>
                   </form>
@@ -58,15 +57,15 @@ class Login extends Component {
               </div>
               <div className="col-lg-6">
                 <div className="account-create text-center pt-50">
-                  <h4>DON'T HAVE AN ACCOUNT?</h4>
+                  <h4>BELUM MEMILIKI AKUN ?</h4>
                   <p>
-                    Add items to your wishlistget personalised recommendations{" "}
-                    <br />
-                    check out more quickly track your orders register
+                    Tambahkan item ke daftar properti Anda dapatkan rekomendasi
+                    yang dipersonalisasi <br /> lihat lebih cepat daftar
+                    properti Anda
                   </p>
                   <div className="btn-wrapper go-top">
                     <Link to="/register" className="theme-btn-1 btn black-btn">
-                      CREATE ACCOUNT
+                      BUAT AKUN
                     </Link>
                   </div>
                 </div>

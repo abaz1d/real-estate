@@ -35,8 +35,10 @@ class FeaturesV1 extends Component {
                     <Link to="/service-details">Membeli Properti</Link>
                   </h3>
                   <p>
-                    over 1 million+ homes for sale available on the website, we
-                    can match you with a house you will want to call home.
+                    "Platform kami mempermudah pembelian properti dengan layanan
+                    yang cepat, aman, dan efisien. Temukan properti impian Anda
+                    dengan mudah, lengkap dan dapatkan pengalaman belanja
+                    properti yang terbaik."
                   </p>
                   <Link className="ltn__service-btn" to="/service-details">
                     Temukan Properti <i className="flaticon-right-arrow" />
@@ -57,8 +59,10 @@ class FeaturesV1 extends Component {
                     <Link to="/service-details">Menyewakan Properti</Link>
                   </h3>
                   <p>
-                    over 1 million+ homes for sale available on the website, we
-                    can match you with a house you will want to call home.
+                    "Platform layanan kami mempermudah menyewa properti dengan
+                    proses yang mudah, cepat, dan aman. Temukan properti yang
+                    sesuai kebutuhan Anda dengan beragam pilihan dan fasilitas
+                    lengkap."
                   </p>
                   <Link className="ltn__service-btn" to="/service-details">
                     Temukan Properti <i className="flaticon-right-arrow" />
@@ -79,8 +83,10 @@ class FeaturesV1 extends Component {
                     <Link to="/service-details">Menjual Properti</Link>
                   </h3>
                   <p>
-                    over 1 million+ homes for sale available on the website, we
-                    can match you with a house you will want to call home.
+                    "Platform kami mempermudah penjualan properti dengan solusi
+                    yang efisien dan cepat. Tingkatkan penjualan Anda dengan
+                    fitur lengkap, pemasaran luas, dan dukungan pelanggan yang
+                    handal."
                   </p>
                   <Link className="ltn__service-btn" to="/service-details">
                     Temukan Properti <i className="flaticon-right-arrow" />

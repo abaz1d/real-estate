@@ -6,12 +6,14 @@ import Featuresv1 from "./section-components/features-v1";
 import CallToActionV1 from "./section-components/call-to-action-v1";
 import Footer from "./global-components/footer";
 
+import * as properti from "./product.json";
+
 const Home_V6 = () => {
   return (
     <div>
       <Navbar CustomClass="ltn__header-transparent gradient-color-2" />
       <BannerV6 />
-      <ProductListing />
+      <ProductListing properti={properti} />
       <Featuresv1 customClass="ltn__feature-area section-bg-1 pt-120 pb-90 mb-120---" />
       <CallToActionV1 />
       <Footer />

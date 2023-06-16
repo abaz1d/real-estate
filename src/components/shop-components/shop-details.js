@@ -10,40 +10,40 @@ class ShopDetails extends Component {
       <div className="ltn__shop-details-area pb-10 -mt-5">
         <div className="container">
           {/* <div
-            class="row sticky-top border-1 border-bottom mb-2"
+            className="row sticky-top border-1 border-bottom mb-2"
             style={{
               top: "12%",
               backgroundColor: "white",
               zIndex: "9999",
             }}
           >
-            <div class="col-lg-8 col-md-12">
-              <nav class="hui-nav-tabs-root navbar navbar-expand navbar-light">
-                <div class="spacer"></div>
+            <div className="col-lg-8 col-md-12">
+              <nav className="hui-nav-tabs-root navbar navbar-expand navbar-light">
+                <div className="spacer"></div>
                 <a
                   href="#/product-details/#tinjauanumum"
-                  class="nav-list-item nav-link"
+                  className="nav-list-item nav-link"
                 >
                   Tinjauan Umum
                 </a>
                 <a
                   href="#detail_properti"
-                  class="nav-list-item active nav-link"
+                  className="nav-list-item active nav-link"
                 >
                   Detail Properti
                 </a>
-                <a href="#dokumentasi_properti" class="nav-list-item nav-link">
+                <a href="#dokumentasi_properti" className="nav-list-item nav-link">
                   Dokumentasi
                 </a>
-                <a href="#lokasi_properti" class="nav-list-item nav-link">
+                <a href="#lokasi_properti" className="nav-list-item nav-link">
                   Lokasi
                 </a>
               </nav>
             </div>
-            <div class="col-lg-4">
-              <div class="contextual-action-strip-root d-flex flex-row">
-                <div class="col">
-                  <nav class="actions-popover-root navbar navbar-expand-lg">
+            <div className="col-lg-4">
+              <div className="contextual-action-strip-root d-flex flex-row">
+                <div className="col">
+                  <nav className="actions-popover-root navbar navbar-expand-lg">
                     <div className="ltn__social-media mx-auto mt-2">
                       <ul>
                         <li>
@@ -106,7 +106,7 @@ class ShopDetails extends Component {
                         </label>
                       </li>
                     </ul>
-                    <div class="row m-auto pt-60">
+                    <div className="row m-auto pt-60">
                       <div className="w-25 text-center">
                         <i className="fa fa-bed fa-2xl mx-auto" />
                         <p className="my-2">2 Tidur</p>
@@ -715,7 +715,7 @@ class ShopDetails extends Component {
                       role="button"
                     >
                       <i
-                        class="fa fa-phone me-1 mt-1"
+                        className="fa fa-phone me-1 mt-1"
                         style={{ transform: "rotate(90deg)" }}
                       ></i>
                       No Telephone
