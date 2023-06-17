@@ -32,47 +32,15 @@ class Navbar extends Component {
                   <div className="top-bar-right text-end">
                     <div className="ltn__top-bar-menu">
                       <ul>
-                        <li className="d-none">
-                          {/* ltn__language-menu */}
-                          <div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
-                            <ul>
-                              <li>
-                                <a href="/#" className="dropdown-toggle">
-                                  <span className="active-currency">
-                                    English
-                                  </span>
-                                </a>
-                                <ul>
-                                  <li>
-                                    <Link to="#">Arabic</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Bengali</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Chinese</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">English</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">French</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Hindi</Link>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
                         <li>
                           <Social />
                         </li>
                         <li>
                           {/* header-top-btn */}
                           <div className="header-top-btn">
-                            <Link to="/add-listing">Add Listing</Link>
+                            <Link to="/add-listing">
+                              <i className="far fa-plus" /> Add Listing
+                            </Link>
                           </div>
                         </li>
                       </ul>
@@ -114,13 +82,13 @@ class Navbar extends Component {
                       <div className="ltn__main-menu go-top">
                         <ul>
                           <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/">Beranda</Link>
                           </li>
                           <li>
-                            <Link to="/shop-grid/beli">Beli</Link>
+                            <Link to="/shop-grid/?kategori=beli">Beli</Link>
                           </li>
                           <li>
-                            <Link to="/shop-grid/sewa">Sewa</Link>
+                            <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
                           </li>
                           <li>
                             <Link to="/contact">Contact</Link>
@@ -179,6 +147,40 @@ class Navbar extends Component {
                       </form>
                     </div>
                   </div>
+                  {/* mini-cart */}
+                  <div className="mini-cart-icon">
+                    <a
+                      href="#ltn__utilize-cart-menu"
+                      className="ltn__utilize-toggle"
+                      style={{
+                        position: "relative",
+                        display: "block",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <i className="icon-shopping-cart"></i>
+                      <span
+                        className="text-white rounded-circle"
+                        style={{
+                          position: "absolute",
+                          top: "5px",
+                          padding: "2px",
+                          backgroundColor: "#ff5a3c",
+                          right: "5px",
+                          zIndex: "2",
+                          display: "block",
+                          textAlign: "center",
+                          width: "18px",
+                          height: "18px",
+                          lineHeight: "16px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        20
+                      </span>
+                    </a>
+                  </div>
+                  {/* mini-cart */}
                   {/* user-menu */}
                   <div className="ltn__drop-menu user-menu">
                     <ul>
@@ -200,17 +202,6 @@ class Navbar extends Component {
                       </li>
                     </ul>
                   </div>
-                  {/* mini-cart */}
-                  <div className="mini-cart-icon">
-                    <a
-                      href="#ltn__utilize-cart-menu"
-                      className="ltn__utilize-toggle"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                      <sup>2</sup>
-                    </a>
-                  </div>
-                  {/* mini-cart */}
                   {/* Mobile Menu Button */}
                   <div className="mobile-menu-toggle d-xl-none">
                     <a
@@ -241,7 +232,7 @@ class Navbar extends Component {
           className="ltn__utilize ltn__utilize-mobile-menu"
         >
           <div className="ltn__utilize-menu-inner ltn__scrollbar">
-            <div className="ltn__utilize-menu-head">
+            <div className="ltn__utilize-menu-head sticky-top bg-white">
               <div className="site-logo">
                 <Link to="/">
                   <img src={publicUrl + "assets/img/logo.png"} alt="Logo" />
@@ -260,13 +251,13 @@ class Navbar extends Component {
             <div className="ltn__utilize-menu">
               <ul>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">Beranda</Link>
                 </li>
                 <li>
-                  <Link to="/shop-grid/beli">Beli</Link>
+                  <Link to="/shop-grid/?kategori=beli">Beli</Link>
                 </li>
                 <li>
-                  <Link to="/shop-grid/sewa">Sewa</Link>
+                  <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact</Link>
@@ -292,7 +283,9 @@ class Navbar extends Component {
                   </ul>
                 </li>
                 <li className="special-link">
-                  <Link to="/add-listing">Add Listing</Link>
+                  <Link to="/add-listing">
+                    <i className="far fa-plus" /> Add Listing
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -360,7 +353,7 @@ class Navbar extends Component {
         >
           <div className="ltn__utilize-menu-inner ltn__scrollbar">
             <div className="ltn__utilize-menu-head">
-              <span className="ltn__utilize-menu-title">Cart</span>
+              <span className="ltn__utilize-menu-title">Wishlist</span>
               <button className="ltn__utilize-close">×</button>
             </div>
             <div className="mini-cart-product-area ltn__scrollbar">
@@ -449,11 +442,11 @@ class Navbar extends Component {
               </div>
               <div className="btn-wrapper go-top">
                 <Link to="/cart" className="theme-btn-1 btn btn-effect-1">
-                  View Cart
+                  View Wishlist
                 </Link>
-                <Link to="/cart" className="theme-btn-2 btn btn-effect-2">
+                {/* <Link to="/cart" className="theme-btn-2 btn btn-effect-2">
                   Checkout
-                </Link>
+                </Link> */}
               </div>
               <p>Free Shipping on All Orders Over $100!</p>
             </div>

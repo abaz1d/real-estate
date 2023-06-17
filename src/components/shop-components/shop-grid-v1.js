@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-// import parse from "html-react-parser";
+import { currencyString } from "../../utils/helper";
 
 export default function ShopGridV1(props) {
   let publicUrl = process.env.PUBLIC_URL + "/";
@@ -84,7 +84,7 @@ export default function ShopGridV1(props) {
                                     className={
                                       item.kategori === "Jual"
                                         ? "bg-green "
-                                        : "bg-orange " + "sale-badge"
+                                        : "bg-orange " | "sale-badge"
                                     }
                                   >
                                     {item.kategori}
@@ -116,7 +116,7 @@ export default function ShopGridV1(props) {
                             <div className="product-info">
                               <div className="product-price">
                                 <span>
-                                  Rp. {item.total_harga}{" "}
+                                  Rp. {currencyString(item.total_harga)}{" "}
                                   <label>
                                     {item.kategori === "Sewa" ? "/ Bulan" : ""}
                                   </label>
@@ -238,7 +238,7 @@ export default function ShopGridV1(props) {
                                       className={
                                         item.kategori === "Jual"
                                           ? "bg-green "
-                                          : "bg-orange " + "sale-badge"
+                                          : "bg-orange " | "sale-badge"
                                       }
                                       style={{ padding: "3px 5px 1px 5px" }}
                                     >
@@ -248,7 +248,7 @@ export default function ShopGridV1(props) {
                                 </div>
                                 <div className="product-price">
                                   <span>
-                                    Rp. {item.total_harga}{" "}
+                                    Rp. {currencyString(item.total_harga)}{" "}
                                     <label>
                                       {item.kategori === "Sewa"
                                         ? "/ Bulan"

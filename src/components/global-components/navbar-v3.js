@@ -10,7 +10,7 @@ class NavbarV3 extends Component {
     return (
       <div>
         <header className="ltn__header-area ltn__header-5 ltn__header-logo-and-mobile-menu-in-mobile ltn__header-logo-and-mobile-menu ltn__header-transparent gradient-color-2">
-          <div className="ltn__header-top-area top-area-color-white">
+          <div className="ltn__header-top-area section-bg-6 top-area-color-white---">
             <div className="container">
               <div className="row">
                 <div className="col-md-7">
@@ -35,41 +35,15 @@ class NavbarV3 extends Component {
                     <div className="ltn__top-bar-menu">
                       <ul>
                         <li>
-                          {/* ltn__language-menu */}
-                          <div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
-                            <ul>
-                              <li>
-                                <Link to="#" className="dropdown-toggle">
-                                  <span className="active-currency">
-                                    English
-                                  </span>
-                                </Link>
-                                <ul>
-                                  <li>
-                                    <Link to="#">Arabic</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Bengali</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Chinese</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">English</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">French</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="#">Hindi</Link>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
+                          <Social />
                         </li>
                         <li>
-                          <Social />
+                          {/* header-top-btn */}
+                          <div className="header-top-btn">
+                            <Link to="/add-listing">
+                              <i className="far fa-plus" /> Add Listing
+                            </Link>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -107,16 +81,16 @@ class NavbarV3 extends Component {
                 <div className="col header-menu-column menu-color-white">
                   <div className="header-menu d-none d-xl-block go-top">
                     <nav>
-                      <div className="ltn__main-menu">
+                      <div className="ltn__main-menu go-top">
                         <ul>
                           <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/">Beranda</Link>
                           </li>
                           <li>
-                            <Link to="/shop-grid/beli">Beli</Link>
+                            <Link to="/shop-grid/?kategori=beli">Beli</Link>
                           </li>
                           <li>
-                            <Link to="/shop-grid/sewa">Sewa</Link>
+                            <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
                           </li>
                           <li>
                             <Link to="/contact">Contact</Link>
@@ -145,13 +119,102 @@ class NavbarV3 extends Component {
                               </li>
                             </ul>
                           </li>
-                          <li className="special-link">
-                            <Link to="/add-listing">Add Listing</Link>
-                          </li>
                         </ul>
                       </div>
                     </nav>
                   </div>
+                </div>
+                <div className="col ltn__header-options d-none d-xl-block text-white ">
+                  <ul>
+                    <li>
+                      {/* header-search-1 */}
+                      <div className="header-search-wrap p-1">
+                        <div className="header-search-1">
+                          <div className="search-icon">
+                            <i className="icon-search for-search-show" />
+                            <i className="icon-cancel  for-search-close" />
+                          </div>
+                        </div>
+                        <div className="header-search-1-form">
+                          <form id="#" method="get" action="#">
+                            <input
+                              type="text"
+                              name="search"
+                              defaultValue
+                              placeholder="Search here..."
+                            />
+                            <button type="submit">
+                              <span>
+                                <i className="icon-search" />
+                              </span>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      {/* mini-cart */}
+                      <div className="mini-cart-icon text-white p-1">
+                        <a
+                          href="#ltn__utilize-cart-menu"
+                          className="ltn__utilize-toggle"
+                          style={{
+                            position: "relative",
+                            display: "block",
+                            overflow: "hidden",
+                            width: "30px",
+                            height: "36px",
+                          }}
+                        >
+                          <i className="icon-shopping-cart"></i>
+                          <span
+                            className="text-white rounded-circle"
+                            style={{
+                              position: "absolute",
+                              top: "0",
+                              padding: "1px",
+                              backgroundColor: "#ff5a3c",
+                              right: "0",
+                              zIndex: "2",
+                              display: "block",
+                              textAlign: "center",
+                              width: "17px",
+                              height: "17px",
+                              lineHeight: "16px",
+                              fontSize: "12px",
+                            }}
+                          >
+                            20
+                          </span>
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      {/* user-menu */}
+                      <div className="ltn__drop-menu user-menu p-1">
+                        <ul>
+                          <li>
+                            <Link to="#">
+                              <i className="icon-user" />
+                            </Link>
+                            <ul className="go-top">
+                              <li>
+                                <Link to="/login">Sign in</Link>
+                              </li>
+                              <li>
+                                <Link to="/register">Register</Link>
+                              </li>
+                              <li>
+                                <Link to="/my-account">My Account</Link>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    {/* mini-cart */}
+                  </ul>
                 </div>
                 <div className="col--- ltn__header-options ltn__header-options-2 ">
                   {/* Mobile Menu Button */}
@@ -184,7 +247,7 @@ class NavbarV3 extends Component {
           className="ltn__utilize ltn__utilize-mobile-menu"
         >
           <div className="ltn__utilize-menu-inner ltn__scrollbar">
-            <div className="ltn__utilize-menu-head">
+            <div className="ltn__utilize-menu-head sticky-top bg-white">
               <div className="site-logo">
                 <Link to="/">
                   <img src={publicUrl + "assets/img/logo.png"} alt="Logo" />
@@ -203,13 +266,13 @@ class NavbarV3 extends Component {
             <div className="ltn__utilize-menu">
               <ul>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">Beranda</Link>
                 </li>
                 <li>
-                  <Link to="/shop-grid/beli">Beli</Link>
+                  <Link to="/shop-grid/?kategori=beli">Beli</Link>
                 </li>
                 <li>
-                  <Link to="/shop-grid/sewa">Sewa</Link>
+                  <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact</Link>
@@ -235,7 +298,9 @@ class NavbarV3 extends Component {
                   </ul>
                 </li>
                 <li className="special-link">
-                  <Link to="/add-listing">Add Listing</Link>
+                  <Link to="/add-listing">
+                    <i className="far fa-plus" /> Add Listing
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -292,6 +357,113 @@ class NavbarV3 extends Component {
                   </a>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Utilize Cart Menu Start */}
+        <div
+          id="ltn__utilize-cart-menu"
+          className="ltn__utilize ltn__utilize-cart-menu"
+        >
+          <div className="ltn__utilize-menu-inner ltn__scrollbar">
+            <div className="ltn__utilize-menu-head">
+              <span className="ltn__utilize-menu-title">Wishlist</span>
+              <button className="ltn__utilize-close">×</button>
+            </div>
+            <div className="mini-cart-product-area ltn__scrollbar">
+              <div className="mini-cart-item clearfix">
+                <div className="mini-cart-img go-top">
+                  <Link to="/product-details">
+                    <img
+                      src={publicUrl + "assets/img/product/1.png"}
+                      alt="Gambar"
+                    />
+                  </Link>
+                  <span className="mini-cart-item-delete">
+                    <i className="icon-cancel" />
+                  </span>
+                </div>
+                <div className="mini-cart-info go-top">
+                  <h6>
+                    <Link to="/product-details">Wheel Bearing Retainer</Link>
+                  </h6>
+                  <span className="mini-cart-quantity">1 x $65.00</span>
+                </div>
+              </div>
+              <div className="mini-cart-item clearfix">
+                <div className="mini-cart-img go-top">
+                  <Link to="/product-details">
+                    <img
+                      src={publicUrl + "assets/img/product/2.png"}
+                      alt="Gambar"
+                    />
+                  </Link>
+                  <span className="mini-cart-item-delete">
+                    <i className="icon-cancel" />
+                  </span>
+                </div>
+                <div className="mini-cart-info go-top">
+                  <h6>
+                    <Link to="/product-details">Brake Conversion Kit</Link>
+                  </h6>
+                  <span className="mini-cart-quantity">1 x $85.00</span>
+                </div>
+              </div>
+              <div className="mini-cart-item clearfix">
+                <div className="mini-cart-img go-top">
+                  <Link to="/product-details">
+                    <img
+                      src={publicUrl + "assets/img/product/3.png"}
+                      alt="Gambar"
+                    />
+                  </Link>
+                  <span className="mini-cart-item-delete">
+                    <i className="icon-cancel" />
+                  </span>
+                </div>
+                <div className="mini-cart-info go-top">
+                  <h6>
+                    <Link to="/product-details">OE Replica Wheels</Link>
+                  </h6>
+                  <span className="mini-cart-quantity">1 x $92.00</span>
+                </div>
+              </div>
+              <div className="mini-cart-item clearfix">
+                <div className="mini-cart-img go-top">
+                  <Link to="/product-details">
+                    <img
+                      src={publicUrl + "assets/img/product/4.png"}
+                      alt="Gambar"
+                    />
+                  </Link>
+                  <span className="mini-cart-item-delete">
+                    <i className="icon-cancel" />
+                  </span>
+                </div>
+                <div className="mini-cart-info go-top">
+                  <h6>
+                    <Link to="/product-details">Shock Mount Insulator</Link>
+                  </h6>
+                  <span className="mini-cart-quantity">1 x $68.00</span>
+                </div>
+              </div>
+            </div>
+            <div className="mini-cart-footer">
+              <div className="mini-cart-sub-total">
+                <h5>
+                  Subtotal: <span>$310.00</span>
+                </h5>
+              </div>
+              <div className="btn-wrapper go-top">
+                <Link to="/cart" className="theme-btn-1 btn btn-effect-1">
+                  View Wishlist
+                </Link>
+                {/* <Link to="/cart" className="theme-btn-2 btn btn-effect-2">
+                  Checkout
+                </Link> */}
+              </div>
+              <p>Free Shipping on All Orders Over $100!</p>
             </div>
           </div>
         </div>

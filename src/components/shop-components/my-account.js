@@ -1738,7 +1738,6 @@ class MyAccount extends Component {
                                         className="collapsed ltn__card-title"
                                         data-toggle="collapse"
                                         data-target="#faq-item-2-1"
-                                        aria-expanded="false"
                                       >
                                         Check payments
                                       </h5>
@@ -1762,7 +1761,6 @@ class MyAccount extends Component {
                                         className="ltn__card-title"
                                         data-toggle="collapse"
                                         data-target="#faq-item-2-2"
-                                        aria-expanded="true"
                                       >
                                         Cash on delivery
                                       </h5>
@@ -1782,7 +1780,6 @@ class MyAccount extends Component {
                                         className="collapsed ltn__card-title"
                                         data-toggle="collapse"
                                         data-target="#faq-item-2-3"
-                                        aria-expanded="false"
                                       >
                                         PayPal{" "}
                                         <img

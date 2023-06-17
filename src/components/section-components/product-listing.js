@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import parse from "html-react-parser";
+import { currencyString } from "../../utils/helper";
 
 export default function ProductListingV1(props) {
   let publicUrl = process.env.PUBLIC_URL + "/";
@@ -34,7 +34,7 @@ export default function ProductListingV1(props) {
                           className={
                             item.kategori === "Jual"
                               ? "bg-green "
-                              : "bg-orange " + "sale-badge"
+                              : "bg-orange " | "sale-badge"
                           }
                         >
                           {item.kategori}
@@ -66,7 +66,7 @@ export default function ProductListingV1(props) {
                   <div className="product-info">
                     <div className="product-price">
                       <span>
-                        Rp. {item.total_harga}{" "}
+                        Rp. {currencyString(item.total_harga)}{" "}
                         <label>
                           {item.kategori === "Sewa" ? "/ Bulan" : ""}
                         </label>

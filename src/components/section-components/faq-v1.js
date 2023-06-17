@@ -19,7 +19,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-1"
-                      aria-expanded="false"
                     >
                       How to buy a product?
                     </h6>
@@ -50,7 +49,6 @@ class FaqV1 extends Component {
                       className="ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-2"
-                      aria-expanded="true"
                     >
                       How can i make refund from your website?
                     </h6>
@@ -94,7 +92,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-3"
-                      aria-expanded="false"
                     >
                       I am a new user. How should I start?
                     </h6>
@@ -125,7 +122,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-4"
-                      aria-expanded="false"
                     >
                       Returns and refunds
                     </h6>
@@ -156,7 +152,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-5"
-                      aria-expanded="false"
                     >
                       Are my details secured?
                     </h6>
@@ -187,7 +182,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-6"
-                      aria-expanded="false"
                     >
                       Sale code is not working
                     </h6>
@@ -218,7 +212,6 @@ class FaqV1 extends Component {
                       className="collapsed ltn__card-title"
                       data-bs-toggle="collapse"
                       data-bs-target="#faq-item-2-7"
-                      aria-expanded="false"
                     >
                       How do I make payment by my credit card
                     </h6>

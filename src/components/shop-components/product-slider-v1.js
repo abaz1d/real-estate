@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-// import { Link } from 'react-router-dom';
-// import parse from 'html-react-parser';
 
 class ProductSliderV1 extends Component {
   render() {
-    let publicUrl = process.env.PUBLIC_URL + "/";
-
     return (
       <div className="ltn__img-slider-area mb-90">
         <div className="container-fluid">
@@ -13,11 +9,11 @@ class ProductSliderV1 extends Component {
             <div className="col-lg-12">
               <div className="ltn__img-slide-item-4">
                 <a
-                  href={publicUrl + "assets/img/img-slide/31.jpg"}
+                  href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/31.jpg"
                   data-rel="lightcase:myCollection"
                 >
                   <img
-                    src={publicUrl + "assets/img/img-slide/31.jpg"}
+                    src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/31.jpg"
                     alt="gambar"
                   />
                 </a>
@@ -26,11 +22,11 @@ class ProductSliderV1 extends Component {
             <div className="col-lg-12">
               <div className="ltn__img-slide-item-4">
                 <a
-                  href={publicUrl + "assets/img/img-slide/32.jpg"}
+                  href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/32.jpg"
                   data-rel="lightcase:myCollection"
                 >
                   <img
-                    src={publicUrl + "assets/img/img-slide/32.jpg"}
+                    src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/32.jpg"
                     alt="gambar"
                   />
                 </a>
@@ -39,11 +35,11 @@ class ProductSliderV1 extends Component {
             <div className="col-lg-12">
               <div className="ltn__img-slide-item-4">
                 <a
-                  href={publicUrl + "assets/img/img-slide/33.jpg"}
+                  href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/33.jpg"
                   data-rel="lightcase:myCollection"
                 >
                   <img
-                    src={publicUrl + "assets/img/img-slide/33.jpg"}
+                    src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/33.jpg"
                     alt="gambar"
                   />
                 </a>
@@ -52,11 +48,11 @@ class ProductSliderV1 extends Component {
             <div className="col-lg-12">
               <div className="ltn__img-slide-item-4">
                 <a
-                  href={publicUrl + "assets/img/img-slide/34.jpg"}
+                  href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/34.jpg"
                   data-rel="lightcase:myCollection"
                 >
                   <img
-                    src={publicUrl + "assets/img/img-slide/34.jpg"}
+                    src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/34.jpg"
                     alt="gambar"
                   />
                 </a>
@@ -65,11 +61,11 @@ class ProductSliderV1 extends Component {
             <div className="col-lg-12">
               <div className="ltn__img-slide-item-4">
                 <a
-                  href={publicUrl + "assets/img/img-slide/35.jpg"}
+                  href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/35.jpg"
                   data-rel="lightcase:myCollection"
                 >
                   <img
-                    src={publicUrl + "assets/img/img-slide/35.jpg"}
+                    src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/35.jpg"
                     alt="gambar"
                   />
                 </a>

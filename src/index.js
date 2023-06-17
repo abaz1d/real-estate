@@ -1,48 +1,20 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Switch } from "react-router-dom";
-import HomeV6 from "./components/home-v6";
+import React from "react";
+import ReactDOM from "react-dom/client";
+// import "./assets/css/font-icons.css";
+// import "./assets/css/plugins.css";
+// import "./assets/css/style.css";
+// import "./assets/css/responsive.css";
+import App from "./App";
+//import reportWebVitals from "./reportWebVitals";
 
-import About from "./components/about";
-import Faq from "./components/faq";
-import Error from "./components/404";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-import ShopGrid from "./components/shop-grid";
-import ProdductDetails from "./components/product-details";
-
-import Contact from "./components/contact";
-import Cart from "./components/cart";
-import MyAccount from "./components/my-account";
-import Login from "./components/login";
-import Register from "./components/register";
-import AddListing from "./components/add-listing";
-
-class Root extends Component {
-  render() {
-    return (
-      <HashRouter basename="/">
-        <div>
-          <Switch>
-            <Route exact path="/" component={HomeV6} />
-            <Route path="/shop-grid" component={ShopGrid} />
-            <Route path="/product-details" component={ProdductDetails} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/404" component={Error} />
-            <Route path="/about" component={About} />
-            <Route path="/faq" component={Faq} />
-
-            <Route path="/login" component={Login} />
-            <Route path="/my-account" component={MyAccount} />
-            <Route path="/register" component={Register} />
-            <Route path="/add-listing" component={AddListing} />
-          </Switch>
-        </div>
-      </HashRouter>
-    );
-  }
-}
-
-export default Root;
-
-ReactDOM.render(<Root />, document.getElementById("quarter"));
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+//reportWebVitals();

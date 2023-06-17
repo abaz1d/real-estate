@@ -9,7 +9,7 @@ class ShopDetails extends Component {
     return (
       <div className="ltn__shop-details-area pb-10 -mt-5">
         <div className="container">
-          {/* <div
+          <div
             className="row sticky-top border-1 border-bottom mb-2"
             style={{
               top: "12%",
@@ -32,7 +32,10 @@ class ShopDetails extends Component {
                 >
                   Detail Properti
                 </a>
-                <a href="#dokumentasi_properti" className="nav-list-item nav-link">
+                <a
+                  href="#dokumentasi_properti"
+                  className="nav-list-item nav-link"
+                >
                   Dokumentasi
                 </a>
                 <a href="#lokasi_properti" className="nav-list-item nav-link">
@@ -67,7 +70,7 @@ class ShopDetails extends Component {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
 
           <div className="row">
             <div className="col-lg-8 col-md-12">
@@ -697,7 +700,7 @@ class ShopDetails extends Component {
                 <div className="widget ltn__author-widget">
                   <div className="ltn__author-widget-inner text-center">
                     <img
-                      src={publicUrl + "assets/img/team/4.jpg"}
+                      src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"
                       alt="gambar"
                     />
                     <h5>Rosalina D. Willaimson</h5>
