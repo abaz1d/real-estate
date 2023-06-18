@@ -8,7 +8,7 @@ class BannerV6 extends Component {
 
     return (
       <div className="ltn__slider-area ltn__slider-4 position-relative  ltn__primary-bg">
-        <div className="ltn__slide-one-active----- slick-slide-arrow-1----- slick-slide-dots-1----- arrow-white----- ltn__slide-animation-active">
+        <div className="ltn__slide-animation-active">
           <video autoPlay muted loop id="myVideo">
             <source src={publicUrl + "assets/media/3.mp4"} type="video/mp4" />
           </video>

@@ -223,7 +223,7 @@ export default function ShopGridV1(props) {
                       </div>
                       {/* ltn__product-item */}
                       {properti.map((item, index) => (
-                        <div className="col-lg-12">
+                        <div key={index} className="col-lg-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5">
                             <div className="product-img">
                               <Link to="/product-details">

@@ -11,10 +11,7 @@ class CopyRight extends Component {
           <div className="row">
             <div className="col-md-6 col-12">
               <div className="ltn__copyright-design clearfix">
-                <p>
-                  All Rights Reserved @ Company{" "}
-                  <span className="current-year" />
-                </p>
+                <p>All Rights Reserved @ Company {new Date().getFullYear()}</p>
               </div>
             </div>
             <div className="col-md-6 col-12 align-self-center">
