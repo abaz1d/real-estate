@@ -6,7 +6,8 @@ import ScrollToTop from "../scroll-to-top";
 
 class Footer_v1 extends Component {
   componentDidMount() {
-    const $ = window.$;
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => document.querySelectorAll(selector);
 
     let publicUrl = process.env.PUBLIC_URL + "/";
     const minscript = document.createElement("script");
@@ -16,22 +17,29 @@ class Footer_v1 extends Component {
     document.body.appendChild(minscript);
 
     $(".go-top")
-      .find("a")
-      .on("click", function () {
-        $(".quarter-overlay").fadeIn(1);
+      .querySelector("a")
+      .addEventListener("click", function () {
+        $(".quarter-overlay").style.display = "block";
 
-        $(window).scrollTop(0);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
 
         setTimeout(function () {
-          $(".quarter-overlay").fadeOut(300);
+          $(".quarter-overlay").style.display = "none";
         }, 800);
       });
 
-    $(document).on("click", ".theme-btn-1 ", function () {
-      $("div").removeClass("modal-backdrop");
-      $("div").removeClass("show");
-      $("div").removeClass("fade");
-      $("body").attr("style", "");
+    document.addEventListener("click", function (event) {
+      if (event.target.matches(".theme-btn-1")) {
+        Array.from($$("div")).forEach((div) => {
+          div.classList.remove("modal-backdrop");
+          div.classList.remove("show");
+          div.classList.remove("fade");
+        });
+        document.body.removeAttribute("style");
+      }
     });
   }
 

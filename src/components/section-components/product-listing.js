@@ -84,7 +84,7 @@ export default function ProductListingV1(props) {
                       </li>
                       <li>
                         <span>
-                          {item.kamar_tidur}{" "}
+                          {item.kamar_mandi}{" "}
                           <i className="fa fa-bath mx-auto" />
                         </span>
                         Kamar Mandi

@@ -17,6 +17,49 @@ export default function Navbar() {
         headerSticky.classList.add("sticky-active");
       }
     });
+    (function () {
+      var ltnUtilizeToggle = document.querySelectorAll(".ltn__utilize-toggle"),
+        ltnUtilize = document.querySelectorAll(".ltn__utilize"),
+        ltnUtilizeOverlay = document.querySelectorAll(".ltn__utilize-overlay"),
+        mobileMenuToggle = document.querySelectorAll(".mobile-menu-toggle");
+
+      ltnUtilizeToggle.forEach(function (toggle) {
+        toggle.addEventListener("click", function (e) {
+          e.preventDefault();
+          var thisToggle = this,
+            target = thisToggle.getAttribute("href");
+          document.body.classList.add("ltn__utilize-open");
+          document.querySelector(target).classList.add("ltn__utilize-open");
+          ltnUtilizeOverlay.forEach(function (overlay) {
+            overlay.style.display = "block";
+          });
+          if (
+            thisToggle.parentElement.classList.contains("mobile-menu-toggle")
+          ) {
+            thisToggle.classList.add("close");
+          }
+        });
+      });
+
+      var utilizeClose = document.querySelectorAll(
+        ".ltn__utilize-close, .ltn__utilize-overlay"
+      );
+      utilizeClose.forEach(function (element) {
+        element.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.remove("ltn__utilize-open");
+          ltnUtilize.forEach(function (utilize) {
+            utilize.classList.remove("ltn__utilize-open");
+          });
+          ltnUtilizeOverlay.forEach(function (overlay) {
+            overlay.style.display = "none";
+          });
+          mobileMenuToggle.forEach(function (toggle) {
+            toggle.querySelector("a").classList.remove("close");
+          });
+        });
+      });
+    })();
   });
   return (
     <div>

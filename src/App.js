@@ -15,7 +15,6 @@ import MyAccount from "./components/my-account";
 import Login from "./components/login";
 import Register from "./components/register";
 import AddListing from "./components/add-listing";
-import ScrollToTop from "./components/scroll-to-top";
 
 function App() {
   return (
