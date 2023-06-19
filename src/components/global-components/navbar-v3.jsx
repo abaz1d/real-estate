@@ -137,10 +137,10 @@ export default function NavbarV3() {
                           <Link to="/">Beranda</Link>
                         </li>
                         <li>
-                          <Link to="/shop-grid/?kategori=beli">Beli</Link>
+                          <Link to="/shop-grid/?kategori=Beli">Beli</Link>
                         </li>
                         <li>
-                          <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
+                          <Link to="/shop-grid/?kategori=Sewa">Sewa</Link>
                         </li>
                         <li>
                           <Link to="/contact">Contact</Link>
@@ -329,10 +329,10 @@ export default function NavbarV3() {
                 <Link to="/">Beranda</Link>
               </li>
               <li>
-                <Link to="/shop-grid/?kategori=beli">Beli</Link>
+                <Link to="/shop-grid/?kategori=Beli">Beli</Link>
               </li>
               <li>
-                <Link to="/shop-grid/?kategori=sewa">Sewa</Link>
+                <Link to="/shop-grid/?kategori=Sewa">Sewa</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>

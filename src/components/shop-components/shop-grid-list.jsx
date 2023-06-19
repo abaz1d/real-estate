@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import moment from "moment"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { currencyString } from "@/utils/helper"
 import { useSelector, useDispatch } from "react-redux"
 import {
@@ -10,11 +10,22 @@ import {
 
 export default function ShopGridList() {
   const dispatch = useDispatch()
+  const [searchParams] = useSearchParams()
   const propertis = useSelector(selectPropertis)
   let [totalPages, setTotalPages] = useState(0)
   let [cari, setCari] = useState({
-    kategori: "",
     jenisProperti: "",
+    kategori:
+      searchParams.get("kategori") === null
+        ? ""
+        : searchParams.get("kategori") === "Beli"
+        ? "Jual"
+        : searchParams.get("kategori") === "Sewa"
+        ? "Sewa"
+        : "",
+    kota: searchParams.get("kota") === null ? "" : searchParams.get("kota"),
+    provinsi:
+      searchParams.get("provinsi") === null ? "" : searchParams.get("provinsi"),
     pageNumber: 1,
     searchData: "",
   })
@@ -25,12 +36,19 @@ export default function ShopGridList() {
         kategori: cari.kategori,
         jenis_properti: cari.jenisProperti,
         page_number: cari.pageNumber,
+        kota: cari.kota,
+        provinsi: cari.provinsi,
         total_row_displayed: "15",
       }),
     )
     setTotalPages(data.payload.total_pages)
   }
   useEffect(() => {
+    //console.log("params", searchParams.get("kota"))
+    fetchData()
+  }, [searchParams.get("kategori")])
+  useEffect(() => {
+    console.log("params", searchParams.get("kota"))
     fetchData()
   }, [cari])
   const handleChange = (event) => {
@@ -147,7 +165,17 @@ export default function ShopGridList() {
                       name="searchData"
                       placeholder="Search your keyword..."
                     />
-                    <button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        if (cari.searchData !== "") {
+                          setCari({
+                            ...cari,
+                            searchData: "",
+                          })
+                        }
+                      }}
+                    >
                       <i
                         className={
                           cari.searchData !== ""
@@ -171,7 +199,7 @@ export default function ShopGridList() {
                         <div key={index} className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 text-center---">
                             <div className="product-img go-top">
-                              <Link to="/product-details">
+                              <Link to={`/product-details/${item.id_properti}`}>
                                 {/* <img src={item.gambar} alt={"gambar" + index} /> */}
                                 <img
                                   src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
@@ -223,7 +251,11 @@ export default function ShopGridList() {
                                 </span>
                               </div>
                               <h2 className="product-title go-top">
-                                <Link to="/product-details">{item.judul}</Link>
+                                <Link
+                                  to={`/product-details/${item.id_properti}`}
+                                >
+                                  {item.judul}
+                                </Link>
                               </h2>
                               <ul className="ltn__list-item-2 ltn__list-item-2-before">
                                 <li>
@@ -311,7 +343,7 @@ export default function ShopGridList() {
                         <div key={index} className="col-lg-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5">
                             <div className="product-img">
-                              <Link to="/product-details">
+                              <Link to={`/product-details/${item.id_properti}`}>
                                 {/* <img src={item.gambar} alt={"gambar" + index} /> */}
                                 <img
                                   src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
@@ -347,7 +379,11 @@ export default function ShopGridList() {
                                 </div>
                               </div>
                               <h2 className="product-title go-top">
-                                <Link to="/product-details">{item.judul}</Link>
+                                <Link
+                                  to={`/product-details/${item.id_properti}`}
+                                >
+                                  {item.judul}
+                                </Link>
                               </h2>
                               <div className="product-img-location">
                                 <ul>
@@ -460,7 +496,7 @@ export default function ShopGridList() {
                       <a
                         onClick={() => handleChange("increment")}
                         className={
-                          cari.pageNumber == parseInt(totalPages)
+                          cari.pageNumber >= parseInt(totalPages)
                             ? "d-none"
                             : ""
                         }

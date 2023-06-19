@@ -735,25 +735,26 @@ export const readProperti = createAsyncThunk(READ_PROPERTI, async (arg) => {
   }
 })
 
+export const readDetailProperti = createAsyncThunk(
+  READ_DETAIL_PROPERTI,
+  async (id) => {
+    try {
+      const { data } = await API.read_detail(id)
+      if (data.success) {
+        return data.data
+      }
+    } catch (error) {
+      console.error(error)
+      return []
+    }
+  },
+)
+
 export const createPropertiAsync = createAsyncThunk(
   CREATE_PROPERTI,
   async ({ _id, title }) => {
     try {
       const { data } = await API.create(title)
-      if (data.success) {
-        return { _id, properti: data.data }
-      }
-    } catch (error) {
-      return { _id, properti: false }
-    }
-  },
-)
-
-export const readDetailProperti = createAsyncThunk(
-  READ_DETAIL_PROPERTI,
-  async ({ _id, title }) => {
-    try {
-      const { data } = await API.read_detail(id)
       if (data.success) {
         return { _id, properti: data.data }
       }
@@ -806,8 +807,7 @@ export const propertiSlice = createSlice({
       })
       .addCase(readProperti.fulfilled, (state, action) => {
         state.status = "idle"
-        console.log("action", action)
-        //state.propertis = action.payload
+        //console.log("action", action)
         if (typeof action.meta.arg === "string") {
           state.propertis = action.payload
         } else {

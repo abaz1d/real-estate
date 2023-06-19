@@ -1,25 +1,25 @@
-import React from "react";
-import Slider from "react-slick";
+import React from "react"
+import Slider from "react-slick"
 
 function SampleNextArrow(props) {
-  const { onClick } = props;
+  const { onClick } = props
   return (
     <a className="slick-next slick-arrow" onClick={onClick}>
       <i className="fas fa-arrow-right" alt="Arrow Icon"></i>
     </a>
-  );
+  )
 }
 
 function SamplePrevArrow(props) {
-  const { onClick } = props;
+  const { onClick } = props
   return (
     <a className="slick-prev slick-arrow" onClick={onClick}>
       <i className="fas fa-arrow-left" alt="Arrow Icon"></i>
     </a>
-  );
+  )
 }
 
-export default function ProductSliderV1() {
+export default function ProductSliderV1(props) {
   const settings = {
     className: "center",
     centerMode: true,
@@ -55,7 +55,7 @@ export default function ProductSliderV1() {
         },
       },
     ],
-  };
+  }
   return (
     <div className="ltn__img-slider-area mb-90">
       <div className="container-fluid">
@@ -131,5 +131,5 @@ export default function ProductSliderV1() {
         </Slider>
       </div>
     </div>
-  );
+  )
 }

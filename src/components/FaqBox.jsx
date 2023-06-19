@@ -1,22 +1,22 @@
 import React from "react"
 import Navbar from "./global-components/navbar"
 import PageHeader from "./global-components/page-header"
-import AddListing from "./section-components/add-listing"
+import Faq from "./section-components/faq-v1"
+import BlogSlider from "./blog-components/blog-slider-v1"
 import CallToActionV1 from "./section-components/call-to-action-v1"
 import Footer from "./global-components/footer"
-import { request, LoggedIn } from "@/utils/api"
 
-const AddListing_V1 = () => {
+const FaqBox = () => {
   return (
     <div>
-      <LoggedIn />
       <Navbar />
-      <PageHeader headertitle="Add Listing" />
-      <AddListing />
+      <PageHeader headertitle="Frequently asked questions" subheader="FAQ" />
+      <Faq />
+      {/* <BlogSlider sectionClass="pt-120" /> */}
       <CallToActionV1 />
       <Footer />
     </div>
   )
 }
 
-export default AddListing_V1
+export default FaqBox

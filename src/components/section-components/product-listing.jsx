@@ -36,7 +36,7 @@ export default function ProductListingV1() {
               <div key={index} className="col-xl-4 col-sm-6 col-12">
                 <div className="ltn__product-item ltn__product-item-4 text-center---">
                   <div className="product-img go-top">
-                    <Link to="/product-details">
+                    <Link to={`/product-details/${item.id_properti}`}>
                       {/* <img src={item.gambar} alt={"gambar" + index} /> */}
                       <img
                         src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
@@ -88,7 +88,9 @@ export default function ProductListingV1() {
                       </span>
                     </div>
                     <h2 className="product-title go-top">
-                      <Link to="/product-details">{item.judul}</Link>
+                      <Link to={`/product-details/${item.id_properti}`}>
+                        {item.judul}
+                      </Link>
                     </h2>
                     <ul className="ltn__list-item-2 ltn__list-item-2-before">
                       <li>
@@ -164,7 +166,7 @@ export default function ProductListingV1() {
             <div className="ltn__pagination-area text-center">
               <div className="ltn__pagination">
                 <div className="btn-wrapper go-top">
-                  <Link className="btn btn-effect-3 bg-orange" to="/contact">
+                  <Link className="btn btn-effect-3 bg-orange" to="/shop-grid">
                     Selengkapnya <i className="icon-next" />
                   </Link>
                 </div>
