@@ -164,12 +164,6 @@ export default function ShopDetails(props) {
 
                   <h4 className="title-2">Deskripsi</h4>
                   <p>{item.deskripsi}</p>
-                  <p>
-                    To the left is the modern kitchen with central island,
-                    leading through to the unique breakfast family room which
-                    feature glass walls and doors out onto the garden and access
-                    to the separate utility room.
-                  </p>
                   <h4 className="title-2">Facts and Features</h4>
                   <div className="property-detail-feature-list clearfix mb-45">
                     <ul>

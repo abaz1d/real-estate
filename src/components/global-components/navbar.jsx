@@ -149,23 +149,10 @@ export default function Navbar() {
                           <a href="/#">Lainya</a>
                           <ul>
                             <li>
-                              <Link to="/blog">News</Link>
+                              <Link to="/about">About</Link>
                             </li>
                             <li>
-                              <Link to="/blog-grid">News Grid</Link>
-                            </li>
-                            <li>
-                              <Link to="/blog-left-sidebar">
-                                News Left sidebar
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/blog-right-sidebar">
-                                News Right sidebar
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/blog-details">News details</Link>
+                              <Link to="/faq">Faq</Link>
                             </li>
                           </ul>
                         </li>
@@ -330,19 +317,10 @@ export default function Navbar() {
                 <a href="/#">Lainya</a>
                 <ul>
                   <li>
-                    <Link to="/blog">News</Link>
+                    <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <Link to="/blog-grid">News Grid</Link>
-                  </li>
-                  <li>
-                    <Link to="/blog-left-sidebar">News Left sidebar</Link>
-                  </li>
-                  <li>
-                    <Link to="/blog-right-sidebar">News Right sidebar</Link>
-                  </li>
-                  <li>
-                    <Link to="/blog-details">News details</Link>
+                    <Link to="/faq">Faq</Link>
                   </li>
                 </ul>
               </li>

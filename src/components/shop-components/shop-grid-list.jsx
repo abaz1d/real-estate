@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import moment from "moment"
-import { Link, useSearchParams } from "react-router-dom"
+import { Link, useSearchParams, useLocation } from "react-router-dom"
 import { currencyString } from "@/utils/helper"
 import { useSelector, useDispatch } from "react-redux"
 import {
@@ -10,6 +10,7 @@ import {
 
 export default function ShopGridList() {
   const dispatch = useDispatch()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const propertis = useSelector(selectPropertis)
   let [totalPages, setTotalPages] = useState(0)
@@ -44,11 +45,19 @@ export default function ShopGridList() {
     setTotalPages(data.payload.total_pages)
   }
   useEffect(() => {
-    //console.log("params", searchParams.get("kota"))
-    fetchData()
-  }, [searchParams.get("kategori")])
+    setCari({
+      ...cari,
+      kategori:
+        searchParams.get("kategori") === null
+          ? ""
+          : searchParams.get("kategori") === "Beli"
+          ? "Jual"
+          : searchParams.get("kategori") === "Sewa"
+          ? "Sewa"
+          : "",
+    })
+  }, [location])
   useEffect(() => {
-    console.log("params", searchParams.get("kota"))
     fetchData()
   }, [cari])
   const handleChange = (event) => {
@@ -438,7 +447,7 @@ export default function ShopGridList() {
                   </div> */}
                               <span>
                                 <i className="fa fa-clock me-2" />
-                                <label> 10 Jam yang lalu</label>
+                                <label> {moment(item.di_buat).fromNow()}</label>
                               </span>
                               <div className="product-hover-action">
                                 <ul>

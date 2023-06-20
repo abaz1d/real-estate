@@ -1,5 +1,5 @@
 // A mock function to mimic making an async request for data
-import { request } from "../../utils/api"
+import { request } from "@/utils/api"
 
 export const read = (arg) => {
   if (typeof arg === "string") {
