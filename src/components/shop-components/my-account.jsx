@@ -32,13 +32,7 @@ export default function MyAccount() {
     if (localStorage.getItem("user")) {
       fetchData()
     }
-  }, [dispatch])
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      fetchData()
-    }
-  }, [cari])
-  console.log(detail_user)
+  }, [dispatch, cari])
   const handleChange = (event) => {
     if (event === "increment") {
       setCari({
