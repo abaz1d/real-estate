@@ -5,7 +5,10 @@ export const read = (arg) => {
   request.get("/users")
 }
 
-export const read_detail = (id) => request.get(`users/details/${id}`)
+export const read_detail = (user) =>
+  request.get(
+    `users/details/${user.id}?page_number=${user.page_number}&total_row_displayed=${user.total_row_displayed}`,
+  )
 
 export const create = (user) => request.post("users/add", user)
 

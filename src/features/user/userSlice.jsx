@@ -32,17 +32,20 @@ export const readUser = createAsyncThunk(READ_USER, async (arg) => {
   }
 })
 
-export const readDetailUser = createAsyncThunk(READ_DETAIL_USER, async (id) => {
-  try {
-    const { data } = await API.read_detail(id)
-    if (data.success) {
-      return data.data
+export const readDetailUser = createAsyncThunk(
+  READ_DETAIL_USER,
+  async (user) => {
+    try {
+      const { data } = await API.read_detail(user)
+      if (data.success) {
+        return data.data
+      }
+    } catch (error) {
+      console.error(error)
+      return []
     }
-  } catch (error) {
-    console.error(error)
-    return []
-  }
-})
+  },
+)
 
 export const createUserAsync = createAsyncThunk(
   CREATE_USER,
@@ -118,7 +121,7 @@ export const userSlice = createSlice({
       })
       .addCase(readDetailUser.fulfilled, (state, action) => {
         state.status = "idle"
-        state.users = action.payload
+        state.users = action.payload.rows
       })
       .addCase(removeUser.fulfilled, (state, action) => {
         state.status = "idle"

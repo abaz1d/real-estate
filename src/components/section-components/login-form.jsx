@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-// import parse from "html-react-parser";
+import { useDispatch } from "react-redux"
+import { loginAsync } from "@/features/auth/authSlice"
 
 export default function LoginForm() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [user, setUser] = useState({
     input_user: "",
@@ -18,10 +20,12 @@ export default function LoginForm() {
       [name]: value,
     })
   }
-  const saveUser = (e) => {
+  const saveUser = async (e) => {
     e.preventDefault()
-    console.log("save", user)
-    navigate("/my-account")
+    await dispatch(loginAsync(user))
+    if (localStorage.getItem("user")) {
+      navigate("/my-account")
+    }
   }
   const style = {
     position: "absolute",

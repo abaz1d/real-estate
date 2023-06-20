@@ -9,3 +9,6 @@ export const CREATE_USER = "user/create_user"
 export const UPDATE_USER = "user/update_user"
 export const REMOVE_USER = "user/remove_user"
 export const READ_DETAIL_USER = "user/read_detail_user"
+
+export const LOG_IN = "auth/log_in"
+export const LOG_OUT = "auth/log_out"

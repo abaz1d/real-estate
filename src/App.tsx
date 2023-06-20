@@ -11,8 +11,8 @@ import ProdductDetails from "@/components/ProductDetails.jsx"
 
 import ContactBox from "@/components/ContactBox.jsx"
 import CartBox from "@/components/CartBox.jsx"
-import MyAccountBox from "@/components/MyaccountBox.jsx"
-import LoginBox from "@/features/user/LoginBox.jsx"
+import MyAccountBox from "@/features/user/MyaccountBox.jsx"
+import LoginBox from "@/features/auth/LoginBox.jsx"
 import RegisterBox from "@/features/user/RegisterBox.jsx"
 import AddListing from "@/components/AddListing.jsx"
 

@@ -330,7 +330,10 @@ export default function ShopGridList() {
                                       paddingTop: "-10px",
                                     }}
                                   >
-                                    <Link to="/product-details" title="Bagikan">
+                                    <Link
+                                      to={`/product-details/${item.id_properti}`}
+                                      title="Bagikan"
+                                    >
                                       <i className="fa fa-share fa-rotate-180 fa-lg" />
                                     </Link>
                                   </li>
