@@ -141,6 +141,7 @@ export default function ShopGridList() {
                   <li className="">
                     <div className="showing-product-number text-right">
                       <button
+                        aria-label="close-button"
                         className={
                           (cari.jenisProperti || cari.kategori) === ""
                             ? "d-none"
@@ -175,6 +176,7 @@ export default function ShopGridList() {
                       placeholder="Search your keyword..."
                     />
                     <button
+                      aria-label="search-button"
                       onClick={(e) => {
                         e.preventDefault()
                         if (cari.searchData !== "") {

@@ -190,7 +190,7 @@ export default function Navbar() {
                         defaultValue
                         placeholder="Search here..."
                       />
-                      <button type="submit">
+                      <button type="submit" aria-label="search-button">
                         <span>
                           <i className="icon-search" />
                         </span>
@@ -289,12 +289,14 @@ export default function Navbar() {
                 <img src={"assets/img/logo.png"} alt="Logo" />
               </Link>
             </div>
-            <button className="ltn__utilize-close">×</button>
+            <button className="ltn__utilize-close" aria-label="close-button">
+              ×
+            </button>
           </div>
           <div className="ltn__utilize-menu-search-form">
             <form action={"#"}>
               <input type="text" placeholder="Search..." />
-              <button>
+              <button aria-label="search-button">
                 <i className="fas fa-search" />
               </button>
             </form>
@@ -396,7 +398,9 @@ export default function Navbar() {
         <div className="ltn__utilize-menu-inner ltn__scrollbar">
           <div className="ltn__utilize-menu-head">
             <span className="ltn__utilize-menu-title">Wishlist</span>
-            <button className="ltn__utilize-close">×</button>
+            <button className="ltn__utilize-close" aria-label="close-button">
+              ×
+            </button>
           </div>
           <div className="mini-cart-product-area ltn__scrollbar">
             <div className="mini-cart-item clearfix">

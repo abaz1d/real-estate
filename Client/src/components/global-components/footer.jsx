@@ -194,7 +194,11 @@ class Footer_v1 extends Component {
                     <form action="#">
                       <input type="email" name="email" placeholder="Email*" />
                       <div className="btn-wrapper">
-                        <button className="theme-btn-1 btn" type="submit">
+                        <button
+                          className="theme-btn-1 btn"
+                          type="submit"
+                          aria-label="submit-button"
+                        >
                           <i className="fas fa-location-arrow" />
                         </button>
                       </div>

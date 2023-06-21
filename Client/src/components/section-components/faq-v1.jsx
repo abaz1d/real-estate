@@ -257,7 +257,7 @@ export default function FaqV1() {
                 <h4 className="ltn__widget-title">Get Newsletter</h4>
                 <form action="#">
                   <input type="text" name="search" placeholder="Search" />
-                  <button type="submit">
+                  <button type="submit" aria-label="submit-button">
                     <i className="fas fa-search" />
                   </button>
                 </form>

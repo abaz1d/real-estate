@@ -90,7 +90,7 @@ class Sidebar extends Component {
                 name="search"
                 placeholder="Search your keyword..."
               />
-              <button type="submit">
+              <button type="submit" aria-label="search-button">
                 <i className="fas fa-search" />
               </button>
             </form>
@@ -108,7 +108,11 @@ class Sidebar extends Component {
                 placeholder="Write Message..."
                 defaultValue={""}
               />
-              <button type="submit" className="btn theme-btn-1">
+              <button
+                type="submit"
+                className="btn theme-btn-1"
+                aria-label="message-button"
+              >
                 Send Messege
               </button>
             </form>

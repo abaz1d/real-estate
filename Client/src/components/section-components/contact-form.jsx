@@ -125,6 +125,7 @@ class ContactForm extends Component {
                     <button
                       className="btn theme-btn-1 btn-effect-1 text-uppercase"
                       type="submit"
+                      aria-label="submit-button"
                     >
                       get a free service
                     </button>

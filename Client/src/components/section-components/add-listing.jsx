@@ -736,6 +736,7 @@ export default function AddListing(props) {
                 </div>
                 <div className="btn-wrapper text-center mt-30">
                   <button
+                    aria-label="submit-button"
                     className="btn theme-btn-1 btn-effect-1 text-uppercase"
                     type="submit"
                   >

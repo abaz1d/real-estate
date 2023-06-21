@@ -105,6 +105,7 @@ class CaetV1 extends Component {
                             <button
                               type="submit"
                               className="btn theme-btn-2 btn-effect-2"
+                              aria-label="submit-button"
                             >
                               Apply Coupon
                             </button>
@@ -114,6 +115,7 @@ class CaetV1 extends Component {
                           <button
                             type="submit"
                             className="btn theme-btn-2 btn-effect-2-- disabled"
+                            aria-label="submit-button"
                           >
                             Update Cart
                           </button>

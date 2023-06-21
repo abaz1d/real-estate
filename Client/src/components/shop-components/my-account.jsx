@@ -334,6 +334,7 @@ export default function MyAccount() {
                                     <button
                                       type="submit"
                                       className="btn theme-btn-1 btn-effect-1 text-uppercase"
+                                      aria-label="submit-button"
                                     >
                                       Save Changes
                                     </button>
@@ -545,7 +546,10 @@ export default function MyAccount() {
                                             </div>
                                           </div>
                                         </div>
-                                        <button className="btn theme-btn-1 btn-effect-1 text-uppercase">
+                                        <button
+                                          className="btn theme-btn-1 btn-effect-1 text-uppercase"
+                                          aria-label="login-button"
+                                        >
                                           Login
                                         </button>
                                         <label className="input-info-save mb-0">
@@ -587,7 +591,10 @@ export default function MyAccount() {
                                           name="coupon-code"
                                           placeholder="Coupon code"
                                         />
-                                        <button className="btn theme-btn-2 btn-effect-2 text-uppercase">
+                                        <button
+                                          aria-label="apply-button"
+                                          className="btn theme-btn-2 btn-effect-2 text-uppercase"
+                                        >
                                           Apply Coupon
                                         </button>
                                       </form>
@@ -828,6 +835,7 @@ export default function MyAccount() {
                                 <button
                                   className="btn theme-btn-1 btn-effect-1 text-uppercase"
                                   type="submit"
+                                  aria-label="submit-button"
                                 >
                                   Place order
                                 </button>
@@ -907,6 +915,7 @@ export default function MyAccount() {
                                 <button
                                   className="theme-btn-1 btn btn-block"
                                   type="submit"
+                                  aria-label="save-button"
                                 >
                                   Save Changes
                                 </button>
@@ -954,6 +963,7 @@ export default function MyAccount() {
                       type="button"
                       className="bg-white py-2 px-3 border border-secondary"
                       data-bs-dismiss="modal"
+                      aria-label="modal-button"
                     >
                       Cancel
                     </button>
@@ -962,6 +972,7 @@ export default function MyAccount() {
                       onClick={() => logOut()}
                       type="button"
                       className="py-2 px-3 btn-danger"
+                      aria-label="modal-button"
                     >
                       Ya, Keluar
                     </button>
@@ -1007,12 +1018,14 @@ export default function MyAccount() {
                         type="button"
                         className="bg-white py-2 px-3 border border-secondary"
                         data-bs-dismiss="modal"
+                        aria-label="close-button"
                         onClick={() => setIsDelete(false)}
                       >
                         Cancel
                       </button>
                       <button
                         data-bs-dismiss="modal"
+                        aria-label="close-button"
                         onClick={() => deletePost()}
                         type="button"
                         className="py-2 px-3 btn-danger"

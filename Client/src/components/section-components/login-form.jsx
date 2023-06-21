@@ -93,7 +93,12 @@ export default function LoginForm() {
                     placeholder="Password*"
                     className="js-password"
                   />
-                  <button onClick={showPassword} style={style} type="button">
+                  <button
+                    onClick={showPassword}
+                    style={style}
+                    type="button"
+                    aria-label="open-button"
+                  >
                     <i
                       className="fa fa-eye my-0 js-password-label"
                       aria-hidden="true"
@@ -101,7 +106,11 @@ export default function LoginForm() {
                   </button>
 
                   <div className="btn-wrapper mt-0">
-                    <button className="theme-btn-1 btn btn-block" type="submit">
+                    <button
+                      aria-label="sign-button"
+                      className="theme-btn-1 btn btn-block"
+                      type="submit"
+                    >
                       SIGN IN
                     </button>
                   </div>
@@ -175,6 +184,7 @@ export default function LoginForm() {
                               <button
                                 className="theme-btn-1 btn btn-full-width-2"
                                 type="submit"
+                                aria-label="submit-button"
                               >
                                 Submit
                               </button>
