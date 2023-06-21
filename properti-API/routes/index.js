@@ -139,6 +139,7 @@ module.exports = function (db) {
 
   router.get("/logout", async function (req, res) {
     const token = req.headers.authorization;
+    //console.log("token", token);
     if (token && token.split(" ")[1]) {
       const pureToken = token.split(" ")[1];
       try {
@@ -146,8 +147,8 @@ module.exports = function (db) {
         const { rows } = await db.query(
           `SELECT * FROM public.users WHERE id_user = ${result.userid} ORDER BY id_user ASC`
         );
-        //const user = rows[0];
-        const user = result;
+        const user = rows[0];
+        //const user = result;
         var tokenNow = null;
         const { data } = await db.query(
           `UPDATE public.users SET token = $1 WHERE id_user = $2 RETURNING *;`,
@@ -155,6 +156,7 @@ module.exports = function (db) {
         );
         res.json(new Response({ message: "sign out success" }, true));
       } catch (e) {
+        console.error(e);
         res.json(new Response({ message: "token invalid" }, false));
       }
     } else {

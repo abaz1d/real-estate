@@ -5,7 +5,13 @@ import { Navigate } from "react-router-dom"
 export const request = axios.create({
   baseURL: "http://localhost:3001/",
   timeout: 15000,
-  //headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}` }
+  headers: {
+    Authorization: `Bearer ${
+      JSON.parse(localStorage.getItem("user"))
+        ? JSON.parse(localStorage.getItem("user")).token
+        : ""
+    }`,
+  },
 })
 
 request.interceptors.request.use(function (config) {

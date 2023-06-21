@@ -14,7 +14,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["testing-library__jest-dom"]
+    "types": ["testing-library__jest-dom"],
+    "noImplicitAny": false,
+    "typeRoots": ["./typings", "./node_modules/@types/"]
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules", ".vscode"],

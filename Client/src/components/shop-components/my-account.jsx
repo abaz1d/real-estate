@@ -32,7 +32,7 @@ export default function MyAccount() {
   const logOut = async () => {
     await dispatch(logoutAsync())
     if (!localStorage.getItem("user")) {
-      navigate("/")
+      navigate("/login")
     }
   }
 
@@ -358,7 +358,7 @@ export default function MyAccount() {
                                 </tr>
                               </thead>
                               <tbody>
-                                {detail_user.length > 1 &&
+                                {detail_user.length >= 1 &&
                                   detail_user.map((item, index) => (
                                     <tr key={index}>
                                       <td className="ltn__my-properties-img go-top">
