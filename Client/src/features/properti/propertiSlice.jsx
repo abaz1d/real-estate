@@ -20,7 +20,6 @@ export const readProperti = createAsyncThunk(READ_PROPERTI, async (arg) => {
       ? (arrayKosong = [])
       : (arrayKosong = { rows: [], total_pages: 0 })
     const { data } = await API.read(arg)
-    //console.log(data)
     if (data.success) {
       return data.data
     } else {
@@ -49,39 +48,50 @@ export const readDetailProperti = createAsyncThunk(
 
 export const createPropertiAsync = createAsyncThunk(
   CREATE_PROPERTI,
-  async ({ _id, title }) => {
+  async (properti) => {
+    // return properti
     try {
-      const { data } = await API.create(title)
+      const { data } = await API.create(properti)
       if (data.success) {
-        return { _id, properti: data.data }
+        let id = properti.id
+        return { ...data.data, id }
+      } else {
+        throw new Error(JSON.stringify(data))
       }
     } catch (error) {
-      return { _id, properti: false }
+      console.error(error, "gagal")
     }
   },
 )
 
-export const removeProperti = createAsyncThunk(REMOVE_PROPERTI, async (_id) => {
-  try {
-    const { data } = await API.remove(_id)
-    if (data.success) {
-      return data.data
+export const removeProperti = createAsyncThunk(
+  REMOVE_PROPERTI,
+  async (id_properti) => {
+    try {
+      const { data } = await API.remove(id_properti)
+      if (data.success) {
+        return id_properti
+      } else {
+        return properti
+      }
+    } catch (error) {
+      console.erorr(error, "gagal")
     }
-  } catch (error) {
-    console.log(error, "gagal")
-  }
-})
+  },
+)
 
 export const updateProperti = createAsyncThunk(
   UPDATE_PROPERTI,
-  async ({ _id, title, complete }) => {
+  async (properti) => {
     try {
-      const { data } = await API.update(_id, title, complete)
+      const { data } = await API.update(properti)
       if (data.success) {
         return data.data
+      } else {
+        return properti
       }
     } catch (error) {
-      console.log(error, "gagal")
+      console.error(error, "gagal")
     }
   },
 )
@@ -91,10 +101,7 @@ export const propertiSlice = createSlice({
   initialState,
   reducers: {
     create: (state, action) => {
-      state.propertis = [
-        ...state.propertis,
-        { _id: action.payload._id, title: action.payload.title, sent: true },
-      ]
+      state.propertis = [...state.propertis, action.payload]
     },
   },
   extraReducers: (builder) => {
@@ -104,7 +111,6 @@ export const propertiSlice = createSlice({
       })
       .addCase(readProperti.fulfilled, (state, action) => {
         state.status = "idle"
-        //console.log("action", action)
         if (typeof action.meta.arg === "string") {
           state.propertis = action.payload
         } else {
@@ -113,17 +119,10 @@ export const propertiSlice = createSlice({
       })
       .addCase(createPropertiAsync.fulfilled, (state, action) => {
         state.status = "idle"
-        if (action.payload.properti) {
+        if (action.payload) {
           state.propertis = state.propertis.map((item) => {
-            if (item._id === action.payload._id) {
-              return { ...action.payload.properti, sent: true }
-            }
-            return item
-          })
-        } else {
-          state.propertis = state.propertis.map((item) => {
-            if (item._id === action.payload._id) {
-              item.sent = false
+            if (item.id === action.payload.id) {
+              return action.payload
             }
             return item
           })
@@ -139,17 +138,19 @@ export const propertiSlice = createSlice({
       .addCase(removeProperti.fulfilled, (state, action) => {
         state.status = "idle"
         state.propertis = state.propertis.filter(
-          (item) => item._id !== action.payload._id,
+          (item) => item.id_properti !== action.payload.id_properti,
         )
       })
       .addCase(updateProperti.fulfilled, (state, action) => {
         state.status = "idle"
-        state.propertis = state.propertis.map((item) => {
-          if (item._id === action.payload._id) {
-            return { ...action.payload, sent: true }
-          }
-          return item
-        })
+        if (action.payload) {
+          state.propertis = state.propertis.map((item) => {
+            if (item.id_properti === action.payload.id_properti) {
+              return action.payload
+            }
+            return item
+          })
+        }
       })
   },
 })
@@ -158,11 +159,10 @@ const { create } = propertiSlice.actions
 
 export const selectPropertis = (state) => state.properti.propertis
 
-export const createProperti = (title) => (dispatch, getState) => {
-  const _id = Date.now()
-  dispatch(create({ _id, title }))
-  console.log("dikerjain", _id)
-  dispatch(createPropertiAsync({ _id, title }))
+export const createProperti = (properti) => (dispatch, getState) => {
+  const id = Date.now()
+  dispatch(create({ ...properti, id }))
+  dispatch(createPropertiAsync({ ...properti, id }))
 }
 
 export default propertiSlice.reducer

@@ -1,8 +1,18 @@
-import React, { useState } from "react";
-// import { Link } from 'react-router-dom';
-// import parse from 'html-react-parser';
+import React, { useState, useEffect } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import {
+  createProperti,
+  updateProperti,
+  selectPropertis,
+  readDetailProperti,
+} from "@/features/properti/propertiSlice"
 
 export default function AddListing(props) {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const propertis = useSelector(selectPropertis)
+  const [searchParams] = useSearchParams()
   const [properti, setProperti] = useState({
     judul: "",
     deskripsi: "",
@@ -30,21 +40,109 @@ export default function AddListing(props) {
     kamar_tidur: "",
     kamar_mandi: "",
     // lain
-  });
+  })
+  const resetForm = () => {
+    setProperti({
+      judul: "",
+      deskripsi: "",
+      jenis_properti: "",
+      kategori: "",
+      status: "",
+      total_harga: "",
+      harga_tanah: "",
+      harga_bangunan: "",
+      pajak: "",
+      //foto 6/10,
+      // video berbentuk link,
+      alamat: "",
+      kota: "",
+      provinsi: "",
+      kode_pos: "",
+      //latitude,
+      //longitude,
+      luas_properti: "",
+      jenis_sertifikat: "",
+      tahun_pembangunan: "",
+      daya_listrik: "",
+      jumlah_lantai: "",
+      jumlah_ruangan: "",
+      kamar_tidur: "",
+      kamar_mandi: "",
+      // lain
+    })
+  }
   const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.value
+    const name = target.name
     //console.log(event.target);
     setProperti({
       ...properti,
       [name]: value,
-    });
-  };
-  const saveProperti = (e) => {
-    e.preventDefault();
-    console.log("save", properti);
-  };
+    })
+  }
+  const fetchData = async () => {
+    let data = await dispatch(
+      readDetailProperti(searchParams.get("id_properti")),
+    )
+    if (data.payload.length > 0) {
+      let detail = data.payload[0]
+      setProperti({
+        judul: detail.judul,
+        deskripsi: detail.deskripsi,
+        jenis_properti: detail.jenis_properti,
+        kategori: detail.kategori,
+        status: detail.status,
+        total_harga: detail.total_harga,
+        harga_tanah: detail.harga_tanah,
+        harga_bangunan: detail.harga_bangunan,
+        pajak: detail.pajak,
+        //foto 6/10,
+        // video berbentuk link,
+        alamat: detail.alamat,
+        kota: detail.kota,
+        provinsi: detail.provinsi,
+        kode_pos: detail.kode_pos,
+        //latitude,
+        //longitude,
+        luas_properti: detail.luas_properti,
+        jenis_sertifikat: detail.jenis_sertifikat,
+        tahun_pembangunan: detail.tahun_pembangunan,
+        daya_listrik: detail.daya_listrik,
+        jumlah_lantai: detail.jumlah_lantai,
+        jumlah_ruangan: detail.jumlah_ruangan,
+        kamar_tidur: detail.kamar_tidur,
+        kamar_mandi: detail.kamar_mandi,
+        // lain
+      })
+    }
+  }
+  useEffect(() => {
+    if (searchParams.get("id_properti") !== null) {
+      fetchData()
+    }
+  }, [searchParams])
+  const saveProperti = async (e) => {
+    e.preventDefault()
+    if (searchParams.get("id_properti") !== null) {
+      await dispatch(
+        updateProperti({
+          ...properti,
+          id_user: JSON.parse(localStorage.getItem("user")).userid,
+          id_properti: searchParams.get("id_properti"),
+        }),
+      )
+    } else {
+      await dispatch(
+        createProperti({
+          ...properti,
+          id_user: JSON.parse(localStorage.getItem("user")).userid,
+        }),
+      )
+    }
+    resetForm()
+    navigate("/my-account")
+  }
 
   return (
     <div className="ltn__appointment-area pb-120">
@@ -52,6 +150,20 @@ export default function AddListing(props) {
         <div className="row">
           <div className="col-lg-12">
             <div className="ltn__appointment-inner">
+              {searchParams.get("id_properti") !== null && (
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="input-item input-item-name ltn__custom-icon">
+                      <input
+                        type="text"
+                        name="id_properti"
+                        value={searchParams.get("id_properti")}
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
               <form onSubmit={saveProperti}>
                 <h2>1. Deskripsi</h2>
                 <p>
@@ -64,6 +176,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="judul"
+                        required
                         value={properti.judul}
                         onChange={handleChange}
                         placeholder="*Judul (wajib)"
@@ -72,6 +185,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-textarea ltn__custom-icon">
                       <textarea
                         name="deskripsi"
+                        required
                         placeholder="Deskripsi"
                         value={properti.deskripsi}
                         onChange={handleChange}
@@ -85,6 +199,7 @@ export default function AddListing(props) {
                     <div className="input-item">
                       <select
                         name="jenis_properti"
+                        required
                         value={properti.jenis_properti}
                         onChange={(e) => handleChange(e)}
                         className="nice-select"
@@ -103,6 +218,7 @@ export default function AddListing(props) {
                     <div className="input-item">
                       <select
                         name="kategori"
+                        required
                         value={properti.kategori}
                         onChange={handleChange}
                         className="nice-select"
@@ -120,6 +236,7 @@ export default function AddListing(props) {
                       <select
                         name="status"
                         onChange={handleChange}
+                        required
                         value={properti.status}
                         className="nice-select"
                       >
@@ -140,6 +257,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
                         type="text"
+                        required
                         name="total_harga"
                         value={properti.total_harga}
                         onChange={handleChange}
@@ -151,6 +269,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
                         type="text"
+                        required
                         name="pajak"
                         value={properti.pajak}
                         onChange={handleChange}
@@ -161,6 +280,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
+                        required
                         type="text"
                         name="harga_tanah"
                         value={properti.harga_tanah}
@@ -173,6 +293,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
                         type="text"
+                        required
                         name="harga_bangunan"
                         value={properti.harga_bangunan}
                         onChange={handleChange}
@@ -237,6 +358,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="alamat"
+                        required
                         value={properti.alamat}
                         onChange={handleChange}
                         placeholder="*Alamat"
@@ -248,6 +370,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="kota"
+                        required
                         value={properti.kota}
                         onChange={handleChange}
                         placeholder="Kota/ Kabupaten"
@@ -259,6 +382,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="provinsi"
+                        required
                         value={properti.provinsi}
                         onChange={handleChange}
                         placeholder="Provinsi"
@@ -270,6 +394,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="kode_pos"
+                        required
                         value={properti.kode_pos}
                         onChange={handleChange}
                         placeholder="Kode Pos"
@@ -316,6 +441,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
                         type="text"
+                        required
                         name="luas_properti"
                         value={properti.luas_properti}
                         onChange={handleChange}
@@ -326,6 +452,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item">
                       <select
+                        required
                         name="jenis_sertifikat"
                         value={properti.jenis_sertifikat}
                         onChange={handleChange}
@@ -351,6 +478,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
+                        required
                         type="text"
                         name="tahun_pembangunan"
                         value={properti.tahun_pembangunan}
@@ -362,6 +490,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
+                        required
                         type="text"
                         name="daya_listrik"
                         value={properti.daya_listrik}
@@ -373,6 +502,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item">
                       <select
+                        required
                         name="jumlah_lantai"
                         value={properti.jumlah_lantai}
                         onChange={handleChange}
@@ -397,6 +527,7 @@ export default function AddListing(props) {
                   <div className="col-md-6">
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
+                        required
                         type="text"
                         name="jumlah_ruangan"
                         value={properti.jumlah_ruangan}
@@ -409,6 +540,7 @@ export default function AddListing(props) {
                     <div className="input-item input-item-name ltn__custom-icon">
                       <input
                         type="text"
+                        required
                         name="kamar_tidur"
                         value={properti.kamar_tidur}
                         onChange={handleChange}
@@ -421,6 +553,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="kamar_mandi"
+                        required
                         value={properti.kamar_mandi}
                         onChange={handleChange}
                         placeholder="Jumlah Kamar Mandi"
@@ -615,5 +748,5 @@ export default function AddListing(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

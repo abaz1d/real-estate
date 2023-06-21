@@ -13,9 +13,10 @@ export const read = (arg) => {
 
 export const read_detail = (id) => request.get(`properti/details/${id}`)
 
-export const create = (title) => request.post("properti", { title })
+export const create = (properti) => request.post("properti/add", properti)
 
-export const update = (_id, title, complete) =>
-  request.put(`properti/${_id}`, { title, complete })
+export const update = (properti) =>
+  request.put(`properti/edit/${properti.id_properti}`, properti)
 
-export const remove = (_id) => request.delete(`properti/${_id}`)
+export const remove = (id_properti) =>
+  request.delete(`properti/delete/${id_properti}`)

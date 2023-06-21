@@ -87,6 +87,133 @@ module.exports = function (db) {
       res.status(500).json(new Response(e, false));
     }
   });
+  router.post("/add", async function (req, res, next) {
+    try {
+      const {
+        judul,
+        deskripsi,
+        jenis_properti,
+        kategori,
+        status,
+        total_harga,
+        harga_tanah,
+        harga_bangunan,
+        pajak,
+        alamat,
+        kota,
+        provinsi,
+        kode_pos,
+        luas_properti,
+        jenis_sertifikat,
+        tahun_pembangunan,
+        daya_listrik,
+        jumlah_lantai,
+        jumlah_ruangan,
+        kamar_tidur,
+        kamar_mandi,
+        id_user,
+      } = req.body;
+      const { rows } = await db.query(
+        "INSERT INTO properti ( judul,deskripsi,jenis_properti,kategori,status,total_harga,harga_tanah,harga_bangunan,pajak,alamat,kota,provinsi,kode_pos,luas_properti,jenis_sertifikat,tahun_pembangunan,daya_listrik,jumlah_lantai,jumlah_ruangan,kamar_tidur,kamar_mandi, id_user) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22) RETURNING (id_properti, judul)",
+        [
+          judul,
+          deskripsi,
+          jenis_properti,
+          kategori,
+          status,
+          total_harga,
+          harga_tanah,
+          harga_bangunan,
+          pajak,
+          alamat,
+          kota,
+          provinsi,
+          kode_pos,
+          luas_properti,
+          jenis_sertifikat,
+          tahun_pembangunan,
+          daya_listrik,
+          jumlah_lantai,
+          jumlah_ruangan,
+          kamar_tidur,
+          kamar_mandi,
+          id_user,
+        ]
+      );
+      res.json(new Response(rows));
+    } catch (e) {
+      console.log("error", e);
+      res.json(
+        new Response({ message: "failed add properti " + e.toString() }, false)
+      );
+    }
+  });
+  router.put("/edit/:id", async function (req, res, next) {
+    try {
+      const {
+        judul,
+        deskripsi,
+        jenis_properti,
+        kategori,
+        status,
+        total_harga,
+        harga_tanah,
+        harga_bangunan,
+        pajak,
+        alamat,
+        kota,
+        provinsi,
+        kode_pos,
+        luas_properti,
+        jenis_sertifikat,
+        tahun_pembangunan,
+        daya_listrik,
+        jumlah_lantai,
+        jumlah_ruangan,
+        kamar_tidur,
+        kamar_mandi,
+        id_user,
+      } = req.body;
+      const { rows } = await db.query(
+        `UPDATE properti SET judul = $1,deskripsi = $2,jenis_properti = $3,kategori = $4,status = $5,total_harga = $6,harga_tanah = $7,harga_bangunan = $8,pajak = $9,alamat = $10,kota = $11,provinsi = $12,kode_pos = $13,luas_properti = $14,jenis_sertifikat = $15,tahun_pembangunan = $16,daya_listrik = $17,jumlah_lantai = $18,jumlah_ruangan = $19,kamar_tidur = $20,kamar_mandi = $21, id_user = $22
+      WHERE id_properti = $23 RETURNING (id_properti, judul)`,
+        [
+          judul,
+          deskripsi,
+          jenis_properti,
+          kategori,
+          status,
+          total_harga,
+          harga_tanah,
+          harga_bangunan,
+          pajak,
+          alamat,
+          kota,
+          provinsi,
+          kode_pos,
+          luas_properti,
+          jenis_sertifikat,
+          tahun_pembangunan,
+          daya_listrik,
+          jumlah_lantai,
+          jumlah_ruangan,
+          kamar_tidur,
+          kamar_mandi,
+          id_user,
+          req.params.id,
+        ]
+      );
+      res.json(new Response(rows));
+    } catch (e) {
+      console.log("error", e);
+      res.json(
+        new Response(
+          { message: "failed update properti " + e.toString() },
+          false
+        )
+      );
+    }
+  });
   router.get("/home", isLoggedIn, async function (req, res, next) {
     try {
       let sql =
@@ -99,6 +226,18 @@ module.exports = function (db) {
       res.status(500).json(new Response(e, false));
     }
   });
-
+  router.delete("/delete/:id", async function (req, res, next) {
+    try {
+      const { rows } = await db.query(
+        "DELETE FROM properti WHERE id_properti = $1",
+        [req.params.id]
+      );
+      res.json(new Response({ message: "Berhasil menghapus User" }, true));
+    } catch (e) {
+      res.json(
+        new Response({ message: "failed add user " + e.toString() }, false)
+      );
+    }
+  });
   return router;
 };

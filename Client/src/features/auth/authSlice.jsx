@@ -13,6 +13,8 @@ export const logoutAsync = createAsyncThunk(LOG_OUT, async () => {
     const { data } = await API.logout()
     if (data.success) {
       return "user"
+    } else {
+      throw new Error(JSON.stringify(data))
     }
   } catch (error) {
     console.error(error)

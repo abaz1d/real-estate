@@ -64,11 +64,12 @@ export const createUserAsync = createAsyncThunk(
   },
 )
 
-export const removeUser = createAsyncThunk(REMOVE_USER, async (_id) => {
+export const removeUser = createAsyncThunk(REMOVE_USER, async (id_user) => {
   try {
-    const { data } = await API.remove(_id)
+    const { data } = await API.remove(id_user)
     if (data.success) {
-      return data.data
+      console.log("scss delete", data)
+      return id_user
     }
   } catch (error) {
     console.log(error, "gagal")
@@ -95,6 +96,11 @@ export const userSlice = createSlice({
   reducers: {
     create: (state, action) => {
       state.users = [...state.users, action.payload]
+    },
+    remove: (state, action) => {
+      state.users = state.users.filter(
+        (item) => item.id_properti !== action.payload,
+      )
     },
   },
   extraReducers: (builder) => {
@@ -126,7 +132,7 @@ export const userSlice = createSlice({
       .addCase(removeUser.fulfilled, (state, action) => {
         state.status = "idle"
         state.users = state.users.filter(
-          (item) => item._id !== action.payload._id,
+          (item) => item.id_user !== action.payload.id_user,
         )
       })
       .addCase(updateUser.fulfilled, (state, action) => {
@@ -141,14 +147,17 @@ export const userSlice = createSlice({
   },
 })
 
-const { create } = userSlice.actions
+const { create, remove } = userSlice.actions
 
 export const selectUsers = (state) => state.user.users
 
+export const deleteStateUser = (id_properti) => (dispatch, getState) => {
+  dispatch(remove(id_properti))
+}
 export const createUser = (user) => (dispatch, getState) => {
-  const id = Date.now()
+  // const id = Date.now()
   dispatch(create({ ...user, id }))
-  return dispatch(createUserAsync({ id, user }))
+  // return dispatch(createUserAsync({ id, user }))
 }
 
 export default userSlice.reducer

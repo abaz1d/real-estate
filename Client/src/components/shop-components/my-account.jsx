@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import moment from "moment"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { selectUsers, readDetailUser } from "@/features/user/userSlice"
+import {
+  selectUsers,
+  readDetailUser,
+  deleteStateUser,
+} from "@/features/user/userSlice"
 import { logoutAsync } from "@/features/auth/authSlice"
+import { removeProperti } from "@/features/properti/propertiSlice"
 import AddListing from "@/components/section-components/add-listing"
 
 export default function MyAccount() {
@@ -11,7 +16,10 @@ export default function MyAccount() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const detail_user = useSelector(selectUsers)
+  const cellRef = useRef([])
   let [totalPages, setTotalPages] = useState(0)
+  let [idDelete, setIdDelete] = useState("-")
+  let [isDelete, setIsDelete] = useState(false)
   let [cari, setCari] = useState({
     page_number: 1,
     total_row_displayed: "3",
@@ -53,6 +61,19 @@ export default function MyAccount() {
         [name]: value,
       })
     }
+  }
+  const deletePost = async () => {
+    const data = await dispatch(removeProperti(idDelete))
+    //console.log("delete data", data.payload === idDelete)
+    if (data.payload === idDelete) {
+      await dispatch(deleteStateUser(idDelete))
+      setIsDelete(false)
+    }
+    //setIdDelete(event)
+  }
+  const deleteGet = (event) => {
+    setIsDelete(true)
+    setIdDelete(event)
   }
   return (
     <div className="liton__wishlist-area pb-70">
@@ -135,7 +156,9 @@ export default function MyAccount() {
                             <div className="ltn-author-introducing clearfix">
                               <div className="author-img">
                                 <img
-                                  src={"assets/img/blog/author.jpg"}
+                                  src={
+                                    "https://www.tunatheme.com/tf/html/quarter-preview/quarter/img/blog/author.jpg"
+                                  }
                                   alt="Author Gambar"
                                 />
                               </div>
@@ -307,6 +330,14 @@ export default function MyAccount() {
                                       readOnly
                                     ></textarea>
                                   </div>
+                                  <div className="btn-wrapper">
+                                    <button
+                                      type="submit"
+                                      className="btn theme-btn-1 btn-effect-1 text-uppercase"
+                                    >
+                                      Save Changes
+                                    </button>
+                                  </div>
                                 </div>
                               </form>
                             </div>
@@ -340,6 +371,12 @@ export default function MyAccount() {
                                             }
                                             alt={"gambar" + index}
                                           />
+                                          <span
+                                            style={{ marginTop: "-3px" }}
+                                            className="mb-0 py-0 d-flex justify-content-center align-items-center input-group-text border"
+                                          >
+                                            {item.id_properti}
+                                          </span>
                                         </Link>
                                       </td>
                                       <td>
@@ -385,9 +422,20 @@ export default function MyAccount() {
                                         )}
                                       </td>
                                       <td>
-                                        <Link to="#">Edit</Link>
+                                        <Link
+                                          to={`/add-listing?id_properti=${item.id_properti}`}
+                                        >
+                                          Edit
+                                        </Link>
                                       </td>
-                                      <td>
+                                      <td
+                                        ref={(ele) =>
+                                          (cellRef.current[index] = ele)
+                                        }
+                                        onClick={() =>
+                                          deleteGet(item.id_properti)
+                                        }
+                                      >
                                         <Link tp="#">
                                           <i className="fa-solid fa-trash-can" />
                                         </Link>
@@ -443,6 +491,14 @@ export default function MyAccount() {
                       </div>
                       <div className="tab-pane fade" id="ltn_tab_1_4">
                         <div className="ltn__myaccount-tab-content-inner">
+                          <div className="ltn__checkout-single-content ltn__returning-customer-wrap">
+                            <h5>
+                              Untuk tampilan form yang lebih besar,{" "}
+                              <Link className="btn-link" to={`/add-listing`}>
+                                Klik disini
+                              </Link>
+                            </h5>
+                          </div>
                           <AddListing />
                         </div>
                       </div>
@@ -913,6 +969,61 @@ export default function MyAccount() {
                 </div>
               </div>
             </div>
+            {isDelete && (
+              <div className="fixed-top" id={idDelete} tabIndex={-1}>
+                <div className="modal-dialog modal-md" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button
+                        type="button"
+                        className="close bg-danger text-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onClick={() => setIsDelete(false)}
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="ltn__quick-view-modal-inner">
+                        <div className="modal-product-item">
+                          <div className="row">
+                            <div className="col-12">
+                              <div className="modal-product-info text-center pt-5">
+                                <hr />
+                                <h4>Apakah Anda Yakin ?</h4>
+                                <p>
+                                  Menghapus Data <b>{idDelete}</b> ?
+                                </p>
+                                <hr />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="bg-white py-2 px-3 border border-secondary"
+                        data-bs-dismiss="modal"
+                        onClick={() => setIsDelete(false)}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        data-bs-dismiss="modal"
+                        onClick={() => deletePost()}
+                        type="button"
+                        className="py-2 px-3 btn-danger"
+                      >
+                        Ya, Hapus
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
