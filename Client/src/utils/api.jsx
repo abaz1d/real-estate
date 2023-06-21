@@ -3,7 +3,7 @@ import { Fragment } from "react"
 import { Navigate } from "react-router-dom"
 
 export const request = axios.create({
-  baseURL: "http://localhost:3001/",
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 15000,
   headers: {
     Authorization: `Bearer ${
