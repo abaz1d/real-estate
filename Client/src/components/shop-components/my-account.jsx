@@ -442,7 +442,7 @@ export default function MyAccount() {
                                       </td>
                                     </tr>
                                   ))}
-                                {detail_user.length <= 1 && (
+                                {detail_user.length < 1 && (
                                   <tr className="text-center text-secondary fs-2 w-100">
                                     <td colSpan={5}>
                                       Tidal Ada Data Di Temukan
