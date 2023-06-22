@@ -15,7 +15,10 @@ export default function ShopGridList() {
   const propertis = useSelector(selectPropertis)
   let [totalPages, setTotalPages] = useState(0)
   let [cari, setCari] = useState({
-    jenisProperti: "",
+    jenisProperti:
+      searchParams.get("jenis_properti") === null
+        ? ""
+        : searchParams.get("jenis_properti"),
     kategori:
       searchParams.get("kategori") === null
         ? ""
