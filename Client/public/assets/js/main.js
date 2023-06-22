@@ -19,16 +19,10 @@
 [ End table content ]
 ======================================*/
 
-(function ($) {
-  "use strict";
+;(function ($) {
+  "use strict"
 
   jQuery(document).ready(function () {
-    /* --------------------------------------------------------
-              1. Variables
-          --------------------------------------------------------- */
-    var $window = $(window),
-      $body = $("body");
-
     /* --------------------------------------------------------
               10. Nice Select
           --------------------------------------------------------- */
@@ -43,16 +37,16 @@
       swipe: true,
       maxWidth: 1170,
       maxHeight: 600,
-    });
-  });
+    })
+  })
 
   $(window).on("load", function () {
     /*-----------------
               preloader
           ------------------*/
     if ($("#preloader").length) {
-      var preLoder = $("#preloader");
-      preLoder.fadeOut(1000);
+      var preLoder = $("#preloader")
+      preLoder.fadeOut(1000)
     }
-  });
-})(jQuery);
+  })
+})(jQuery)
