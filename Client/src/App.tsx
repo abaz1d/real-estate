@@ -1,43 +1,45 @@
-import React from "react"
-import { HashRouter, Route, Routes } from "react-router-dom"
-import PropertiBox from "@/features/properti/PropertiBox.jsx"
-
-import AboutBox from "@/components/AboutBox.jsx"
-import FaqBox from "@/components/FaqBox.jsx"
-import Error from "@/components/404.jsx"
-
-import ShopGridBox from "@/components/ShopGridBox.jsx"
-import ProdductDetails from "@/components/ProductDetails.jsx"
-
-import ContactBox from "@/components/ContactBox.jsx"
-import CartBox from "@/components/CartBox.jsx"
-import MyAccountBox from "@/features/user/MyaccountBox.jsx"
-import LoginBox from "@/features/auth/LoginBox.jsx"
-import RegisterBox from "@/features/user/RegisterBox.jsx"
-import AddListing from "@/components/AddListing.jsx"
-
+import Routes from "./router/Routes.jsx"
+import React, { Suspense, useEffect, useState } from "react"
+import ScrollToTop from "./components/scroll-to-top.jsx"
 function App() {
-  return (
-    <HashRouter basename="/">
-      <div>
-        <Routes>
-          <Route index path="/" element={<PropertiBox />} />
-          <Route path="/shop-grid" element={<ShopGridBox />} />
-          <Route path="/product-details/:id" element={<ProdductDetails />} />
-          <Route path="/cart" element={<CartBox />} />
-          <Route path="/contact" element={<ContactBox />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/about" element={<AboutBox />} />
-          <Route path="/faq" element={<FaqBox />} />
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((r) => setTimeout(r, 500))
+      setLoading((loading) => !loading)
+    }
 
-          <Route path="/login" element={<LoginBox />} />
-          <Route path="/my-account" element={<MyAccountBox />} />
-          <Route path="/register" element={<RegisterBox />} />
-          <Route path="/add-listing" element={<AddListing />} />
-        </Routes>
+    loadData()
+  }, [])
+
+  const style: object = {
+    position: "fixed",
+    top: "0",
+    zIndex: "999999",
+    width: "100%",
+    height: "100%",
+    left: "0",
+    display: "block",
+    background: "#222",
+  }
+  if (loading) {
+    return (
+      <div style={style}>
+        <div className="cv-spinner">
+          <span className="spinner"></span>
+        </div>
       </div>
-    </HashRouter>
-  )
+    )
+  } else {
+    return (
+      <>
+        <Routes />
+        <Suspense>
+          <ScrollToTop />
+        </Suspense>
+      </>
+    )
+  }
 }
 
 export default App

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import { Link, useParams } from "react-router-dom"
 import { currencyString } from "@/utils/helper"
+import ShareButton from "../global-components/share-button"
 import moment from "moment"
 
 export default function ShopDetails(props) {
@@ -9,6 +10,7 @@ export default function ShopDetails(props) {
   const detail_properti = useRef(null)
   const dokumentasi_properti = useRef(null)
   const lokasi_properti = useRef(null)
+  const hubungi_owner = useRef(null)
   const handleClick = (e, data) => {
     e.preventDefault()
     data.current?.scrollIntoView({ behavior: "smooth" })
@@ -107,7 +109,12 @@ export default function ShopDetails(props) {
                         </a>
                       </li>
                       <li>
-                        <a href="/#" title="Bagikan" className="mx-1">
+                        <a
+                          href="/#"
+                          title="Bagikan"
+                          className="mx-1"
+                          onClick={(e) => handleClick(e, hubungi_owner)}
+                        >
                           <i
                             className="fa fa-phone me-1 mt-1"
                             style={{ transform: "rotate(90deg)" }}
@@ -116,9 +123,7 @@ export default function ShopDetails(props) {
                         </a>
                       </li>
                       <li>
-                        <a href="/#" title="Bagikan" className="mx-1">
-                          <i className="fa fa-share me-1 mt-1" /> Bagikan
-                        </a>
+                        <ShareButton />
                       </li>
                     </ul>
                   </div>
@@ -825,7 +830,10 @@ export default function ShopDetails(props) {
                   style={{ top: "23%" }}
                 >
                   {/* Author Widget */}
-                  <div className="widget ltn__author-widget">
+                  <div
+                    className="widget ltn__author-widget"
+                    ref={hubungi_owner}
+                  >
                     <div className="ltn__author-widget-inner text-center">
                       <img
                         src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"

@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Social from "../section-components/social"
 import Copyright from "./copyright"
-import ScrollToTop from "../scroll-to-top.jsx"
 
 class Footer_v1 extends Component {
   componentDidMount() {
@@ -215,7 +214,6 @@ class Footer_v1 extends Component {
           </div>
         </div>
         <Copyright />
-        <ScrollToTop />
       </footer>
     )
   }
