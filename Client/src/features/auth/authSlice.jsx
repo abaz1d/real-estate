@@ -10,6 +10,7 @@ const initialState = {
 
 export const logoutAsync = createAsyncThunk(LOG_OUT, async () => {
   try {
+    localStorage.removeItem("user")
     const { data } = await API.logout()
     if (data.success) {
       return "user"
@@ -56,7 +57,7 @@ export const authSlice = createSlice({
       .addCase(logoutAsync.fulfilled, (state, action) => {
         state.status = "idle"
         //console.log("action", action)
-        localStorage.removeItem(action.payload)
+        //localStorage.removeItem(action.payload)
         state.user = null
       })
   },
