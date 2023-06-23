@@ -845,14 +845,20 @@ export default function ShopDetails(props) {
                         {moment(item.tgl_buat).format("DD MMMM YYYY")}
                       </small>
                       <a
-                        href="/#"
+                        href={`https://api.whatsapp.com/send/?phone=%2B62${parseInt(
+                          item.wa_telephone[0],
+                        )}&text=Saya+tertarik+dengan+properti+Anda+${
+                          item.judul
+                        }&type=phone_number&app_absent=0`}
+                        target="_blank"
                         className="btn btn-outline-secondary rounded-3 w-100 mt-4"
                         role="button"
                       >
                         <i className="fab fa-whatsapp me-1 mt-1" /> WhatsApp
                       </a>
                       <a
-                        href="/#"
+                        href={`tel:${item.wa_telephone[0]}`}
+                        target="_blank"
                         className="btn btn-outline-secondary rounded-3 w-100 mt-2"
                         role="button"
                       >
@@ -863,7 +869,8 @@ export default function ShopDetails(props) {
                         No Telephone
                       </a>
                       <a
-                        href="/#"
+                        href={`mailto:${item.email_user}`}
+                        target="_blank"
                         className="btn btn-outline-secondary rounded-3 w-100 mt-2"
                         role="button"
                       >
@@ -882,9 +889,7 @@ export default function ShopDetails(props) {
                             </a>
                           </li>
                           <li>
-                            <a href="/#" title="Bagikan" className="mx-3">
-                              <i className="fa fa-share me-1 mt-1" /> Bagikan
-                            </a>
+                            <ShareButton />
                           </li>
                         </ul>
                       </div>
