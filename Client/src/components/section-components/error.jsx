@@ -1,11 +1,9 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-// import parse from 'html-react-parser';
+import error1 from "@/assets/img/others/error-1.png"
 
 class Error extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
     return (
       <div className="ltn__404-area ltn__404-area-1 mb-120">
         <div className="container">
@@ -13,7 +11,7 @@ class Error extends Component {
             <div className="col-lg-12">
               <div className="error-404-inner text-center">
                 <div className="error-img mb-30">
-                  <img src={"assets/img/others/error-1.png"} alt="#" />
+                  <img src={error1} alt="#" />
                 </div>
                 <h1 className="error-404-title d-none">404</h1>
                 <h2>Page Not Found!</h2>

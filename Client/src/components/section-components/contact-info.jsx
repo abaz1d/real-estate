@@ -1,11 +1,10 @@
 import React, { Component } from "react"
-// import { Link } from 'react-router-dom';
-// import parse from 'html-react-parser';
+import icon10 from "@/assets/img/icons/10.png"
+import icon11 from "@/assets/img/icons/11.png"
+import icon12 from "@/assets/img/icons/12.png"
 
 class ContactInfo extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
     return (
       <div className="ltn__contact-address-area mb-90">
         <div className="container">
@@ -13,7 +12,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={"assets/img/icons/10.png"} alt="Icon Gambar" />
+                  <img src={icon10} alt="Icon Gambar" />
                 </div>
                 <h3>Email Address</h3>
                 <p>
@@ -25,7 +24,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={"assets/img/icons/11.png"} alt="Icon Gambar" />
+                  <img src={icon11} alt="Icon Gambar" />
                 </div>
                 <h3>Phone Number</h3>
                 <p>
@@ -36,7 +35,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={"assets/img/icons/12.png"} alt="Icon Gambar" />
+                  <img src={icon12} alt="Icon Gambar" />
                 </div>
                 <h3>Office Address</h3>
                 <p>

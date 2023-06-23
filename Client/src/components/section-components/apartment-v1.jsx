@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import parse from "html-react-parser"
+import other10 from "@/assets/img/others/10.png"
 
 class ApartmentV1 extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     let CustomClass = this.props.CustomClass ? this.props.CustomClass : ""
 
     return (
@@ -81,7 +81,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={"assets/img/others/10.png"} alt="#" />
+                          <img src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -124,7 +124,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={"assets/img/others/10.png"} alt="#" />
+                          <img src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={"assets/img/others/10.png"} alt="#" />
+                          <img src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -210,7 +210,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={"assets/img/others/10.png"} alt="#" />
+                          <img src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -253,7 +253,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={"assets/img/others/10.png"} alt="#" />
+                          <img src={other10} alt="#" />
                         </div>
                       </div>
                     </div>

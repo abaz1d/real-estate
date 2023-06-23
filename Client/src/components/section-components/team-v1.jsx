@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-// import parse from "html-react-parser";
+import team2 from "@/assets/img/team/2.jpg"
+import team4 from "@/assets/img/team/4.jpg"
+import team5 from "@/assets/img/team/5.jpg"
 
 class TeamV1 extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     // let gambaralt = "gambar";
 
     return (
@@ -24,7 +25,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={"assets/img/team/4.jpg"} alt="gambar" />
+                  <img src={team4} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>
@@ -56,7 +57,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={"assets/img/team/2.jpg"} alt="gambar" />
+                  <img src={team2} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>
@@ -88,7 +89,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={"assets/img/team/5.jpg"} alt="gambar" />
+                  <img src={team5} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>

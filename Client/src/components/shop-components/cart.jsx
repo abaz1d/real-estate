@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-// import parse from 'html-react-parser';
+import product1 from "@/assets/img/product/1.png"
+import product2 from "@/assets/img/product/2.png"
+import product3 from "@/assets/img/product/3.png"
 
 class CaetV1 extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
     return (
       <div className="liton__shoping-cart-area mb-120">
         <div className="container">
@@ -19,7 +19,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={"assets/img/product/1.png"} alt="#" />
+                            <img src={product1} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">
@@ -46,7 +46,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={"assets/img/product/2.png"} alt="#" />
+                            <img src={product2} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">
@@ -71,7 +71,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={"assets/img/product/3.png"} alt="#" />
+                            <img src={product3} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">

@@ -1,16 +1,16 @@
 import React, { Component } from "react"
-// import { Link } from 'react-router-dom';
-// import parse from 'html-react-parser';
+import bg20 from "@/assets/img/bg/20.jpg"
+import testimoni1 from "@/assets/img/testimonial/1.jpg"
+import testimoni2 from "@/assets/img/testimonial/2.jpg"
+import testimoni3 from "@/assets/img/testimonial/3.jpg"
+import testimoni4 from "@/assets/img/testimonial/4.jpg"
 
 class Testimonial extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
-    // let imagealt = 'image'
-
     return (
       <div
         className="ltn__testimonial-area section-bg-1--- bg-image-top pt-115 pb-70"
-        data-bs-bg={"assets/img/bg/20.jpg"}
+        data-bs-bg={bg20}
       >
         <div className="container">
           <div className="row">
@@ -36,7 +36,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={"assets/img/testimonial/1.jpg"} alt="#" />
+                      <img src={testimoni1} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Jacob William</h5>
@@ -58,7 +58,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={"assets/img/testimonial/2.jpg"} alt="#" />
+                      <img src={testimoni2} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Kelian Anderson</h5>
@@ -80,7 +80,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={"assets/img/testimonial/3.jpg"} alt="#" />
+                      <img src={testimoni3} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Adam Joseph</h5>
@@ -102,7 +102,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={"assets/img/testimonial/4.jpg"} alt="#" />
+                      <img src={testimoni4} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>James Carter</h5>

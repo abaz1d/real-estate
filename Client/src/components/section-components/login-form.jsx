@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { loginAsync } from "@/features/auth/authSlice"
+import payment from "@/assets/img/icons/payment.png"
 
 export default function LoginForm() {
   const dispatch = useDispatch()
@@ -198,7 +199,7 @@ export default function LoginForm() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={"assets/img/icons/payment.png"} alt="#" />
+                            <img src={payment} alt="#" />
                           </div>
                         </div>
                       </div>

@@ -10,6 +10,7 @@ import {
 import { logoutAsync } from "@/features/auth/authSlice"
 import { removeProperti } from "@/features/properti/propertiSlice"
 import AddListing from "@/components/section-components/add-listing"
+import payment3 from "@/assets/img/icons/payment-3.png"
 
 export default function MyAccount() {
   const user = JSON.parse(localStorage.getItem("user"))
@@ -803,11 +804,7 @@ export default function MyAccount() {
                                       data-toggle="collapse"
                                       data-target="#faq-item-2-3"
                                     >
-                                      PayPal{" "}
-                                      <img
-                                        src={"assets/img/icons/payment-3.png"}
-                                        alt="gambar"
-                                      />
+                                      PayPal <img src={payment3} alt="gambar" />
                                     </h5>
                                     <div
                                       id="faq-item-2-3"

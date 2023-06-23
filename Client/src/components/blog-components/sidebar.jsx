@@ -1,18 +1,27 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-
+import team4 from "@/assets/img/team/4.jpg"
+import team5 from "@/assets/img/team/5.jpg"
+import team6 from "@/assets/img/team/6.jpg"
+import team7 from "@/assets/img/team/7.jpg"
+import team8 from "@/assets/img/team/8.jpg"
+import product1 from "@/assets/img/product/1.png"
+import product2 from "@/assets/img/product/2.png"
+import product3 from "@/assets/img/product/3.png"
+import product4 from "@/assets/img/product-3/4.jpg"
+import product5 from "@/assets/img/product-3/5.jpg"
+import product6 from "@/assets/img/product-3/6.jpg"
+import author from "@/assets/img/blog/author.jpg"
+import banner2 from "@/assets/img/banner/2.jpg"
 class Sidebar extends Component {
   render() {
-    // let anchor = "#";
-    // let imagealt = "image";
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     return (
       <div className="col-lg-4 go-top">
         <aside className="sidebar-area blog-sidebar ltn__right-sidebar">
           {/* Author Widget */}
           <div className="widget ltn__author-widget">
             <div className="ltn__author-widget-inner text-center">
-              <img src={"assets/img/team/4.jpg"} alt="Image" />
+              <img src={team4} alt="Image" />
               <h5>Rosalina D. Willaimson</h5>
               <small>Traveller/Photographer</small>
               <div className="product-ratting">
@@ -127,7 +136,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix go-top">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product/1.png"} alt="#" />
+                      <img src={product1} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -176,7 +185,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product/2.png"} alt="#" />
+                      <img src={product2} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -223,7 +232,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product/3.png"} alt="#" />
+                      <img src={product3} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -312,12 +321,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product-3/6.jpg"} alt="#" />
+                      <img src={product6} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={"assets/img/blog/author.jpg"} alt="#" />
+                          <img src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -363,12 +372,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product-3/4.jpg"} alt="#" />
+                      <img src={product4} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={"assets/img/blog/author.jpg"} alt="#" />
+                          <img src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -414,12 +423,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={"assets/img/product-3/5.jpg"} alt="#" />
+                      <img src={product5} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={"assets/img/blog/author.jpg"} alt="#" />
+                          <img src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -473,7 +482,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={"assets/img/team/5.jpg"} alt="#" />
+                      <img src={team5} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -499,7 +508,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={"assets/img/team/6.jpg"} alt="#" />
+                      <img src={team6} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -525,7 +534,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={"assets/img/team/7.jpg"} alt="#" />
+                      <img src={team7} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -551,7 +560,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={"assets/img/team/8.jpg"} alt="#" />
+                      <img src={team8} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -744,7 +753,7 @@ class Sidebar extends Component {
           {/* Banner Widget */}
           <div className="widget ltn__banner-widget d-none go-top">
             <Link to="/shop">
-              <img src={"assets/img/banner/2.jpg"} alt="#" />
+              <img src={banner2} alt="#" />
             </Link>
           </div>
         </aside>

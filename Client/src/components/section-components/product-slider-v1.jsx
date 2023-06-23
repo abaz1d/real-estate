@@ -1,10 +1,17 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
-import parse from "html-react-parser"
+import payment from "@/assets/img/icons/payment.png"
+import author from "@/assets/img/blog/author.jpg"
+import product7 from "@/assets/img/product/7.png"
+import product4 from "@/assets/img/product/4.png"
+import product1 from "@/assets/img/product/1.png"
 
+import product3_1 from "@/assets/img/product-3/1.png"
+import product3_2 from "@/assets/img/product-3/2.png"
+import product3_3 from "@/assets/img/product-3/3.png"
+import product3_4 from "@/assets/img/product-3/4.png"
+import product3_5 from "@/assets/img/product-3/5.png"
 export default function ProductSliderV1() {
-  let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
   return (
     <div>
       <div className="ltn__product-slider-area ltn__product-gutter pt-115 pb-90 plr--7">
@@ -25,7 +32,7 @@ export default function ProductSliderV1() {
               <div className="ltn__product-item ltn__product-item-4 text-center---">
                 <div className="product-img go-top">
                   <Link to="/product-details">
-                    <img src={"assets/img/product-3/1.jpg"} alt="#" />
+                    <img src={product3_1} alt="#" />
                   </Link>
                   <div className="product-badge">
                     <ul>
@@ -100,7 +107,7 @@ export default function ProductSliderV1() {
                   <div className="real-estate-agent">
                     <div className="agent-img go-top">
                       <Link to="/team-details">
-                        <img src={"assets/img/blog/author.jpg"} alt="#" />
+                        <img src={author} alt="#" />
                       </Link>
                     </div>
                     <div className="agent-brief go-top">
@@ -149,7 +156,7 @@ export default function ProductSliderV1() {
               <div className="ltn__product-item ltn__product-item-4 text-center---">
                 <div className="product-img go-top">
                   <Link to="/product-details">
-                    <img src={"assets/img/product-3/2.jpg"} alt="#" />
+                    <img src={product3_2} alt="#" />
                   </Link>
                   <div className="product-badge">
                     <ul>
@@ -224,7 +231,7 @@ export default function ProductSliderV1() {
                   <div className="real-estate-agent">
                     <div className="agent-img go-top">
                       <Link to="/team-details">
-                        <img src={"assets/img/blog/author.jpg"} alt="#" />
+                        <img src={author} alt="#" />
                       </Link>
                     </div>
                     <div className="agent-brief go-top">
@@ -273,7 +280,7 @@ export default function ProductSliderV1() {
               <div className="ltn__product-item ltn__product-item-4 text-center---">
                 <div className="product-img go-top">
                   <Link to="/product-details">
-                    <img src={"assets/img/product-3/3.jpg"} alt="#" />
+                    <img src={product3_3} alt="#" />
                   </Link>
                   <div className="product-badge">
                     <ul>
@@ -348,7 +355,7 @@ export default function ProductSliderV1() {
                   <div className="real-estate-agent">
                     <div className="agent-img go-top">
                       <Link to="/team-details">
-                        <img src={"assets/img/blog/author.jpg"} alt="#" />
+                        <img src={author} alt="#" />
                       </Link>
                     </div>
                     <div className="agent-brief go-top">
@@ -397,7 +404,7 @@ export default function ProductSliderV1() {
               <div className="ltn__product-item ltn__product-item-4 text-center---">
                 <div className="product-img go-top">
                   <Link to="/product-details">
-                    <img src={"assets/img/product-3/4.jpg"} alt="#" />
+                    <img src={product3_4} alt="#" />
                   </Link>
                   <div className="product-badge">
                     <ul>
@@ -474,7 +481,7 @@ export default function ProductSliderV1() {
                   <div className="real-estate-agent">
                     <div className="agent-img go-top">
                       <Link to="/team-details">
-                        <img src={"assets/img/blog/author.jpg"} alt="#" />
+                        <img src={author} alt="#" />
                       </Link>
                     </div>
                     <div className="agent-brief go-top">
@@ -523,7 +530,7 @@ export default function ProductSliderV1() {
               <div className="ltn__product-item ltn__product-item-4 text-center---">
                 <div className="product-img go-top">
                   <Link to="/product-details">
-                    <img src={"assets/img/product-3/5.jpg"} alt="#" />
+                    <img src={product3_5} alt="#" />
                   </Link>
                   <div className="product-badge">
                     <ul>
@@ -600,7 +607,7 @@ export default function ProductSliderV1() {
                   <div className="real-estate-agent">
                     <div className="agent-img go-top">
                       <Link to="/team-details">
-                        <img src={"assets/img/blog/author.jpg"} alt="#" />
+                        <img src={author} alt="#" />
                       </Link>
                     </div>
                     <div className="agent-brief go-top">
@@ -669,7 +676,7 @@ export default function ProductSliderV1() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/7.png"} alt="#" />
+                          <img src={product7} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5>
@@ -697,7 +704,7 @@ export default function ProductSliderV1() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={"assets/img/icons/payment.png"} alt="#" />
+                            <img src={payment} alt="#" />
                           </div>
                         </div>
                       </div>
@@ -731,7 +738,7 @@ export default function ProductSliderV1() {
                     <div className="row">
                       <div className="col-lg-6 col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/4.png"} alt="#" />
+                          <img src={product4} alt="#" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-12">
@@ -870,7 +877,7 @@ export default function ProductSliderV1() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/1.png"} alt="#" />
+                          <img src={product1} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5 className="go-top">
@@ -904,7 +911,7 @@ export default function ProductSliderV1() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={"assets/img/icons/payment.png"} alt="#" />
+                            <img src={payment} alt="#" />
                           </div>
                         </div>
                       </div>

@@ -4,59 +4,56 @@ import React, { Component } from "react"
 
 class ContactForm extends Component {
   componentDidMount() {
-    const $ = window.$
-
     // Get the form.
-    var form = $("#contact-form")
+    var form = document.querySelector("#contact-form")
 
     // Get the messages div.
-    var formMessages = $(".form-messege")
+    var formMessages = document.querySelector(".form-messege")
 
     // Set up an event listener for the contact form.
-    $(form).submit(function (e) {
+    form.addEventListener("submit", function (e) {
       // Stop the browser from submitting the form.
       e.preventDefault()
 
       // Serialize the form data.
-      var formData = $(form).serialize()
+      var formData = new FormData(form)
 
       // Submit the form using AJAX.
-      $.ajax({
-        type: "POST",
-        url: $(form).attr("action"),
-        data: formData,
-      })
-        .done(function (response) {
+      var xhr = new XMLHttpRequest()
+      xhr.open("POST", form.getAttribute("action"))
+      xhr.onload = function () {
+        if (xhr.status === 200) {
           // Make sure that the formMessages div has the 'success' class.
-          $(formMessages).removeClass("error")
-          $(formMessages).addClass("success")
+          formMessages.classList.remove("error")
+          formMessages.classList.add("success")
 
           // Set the message text.
-          $(formMessages).text(response)
+          formMessages.textContent = xhr.responseText
 
           // Clear the form.
-          $("#contact-form input,#contact-form textarea").val("")
-        })
-        .fail(function (data) {
+          var inputs = form.querySelectorAll("input, textarea")
+          inputs.forEach(function (input) {
+            input.value = ""
+          })
+        } else {
           // Make sure that the formMessages div has the 'error' class.
-          $(formMessages).removeClass("success")
-          $(formMessages).addClass("error")
+          formMessages.classList.remove("success")
+          formMessages.classList.add("error")
 
           // Set the message text.
-          if (data.responseText !== "") {
-            $(formMessages).text(data.responseText)
+          if (xhr.responseText !== "") {
+            formMessages.textContent = xhr.responseText
           } else {
-            $(formMessages).text(
-              "Oops! An error occured and your message could not be sent.",
-            )
+            formMessages.textContent =
+              "Oops! An error occurred and your message could not be sent."
           }
-        })
+        }
+      }
+      xhr.send(formData)
     })
   }
 
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
     return (
       <div className="ltn__contact-message-area mb-120 mb--100">
         <div className="container">

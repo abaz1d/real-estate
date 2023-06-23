@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-// import Sidebar from './sidebar';
+import blog1 from "@/assets/img/blog/1.jpg"
+import blog2 from "@/assets/img/blog/2.jpg"
+import blog3 from "@/assets/img/blog/3.jpg"
+import blog4 from "@/assets/img/blog/4.jpg"
+import blog5 from "@/assets/img/blog/5.jpg"
 
 class BlogSlider extends Component {
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     let customClass = this.props.customClass ? this.props.customClass : ""
     let sectionClass = this.props.sectionClass ? this.props.sectionClass : ""
     return (
@@ -30,7 +33,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={"assets/img/blog/1.jpg"} alt="#" />
+                    <img src={blog1} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -80,7 +83,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={"assets/img/blog/2.jpg"} alt="#" />
+                    <img src={blog2} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -130,7 +133,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={"assets/img/blog/3.jpg"} alt="#" />
+                    <img src={blog3} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -180,7 +183,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={"assets/img/blog/4.jpg"} alt="#" />
+                    <img src={blog4} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -230,7 +233,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={"assets/img/blog/5.jpg"} alt="#" />
+                    <img src={blog5} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">

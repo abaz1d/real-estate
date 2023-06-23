@@ -16,6 +16,7 @@ export default defineConfig(({ command, mode }) => ({
   build: {
     outDir: "build",
     sourcemap: true,
+    minify: mode === "development" ? false : "terser",
   },
   test: {
     globals: true,

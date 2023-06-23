@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Social from "../section-components/social"
+import logo2 from "@/assets/img/logo-2.png"
+import logo from "@/assets/img/logo.png"
+import product1 from "@/assets/img/product/1.png"
+import product2 from "@/assets/img/product/2.png"
+import product3 from "@/assets/img/product/3.png"
+import product4 from "@/assets/img/product/4.png"
 
 export default function NavbarV3() {
-  let publicUrl = import.meta.env.VITE_APP_BASE_URL
   const [search, setSearch] = useState(false)
 
   useEffect(() => {
@@ -112,7 +117,7 @@ export default function NavbarV3() {
                 <div className="site-logo-wrap">
                   <div className="site-logo go-top">
                     <Link to="/">
-                      <img src={"assets/img/logo-2.png"} alt="Logo" />
+                      <img src={logo2} alt="Logo" />
                     </Link>
                   </div>
                   <div className="get-support clearfix d-none">
@@ -297,7 +302,7 @@ export default function NavbarV3() {
           <div className="ltn__utilize-menu-head sticky-top bg-white">
             <div className="site-logo">
               <Link to="/">
-                <img src={"assets/img/logo.png"} alt="Logo" />
+                <img src={logo} alt="Logo" />
               </Link>
             </div>
             <button className="ltn__utilize-close" aria-label="close-button">
@@ -417,7 +422,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={"assets/img/product/1.png"} alt="Gambar" />
+                  <img src={product1} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -433,7 +438,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={"assets/img/product/2.png"} alt="Gambar" />
+                  <img src={product2} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -449,7 +454,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={"assets/img/product/3.png"} alt="Gambar" />
+                  <img src={product3} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -465,7 +470,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={"assets/img/product/4.png"} alt="Gambar" />
+                  <img src={product4} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />

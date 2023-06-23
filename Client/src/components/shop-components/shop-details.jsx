@@ -3,6 +3,12 @@ import { Link, useParams } from "react-router-dom"
 import { currencyString } from "@/utils/helper"
 import ShareButton from "../global-components/share-button"
 import moment from "moment"
+import other5 from "@/assets/img/others/5.png"
+import other10 from "@/assets/img/others/10.png"
+import other14 from "@/assets/img/others/14.jpg"
+import other15 from "@/assets/img/others/15.jpg"
+import other16 from "@/assets/img/others/16.jpg"
+import banner2 from "@/assets/img/banner/2.jpg"
 
 export default function ShopDetails(props) {
   const propertis = props.properti
@@ -135,7 +141,10 @@ export default function ShopDetails(props) {
           propertis.map((item, index) => (
             <div key={index} className="row">
               <div className="col-lg-8 col-md-12">
-                <div className="ltn__shop-details-inner ltn__page-details-inner mb-60">
+                <div
+                  className="ltn__shop-details-inner ltn__page-details-inner mb-60"
+                  id="shop-detail"
+                >
                   <section
                     className="section"
                     id="tinjauan_umum"
@@ -502,10 +511,7 @@ export default function ShopDetails(props) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img
-                                    src={"assets/img/others/10.png"}
-                                    alt="#"
-                                  />
+                                  <img src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -565,10 +571,7 @@ export default function ShopDetails(props) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img
-                                    src={"assets/img/others/10.png"}
-                                    alt="#"
-                                  />
+                                  <img src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -625,10 +628,7 @@ export default function ShopDetails(props) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img
-                                    src={"assets/img/others/10.png"}
-                                    alt="#"
-                                  />
+                                  <img src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -685,10 +685,7 @@ export default function ShopDetails(props) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img
-                                    src={"assets/img/others/10.png"}
-                                    alt="#"
-                                  />
+                                  <img src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -753,37 +750,16 @@ export default function ShopDetails(props) {
                     <div className="ltn__property-details-gallery mb-30">
                       <div className="row">
                         <div className="col-md-6">
-                          <a
-                            href={"assets/img/others/14.jpg"}
-                            data-rel="lightcase:myCollection"
-                          >
-                            <img
-                              className="mb-30"
-                              src={"assets/img/others/14.jpg"}
-                              alt="gambar"
-                            />
+                          <a href={other14} data-rel="lightcase:myCollection">
+                            <img className="mb-30" src={other14} alt="gambar" />
                           </a>
-                          <a
-                            href={"assets/img/others/15.jpg"}
-                            data-rel="lightcase:myCollection"
-                          >
-                            <img
-                              className="mb-30"
-                              src={"assets/img/others/15.jpg"}
-                              alt="gambar"
-                            />
+                          <a href={other15} data-rel="lightcase:myCollection">
+                            <img className="mb-30" src={other15} alt="gambar" />
                           </a>
                         </div>
                         <div className="col-md-6">
-                          <a
-                            href={"assets/img/others/16.jpg"}
-                            data-rel="lightcase:myCollection"
-                          >
-                            <img
-                              className="mb-30"
-                              src={"assets/img/others/16.jpg"}
-                              alt="gambar"
-                            />
+                          <a href={other16} data-rel="lightcase:myCollection">
+                            <img className="mb-30" src={other16} alt="gambar" />
                           </a>
                         </div>
                       </div>
@@ -791,7 +767,7 @@ export default function ShopDetails(props) {
                     <h4 className="title-2">Video Properti</h4>
                     <div
                       className="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-gambar mb-60"
-                      data-bs-bg={"assets/img/others/5.jpg"}
+                      data-bs-bg={other5}
                     >
                       <a
                         className="ltn__video-icon-2 ltn__video-icon-2-border---"
@@ -897,7 +873,7 @@ export default function ShopDetails(props) {
                   {/* Banner Widget */}
                   <div className="widget ltn__banner-widget d-none go-top">
                     <Link to="/shop">
-                      <img src={"assets/img/banner/2.jpg"} alt="#" />
+                      <img src={banner2} alt="#" />
                     </Link>
                   </div>
                 </aside>

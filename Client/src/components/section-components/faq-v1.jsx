@@ -1,10 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
-// import parse from 'html-react-parser';
+import bg17 from "@/assets/img/bg/17.jpg"
+import banner3 from "@/assets/img/banner/banner-3.jpg"
 
 export default function FaqV1() {
-  let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
   return (
     <div className="ltn__faq-area mb-100">
       <div className="container">
@@ -58,10 +57,7 @@ export default function FaqV1() {
                   >
                     <div className="card-body">
                       <div className="ltn__video-img alignleft">
-                        <img
-                          src={"assets/img/bg/17.jpg"}
-                          alt="video popup bg gambar"
-                        />
+                        <img src={bg17} alt="video popup bg gambar" />
                         <a
                           className="ltn__video-icon-2 ltn__video-icon-2-small ltn__video-icon-2-border----"
                           href="https://www.youtube.com/embed/LjCzPp-MK48?autoplay=1&showinfo=0"
@@ -268,10 +264,7 @@ export default function FaqV1() {
               {/* Banner Widget */}
               <div className="widget ltn__banner-widget go-top">
                 <Link to="shop.html">
-                  <img
-                    src={"assets/img/banner/banner-3.jpg"}
-                    alt="Banner gambar"
-                  />
+                  <img src={banner3} alt="Banner gambar" />
                 </Link>
               </div>
             </aside>

@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react"
 import { useNavigate } from "react-router-dom"
-// import parse from "html-react-parser";
+import videoIntro from "@/assets/media/3.mp4"
+import slider from "@/assets/img/slider/41.jpg"
 
 export default function BannerV6() {
   const navigate = useNavigate()
@@ -33,12 +34,12 @@ export default function BannerV6() {
     <div className="ltn__slider-area ltn__slider-4 position-relative  ltn__primary-bg">
       <div className="ltn__slide-animation-active">
         <video autoPlay muted loop id="myVideo">
-          <source src={"assets/media/3.mp4"} type="video/mp4" />
+          <source src={videoIntro} type="video/mp4" />
         </video>
 
         <div
           className="ltn__slide-item ltn__slide-item-2 ltn__slide-item-7 bg-image--- bg-overlay-theme-black-30"
-          data-bs-bg={"assets/img/slider/41.jpg"}
+          data-bs-bg={slider}
         >
           <div className="ltn__slide-item-inner text-center">
             <div className="container">

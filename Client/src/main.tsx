@@ -2,6 +2,10 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import { Provider } from "react-redux"
 import { store } from "./app/store"
+import "./assets/css/font-icons.css"
+import "./assets/css/plugins.css"
+import "./assets/css/style.css"
+import "./assets/css/responsive.css"
 import App from "./App"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

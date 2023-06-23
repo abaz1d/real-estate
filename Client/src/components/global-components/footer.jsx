@@ -2,13 +2,14 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Social from "../section-components/social"
 import Copyright from "./copyright"
+import logo2 from "@/assets/img/logo-2.png"
+import payment from "@/assets/img/icons/payment-4.png"
 
 class Footer_v1 extends Component {
   componentDidMount() {
     const $ = (selector) => document.querySelector(selector)
     const $$ = (selector) => document.querySelectorAll(selector)
 
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     const minscript = document.createElement("script")
     minscript.async = true
     minscript.src = "/assets/js/main.js"
@@ -43,7 +44,6 @@ class Footer_v1 extends Component {
   }
 
   render() {
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     // let imgattr = "Footer logo"
 
     return (
@@ -55,7 +55,7 @@ class Footer_v1 extends Component {
                 <div className="footer-widget footer-about-widget">
                   <div className="footer-logo">
                     <div className="site-logo">
-                      <img src={"assets/img/logo-2.png"} alt="Logo" />
+                      <img src={logo2} alt="Logo" />
                     </div>
                   </div>
                   <p>
@@ -204,10 +204,7 @@ class Footer_v1 extends Component {
                     </form>
                   </div>
                   <h5 className="mt-30">We Accept</h5>
-                  <img
-                    src={"assets/img/icons/payment-4.png"}
-                    alt="Payment gambar"
-                  />
+                  <img src={payment} alt="Payment gambar" />
                 </div>
               </div>
             </div>

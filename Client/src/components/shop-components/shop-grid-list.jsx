@@ -8,6 +8,10 @@ import {
   readProperti,
 } from "@/features/properti/propertiSlice"
 import ShareButton from "../global-components/share-button"
+import product1 from "@/assets/img/product/1.png"
+import product4 from "@/assets/img/product/4.png"
+import product7 from "@/assets/img/product/7.png"
+import payment from "@/assets/img/icons/payment.png"
 
 export default function ShopGridList() {
   const dispatch = useDispatch()
@@ -539,7 +543,7 @@ export default function ShopGridList() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/7.png"} alt="#" />
+                          <img src={product7} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5>
@@ -567,7 +571,7 @@ export default function ShopGridList() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={"assets/img/icons/payment.png"} alt="#" />
+                            <img src={payment} alt="#" />
                           </div>
                         </div>
                       </div>
@@ -601,7 +605,7 @@ export default function ShopGridList() {
                     <div className="row">
                       <div className="col-lg-6 col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/4.png"} alt="#" />
+                          <img src={product4} alt="#" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-12">
@@ -740,7 +744,7 @@ export default function ShopGridList() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={"assets/img/product/1.png"} alt="#" />
+                          <img src={product1} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5 className="go-top">
@@ -774,7 +778,7 @@ export default function ShopGridList() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={"assets/img/icons/payment.png"} alt="#" />
+                            <img src={payment} alt="#" />
                           </div>
                         </div>
                       </div>

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
-// import parse from "html-react-parser";
+import icon21 from "@/assets/img/icons/icon-img/21.png"
+import icon22 from "@/assets/img/icons/icon-img/22.png"
+import icon23 from "@/assets/img/icons/icon-img/23.png"
 
 export default function FeaturesV1(props) {
-  let publicUrl = import.meta.env.VITE_APP_BASE_URL
-
   let customClass = props.customClass ? props.customClass : ""
   useEffect(() => {
     var ltn__active_item = document.querySelectorAll(
@@ -38,7 +38,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
               <div className="ltn__feature-icon">
-                <img src={"assets/img/icons/icon-img/21.png"} alt="#" />
+                <img src={icon21} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>
@@ -59,7 +59,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1 active">
               <div className="ltn__feature-icon">
-                <img src={"assets/img/icons/icon-img/22.png"} alt="#" />
+                <img src={icon22} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>
@@ -80,7 +80,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
               <div className="ltn__feature-icon">
-                <img src={"assets/img/icons/icon-img/23.png"} alt="#" />
+                <img src={icon23} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>

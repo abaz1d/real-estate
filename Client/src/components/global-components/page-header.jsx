@@ -1,13 +1,12 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import background from "@/assets/img/bg/14.jpg"
 
 class Page_header extends Component {
   render() {
     let HeaderTitle = this.props.headertitle
-    let publicUrl = import.meta.env.VITE_APP_BASE_URL
     let Subheader = this.props.subheader ? this.props.subheader : HeaderTitle
     let CustomClass = this.props.customclass ? this.props.customclass : ""
-    // let Img = this.props.Img ? this.props.Img :'14.jpg'
 
     return (
       <div
@@ -15,7 +14,7 @@ class Page_header extends Component {
           "ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image " +
           CustomClass
         }
-        data-bs-bg={"assets/img/bg/14.jpg"}
+        data-bs-bg={background}
       >
         <div className="container">
           <div className="row">
