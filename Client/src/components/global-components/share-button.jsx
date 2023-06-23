@@ -1,15 +1,6 @@
 import React from "react"
 
 const ShareButton = (props) => {
-  if (props.id) {
-    console.log(
-      "Share Button",
-      window.location.origin + "#/product-details/PRD-20230621-ID36",
-      props,
-    )
-  } else {
-    console.log("Share Button no props")
-  }
   const handleShare = (e) => {
     e.preventDefault()
     if (navigator.share) {

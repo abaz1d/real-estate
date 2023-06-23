@@ -23,7 +23,6 @@ export default function ShopDetails(props) {
       sections.forEach((current) => {
         current.addEventListener("click", (e) => {
           e.preventDefault()
-          console.log(current)
         })
         var sectionId = current.getAttribute("id")
         const sectionHeight = current.offsetHeight
