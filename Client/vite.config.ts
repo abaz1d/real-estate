@@ -17,6 +17,13 @@ export default defineConfig(({ command, mode }) => ({
     outDir: "build",
     sourcemap: true,
     minify: mode === "development" ? false : "terser",
+    rollupOptions: {
+      output: {
+        assetFileNames: "clientlib-site/resources/[ext]/[name][extname]",
+        chunkFileNames: "clientlib-site/resources/chunks/[name].[hash].js",
+        entryFileNames: "clientlib-site/resources/js/[name].js",
+      },
+    },
   },
   test: {
     globals: true,
