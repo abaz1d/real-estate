@@ -7,6 +7,7 @@ import {
   selectPropertis,
   readProperti,
 } from "@/features/properti/propertiSlice"
+import ShareButton from "../global-components/share-button"
 
 export default function ShopGridList() {
   const dispatch = useDispatch()
@@ -328,19 +329,8 @@ export default function ShopGridList() {
                                       <i className="flaticon-heart-1" />
                                     </a>
                                   </li>
-                                  <li
-                                    className="go-top"
-                                    style={{
-                                      rotate: "180deg",
-                                      paddingTop: "-10px",
-                                    }}
-                                  >
-                                    <Link
-                                      to={`/product-details/${item.id_properti}`}
-                                      title="Bagikan"
-                                    >
-                                      <i className="fa fa-share fa-rotate-180 fa-lg" />
-                                    </Link>
+                                  <li>
+                                    <ShareButton id={item.id_properti} />
                                   </li>
                                 </ul>
                               </div>

@@ -1,13 +1,24 @@
 import React from "react"
 
-const ShareButton = () => {
+const ShareButton = (props) => {
+  if (props.id) {
+    console.log(
+      "Share Button",
+      window.location.origin + "#/product-details/PRD-20230621-ID36",
+      props,
+    )
+  } else {
+    console.log("Share Button no props")
+  }
   const handleShare = (e) => {
     e.preventDefault()
     if (navigator.share) {
       navigator
         .share({
           title: document.title,
-          url: window.location.href,
+          url: props.id
+            ? window.location.origin + `#/product-details/${props.id}`
+            : window.location.href,
         })
         .then(() => {
           console.log("Page shared successfully")
@@ -20,16 +31,30 @@ const ShareButton = () => {
     }
   }
 
-  return (
-    <a
-      href="/#share"
-      title="Bagikan"
-      className="mx-1"
-      onClick={(e) => handleShare(e)}
-    >
-      <i className="fa fa-share me-1 mt-1" /> Bagikan
-    </a>
-  )
+  if (props.id) {
+    return (
+      <a
+        href="/#share"
+        title="Bagikan"
+        className="mx-1"
+        style={{ marginTop: "-3px" }}
+        onClick={(e) => handleShare(e)}
+      >
+        <i className="fa fa-share" />
+      </a>
+    )
+  } else {
+    return (
+      <a
+        href="/#share"
+        title="Bagikan"
+        className="mx-1"
+        onClick={(e) => handleShare(e)}
+      >
+        <i className="fa fa-share me-1 mt-1" /> Bagikan
+      </a>
+    )
+  }
 }
 
 export default ShareButton
