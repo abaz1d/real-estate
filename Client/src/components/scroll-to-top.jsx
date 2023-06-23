@@ -1,38 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
 export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   // Top: 0 takes us all the way back to the top of the page
   // Behavior: smooth keeps it smooth!
-  const scrolltoTop = () => {
+  const scrolltoTop = (e) => {
+    e.preventDefault()
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    });
-    return false;
-  };
+    })
+    return false
+  }
 
   useEffect(() => {
     // Button is displayed after scrolling for 500 pixels
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
-        setIsVisible(true);
+        setIsVisible(true)
       } else {
-        setIsVisible(false);
+        setIsVisible(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility)
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+    return () => window.removeEventListener("scroll", toggleVisibility)
+  }, [])
 
   return (
     <>
       {isVisible && (
         <a
           id="scrollUp"
+          href="#"
           onClick={scrolltoTop}
           style={{
             position: "fixed",
@@ -43,5 +45,5 @@ export default function ScrollToTop() {
         </a>
       )}
     </>
-  );
+  )
 }
