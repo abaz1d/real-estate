@@ -50,7 +50,7 @@ export default function ShopDetails(props) {
     <div className="ltn__shop-details-area pb-10 -mt-5">
       <div className="container">
         <div
-          className="row sticky-top sticky-md-top-2 border-1 border-bottom mb-md-2 bg-white"
+          className="row sticky-top sticky-lg-top-2 border-1 border-bottom mb-lg-2 bg-white"
           style={{
             zIndex: "9999",
           }}

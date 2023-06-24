@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react"
 import { useNavigate } from "react-router-dom"
 import videoIntro from "@/assets/media/3.mp4"
-// import slider from "@/assets/img/slider/41.jpg"
 import slider from "@/assets/img/slider/11.webp"
 export default function BannerV6() {
   const navigate = useNavigate()
