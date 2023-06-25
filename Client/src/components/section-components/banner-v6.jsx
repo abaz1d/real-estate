@@ -69,7 +69,7 @@ export default function BannerV6() {
         >
           <source src={videoIntro} type="video/mp4" />
         </video>
-        <div class="bg-image" id="myBg" style={imageStyle}></div>
+        <div className="bg-image" id="myBg" style={imageStyle}></div>
 
         <div
           className="ltn__slide-item ltn__slide-item-2 ltn__slide-item-7 bg-image--- bg-overlay-theme-black-30"
@@ -244,7 +244,7 @@ export default function BannerV6() {
                               </div>
                               <div className="ltn__car-dealer-form-item ltn__custom-icon ltn__icon-calendar col-lg-3 col-md-6">
                                 <div className="btn-wrapper text-center mt-0 go-top">
-                                  {/* <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Search Inventory</button> */}
+                                  {/* <button type="submit" className="btn theme-btn-1 btn-effect-1 text-uppercase">Search Inventory</button> */}
                                   <button
                                     onClick={(e) => startSearch(e)}
                                     className="btn theme-btn-1 btn-effect-1 text-uppercase"

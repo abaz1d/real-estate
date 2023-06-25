@@ -11,6 +11,7 @@ import other16 from "@/assets/img/others/16.jpg"
 import banner2 from "@/assets/img/banner/2.jpg"
 
 export default function ShopDetails(props) {
+  const images = props.images
   const propertis = props.properti
   const tinjauan_umum = useRef(null)
   const detail_properti = useRef(null)
@@ -45,7 +46,10 @@ export default function ShopDetails(props) {
         }
       })
     }
-  })
+    return () => {
+      window.removeEventListener("scroll", navHighlighter)
+    }
+  }, [])
   return (
     <div className="ltn__shop-details-area pb-10 -mt-5">
       <div className="container">
@@ -710,10 +714,6 @@ export default function ShopDetails(props) {
                                             <label>Total Area</label>{" "}
                                             <span>2800 Sq. Ft</span>
                                           </li>
-                                          <li>
-                                            <label>Bedroom</label>{" "}
-                                            <span>150 Sq. Ft</span>
-                                          </li>
                                         </ul>
                                       </div>
                                     </div>
@@ -723,10 +723,6 @@ export default function ShopDetails(props) {
                                           <li>
                                             <label>Belcony/Pets</label>{" "}
                                             <span>Allowed</span>
-                                          </li>
-                                          <li>
-                                            <label>Lounge</label>{" "}
-                                            <span>650 Sq. Ft</span>
                                           </li>
                                         </ul>
                                       </div>
@@ -750,16 +746,73 @@ export default function ShopDetails(props) {
                     <div className="ltn__property-details-gallery mb-30">
                       <div className="row">
                         <div className="col-md-6">
-                          <a href={other14} data-rel="lightcase:myCollection">
-                            <img className="mb-30" src={other14} alt="gambar" />
+                          <a
+                            href={
+                              images.length !== 0
+                                ? import.meta.env.VITE_APP_BASE_API +
+                                  "gambar_properti/" +
+                                  images[3]
+                                : other14
+                            }
+                            data-rel="lightcase:myCollection"
+                          >
+                            <img
+                              className="mb-30"
+                              src={
+                                images.length !== 0
+                                  ? import.meta.env.VITE_APP_BASE_API +
+                                    "gambar_properti/" +
+                                    images[3]
+                                  : other14
+                              }
+                              alt="gambar"
+                            />
                           </a>
-                          <a href={other15} data-rel="lightcase:myCollection">
-                            <img className="mb-30" src={other15} alt="gambar" />
+                          <a
+                            href={
+                              images.length !== 0
+                                ? import.meta.env.VITE_APP_BASE_API +
+                                  "gambar_properti/" +
+                                  images[4]
+                                : other15
+                            }
+                            data-rel="lightcase:myCollection"
+                          >
+                            <img
+                              className="mb-30"
+                              src={
+                                images.length !== 0
+                                  ? import.meta.env.VITE_APP_BASE_API +
+                                    "gambar_properti/" +
+                                    images[4]
+                                  : other15
+                              }
+                              alt="gambar"
+                            />
                           </a>
                         </div>
                         <div className="col-md-6">
-                          <a href={other16} data-rel="lightcase:myCollection">
-                            <img className="mb-30" src={other16} alt="gambar" />
+                          <a
+                            href={
+                              images.length !== 0
+                                ? import.meta.env.VITE_APP_BASE_API +
+                                  "gambar_properti/" +
+                                  images[5]
+                                : other16
+                            }
+                            data-rel="lightcase:myCollection"
+                          >
+                            <img
+                              className="mb-30"
+                              src={
+                                images.length !== 0
+                                  ? import.meta.env.VITE_APP_BASE_API +
+                                    "gambar_properti/" +
+                                    images[5]
+                                  : other16
+                              }
+                              alt="gambar"
+                            />
                           </a>
                         </div>
                       </div>

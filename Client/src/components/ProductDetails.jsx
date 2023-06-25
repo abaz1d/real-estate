@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Navbar from "./global-components/navbar"
 import PageHeader from "./global-components/page-header"
 import ProductSlider from "./shop-components/product-slider-v1"
@@ -13,11 +13,25 @@ import {
 } from "@/features/properti/propertiSlice"
 
 const Product_Details = () => {
+  const [images, setImages] = useState([])
   const location = useLocation()
   const navigate = useNavigate()
   const properti = useSelector(selectPropertis)
   const { id } = useParams()
   const dispatch = useDispatch()
+
+  const getImgUrl = async function (gambar) {
+    if (gambar) {
+      var gambars = gambar.data
+        .map((b) => String.fromCharCode(b))
+        .join("")
+        .replace(/[{}]/g, "")
+        .replace(/"/g, "")
+        .split(",")
+      setImages(...images, gambars)
+      //return new URL(`${publicPath}gambar_kantor/${images}`).href
+    }
+  }
 
   const fetchData = async () => {
     let data = await dispatch(readDetailProperti(id))
@@ -25,22 +39,26 @@ const Product_Details = () => {
       navigate("/shop-grid")
     }
   }
-
-  // useEffect(() => {
-  //   fetchData()
-  // }, [dispatch])
   useEffect(() => {
     fetchData()
   }, [location, dispatch])
+
+  //console.log("properti", properti)
+
+  useEffect(() => {
+    if (properti.length == 1 && properti[0].foto_produk) {
+      getImgUrl(properti[0].foto_produk[0])
+    }
+  }, [properti])
 
   return (
     <div>
       <Navbar />
       <PageHeader headertitle="Product Details" customclass="mb-0" />
-      <ProductSlider properti={properti} />
-      <ProductDetails properti={properti} />
+      <ProductSlider images={images} />
+      <ProductDetails images={images} properti={properti} />
       <CallToActionV1 />
-      <Footer />
+      {properti.length == 1 && <Footer />}
     </div>
   )
 }

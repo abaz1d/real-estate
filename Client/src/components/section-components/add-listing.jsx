@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { useDropzone } from "react-dropzone"
 import { useSelector, useDispatch } from "react-redux"
 import {
   createProperti,
@@ -47,6 +46,8 @@ export default function AddListing(props) {
     kamar_mandi: "",
     // lain
   })
+  const [files, setFiles] = useState([])
+
   const resetForm = () => {
     setProperti({
       judul: "",
@@ -76,14 +77,30 @@ export default function AddListing(props) {
       kamar_mandi: "",
       // lain
     })
+    setFiles([])
   }
 
-  const [files, setFiles] = useState([])
-
   const handleFileUpload = (event) => {
-    const newFiles = [...event.target.files]
-    setFiles((prevFiles) => [...prevFiles, ...newFiles])
-    console.log(`Uploading`, files, event)
+    const files = event.target.files
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"]
+    const maxSize = 2 * 1024 * 1024 // 2MB
+
+    let selectedImages = []
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      const fileType = file.type
+      const fileSize = file.size
+
+      if (allowedTypes.includes(fileType) && fileSize <= maxSize) {
+        selectedImages.push(file)
+      }
+    }
+    //setSelectedFiles(selectedImages);
+
+    //const newFiles = [...event.target.files]
+    setFiles((prevFiles) => [...prevFiles, ...selectedImages])
+    //console.log(`Uploading`, files, event)
   }
 
   const handleRemoveFile = (index) => {
@@ -147,37 +164,41 @@ export default function AddListing(props) {
     e.preventDefault()
     data.current?.scrollIntoView({ behavior: "smooth" })
   }
-  useEffect(() => {
+  const navHighlighter = function (event) {
     const sections = document.querySelectorAll("section[id]")
-    window.addEventListener("scroll", navHighlighter)
-    function navHighlighter() {
-      let scrollY = window.pageYOffset
-      sections.forEach((current) => {
-        current.addEventListener("click", (e) => {
-          e.preventDefault()
-        })
-        var sectionId = current.getAttribute("id")
-        const sectionHeight = current.offsetHeight
-        const sectionTop = current.offsetTop - 120
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          document
-            .querySelector("#nav-listing a[href*=" + sectionId + "]")
-            .classList.add("active", "show")
-        } else {
-          document
-            .querySelector("#nav-listing a[href*=" + sectionId + "]")
-            .classList.remove("active", "show")
-        }
+    let scrollY = window.pageYOffset
+    console.log("event", event)
+    sections.forEach((current) => {
+      current.addEventListener("click", (e) => {
+        e.preventDefault()
       })
+      var sectionId = current.getAttribute("id")
+      const sectionHeight = current.offsetHeight
+      const sectionTop = current.offsetTop - 120
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        document
+          .querySelector("#nav-listing a[href*=" + sectionId + "]")
+          .classList.add("active", "show")
+      } else {
+        document
+          .querySelector("#nav-listing a[href*=" + sectionId + "]")
+          .classList.remove("active", "show")
+      }
+    })
+  }
+  useEffect(() => {
+    //window.addEventListener("scroll", (e) => navHighlighter(e))
+    return () => {
+      window.removeEventListener("scroll", (e) => navHighlighter(e))
     }
-  })
+  }, [])
   const saveProperti = async (e) => {
     e.preventDefault()
     if (searchParams.get("id_properti") !== null) {
       await dispatch(
         updateProperti({
           ...properti,
+          foto_produk: files,
           id_user: JSON.parse(localStorage.getItem("user")).userid,
           id_properti: searchParams.get("id_properti"),
         }),
@@ -186,6 +207,7 @@ export default function AddListing(props) {
       await dispatch(
         createProperti({
           ...properti,
+          foto_produk: files,
           id_user: JSON.parse(localStorage.getItem("user")).userid,
         }),
       )
@@ -195,7 +217,7 @@ export default function AddListing(props) {
   }
 
   return (
-    <div className="ltn__appointment-area pb-120">
+    <div className="ltn__appointment-area pb-120" id="add_listing">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -256,7 +278,7 @@ export default function AddListing(props) {
                       <input
                         type="text"
                         name="id_properti"
-                        value={searchParams.get("id_properti")}
+                        defaultValue={searchParams.get("id_properti")}
                         readOnly
                       />
                     </div>
@@ -422,14 +444,18 @@ export default function AddListing(props) {
                     <br />
                     <small>* Images might take longer to be processed.</small>
                   </p>
-                  <div className=" border border-2 p-1 position-relative">
+                  <div
+                    className="mb-4 border border-2 p-1 position-relative"
+                    id="picInput"
+                  >
                     <input
                       type="file"
-                      id="myFile"
                       name="filename"
                       className="btn theme-btn-3 mb-10 w-100"
                       multiple
-                      onChange={handleFileUpload}
+                      required
+                      accept=".jpg, .jpeg, .png"
+                      onChange={(e) => handleFileUpload(e)}
                     />
                     {files.length >= 1 && (
                       <button
@@ -731,7 +757,7 @@ export default function AddListing(props) {
                   <h2>5. Amenities</h2>
                   <h6>Amenities and Features</h6>
                   <h6>Interior Details</h6>
-                  <div className="row">
+                  <div className="row" id="lain_checkbox">
                     <div className="col-lg-4 col-md-6">
                       <label className="checkbox-item">
                         Equipped Kitchen

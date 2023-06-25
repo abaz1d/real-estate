@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 
 function SampleNextArrow(props) {
@@ -20,11 +20,13 @@ function SamplePrevArrow(props) {
 }
 
 export default function ProductSliderV1(props) {
+  const images = props.images
   const settings = {
     className: "center",
     centerMode: true,
     infinite: true,
     centerPadding: "0px",
+    lazyLoad: true,
     slidesToShow: 3,
     speed: 500,
     nextArrow: <SampleNextArrow />,
@@ -57,79 +59,39 @@ export default function ProductSliderV1(props) {
     ],
   }
   return (
-    <div className="ltn__img-slider-area mb-90">
-      <div className="container-fluid">
-        <Slider
-          {...settings}
-          className="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all"
-        >
-          <div className="col-lg-12">
-            <div className="ltn__img-slide-item-4">
-              <a
-                href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/31.jpg"
-                data-rel="lightcase:myCollection"
-              >
-                <img
-                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/31.jpg"
-                  alt="gambar"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="ltn__img-slide-item-4">
-              <a
-                href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/32.jpg"
-                data-rel="lightcase:myCollection"
-              >
-                <img
-                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/32.jpg"
-                  alt="gambar"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="ltn__img-slide-item-4">
-              <a
-                href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/33.jpg"
-                data-rel="lightcase:myCollection"
-              >
-                <img
-                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/33.jpg"
-                  alt="gambar"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="ltn__img-slide-item-4">
-              <a
-                href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/34.jpg"
-                data-rel="lightcase:myCollection"
-              >
-                <img
-                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/34.jpg"
-                  alt="gambar"
-                />
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="ltn__img-slide-item-4">
-              <a
-                href="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/35.jpg"
-                data-rel="lightcase:myCollection"
-              >
-                <img
-                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/img-slide/35.jpg"
-                  alt="gambar"
-                />
-              </a>
-            </div>
-          </div>
-        </Slider>
+    <>
+      <div className="ltn__img-slider-area mb-90">
+        <div className="container-fluid">
+          <Slider
+            {...settings}
+            className="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all"
+          >
+            {images.map((item, index) => (
+              <div key={index} className="col-lg-12">
+                <div className="ltn__img-slide-item-4">
+                  <a
+                    href={
+                      import.meta.env.VITE_APP_BASE_API +
+                      "gambar_properti/" +
+                      item
+                    }
+                    data-rel="lightcase:myCollection"
+                  >
+                    <img
+                      src={
+                        import.meta.env.VITE_APP_BASE_API +
+                        "gambar_properti/" +
+                        item
+                      }
+                      alt="gambar"
+                    />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

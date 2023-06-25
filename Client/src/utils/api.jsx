@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 export const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
-  timeout: 15000,
+  //timeout: 15000,
   headers: {
     Authorization: `Bearer ${
       JSON.parse(localStorage.getItem("user"))

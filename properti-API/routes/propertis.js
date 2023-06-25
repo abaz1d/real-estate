@@ -1,9 +1,48 @@
 var express = require("express");
 var router = express.Router();
+const fs = require("fs");
+var path = require("path");
+const multer = require("multer");
 const { isLoggedIn, Response } = require("../helpers/util");
 
 /* GET home page. */
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, path.join(__dirname, "..", "public", "gambar_properti"));
+    } else {
+      //cb(null, path.join(__dirname, "..", "public", "file_sk"));
+    }
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + Date.now() + path.extname(file.originalname)); //Appending extension
+  },
+});
+const upload = multer({ storage: storage }).any();
+const multi_upload = multer({
+  storage,
+  // limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg" ||
+      file.mimetype == "application/pdf"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      const err = new Error("Only .png, .jpg, and .jpeg format allowed!");
+      err.name = "ExtensionError";
+      return cb(err);
+    }
+  },
+}).any();
 module.exports = function (db) {
   router.get("/", isLoggedIn, async function (req, res, next) {
     const {
@@ -89,33 +128,8 @@ module.exports = function (db) {
   });
   router.post("/add", async function (req, res, next) {
     try {
-      const {
-        judul,
-        deskripsi,
-        jenis_properti,
-        kategori,
-        status,
-        total_harga,
-        harga_tanah,
-        harga_bangunan,
-        pajak,
-        alamat,
-        kota,
-        provinsi,
-        kode_pos,
-        luas_properti,
-        jenis_sertifikat,
-        tahun_pembangunan,
-        daya_listrik,
-        jumlah_lantai,
-        jumlah_ruangan,
-        kamar_tidur,
-        kamar_mandi,
-        id_user,
-      } = req.body;
-      const { rows } = await db.query(
-        "INSERT INTO properti ( judul,deskripsi,jenis_properti,kategori,status,total_harga,harga_tanah,harga_bangunan,pajak,alamat,kota,provinsi,kode_pos,luas_properti,jenis_sertifikat,tahun_pembangunan,daya_listrik,jumlah_lantai,jumlah_ruangan,kamar_tidur,kamar_mandi, id_user) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22) RETURNING (id_properti, judul)",
-        [
+      multi_upload(req, res, function (err) {
+        const {
           judul,
           deskripsi,
           jenis_properti,
@@ -138,9 +152,68 @@ module.exports = function (db) {
           kamar_tidur,
           kamar_mandi,
           id_user,
-        ]
-      );
-      res.json(new Response(rows));
+        } = req.body;
+        if (err instanceof multer.MulterError) {
+          // A Multer error occurred when uploading.
+          res
+            .status(500)
+            .send({
+              error: { message: `Multer uploading error: ${err.message}` },
+            })
+            .end();
+          return;
+        } else if (err) {
+          // An unknown error occurred when uploading.
+          if (err.name == "ExtensionError") {
+            res
+              .status(413)
+              .send({ error: { message: err.message } })
+              .end();
+          } else {
+            res
+              .status(500)
+              .send({
+                error: { message: `unknown uploading error: ${err.message}` },
+              })
+              .end();
+          }
+          return;
+        }
+        const gambar = req.files.map(({ filename, ...rest }) => filename);
+        db.query(
+          "INSERT INTO properti ( judul,deskripsi,jenis_properti,kategori,status,total_harga,harga_tanah,harga_bangunan,pajak,alamat,kota,provinsi,kode_pos,luas_properti,jenis_sertifikat,tahun_pembangunan,daya_listrik,jumlah_lantai,jumlah_ruangan,kamar_tidur,kamar_mandi, foto_produk, id_user) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,ARRAY [$22::bytea], $23) RETURNING (id_properti, judul)",
+          [
+            judul,
+            deskripsi,
+            jenis_properti,
+            kategori,
+            status,
+            total_harga,
+            harga_tanah,
+            harga_bangunan,
+            pajak,
+            alamat,
+            kota,
+            provinsi,
+            kode_pos,
+            luas_properti,
+            jenis_sertifikat,
+            tahun_pembangunan,
+            daya_listrik,
+            jumlah_lantai,
+            jumlah_ruangan,
+            kamar_tidur,
+            kamar_mandi,
+            gambar,
+            id_user,
+          ],
+          (err, rows) => {
+            if (err) throw new Error(err);
+            let data = rows.rows;
+            res.json(new Response(data));
+          }
+        );
+      });
     } catch (e) {
       console.log("error", e);
       res.json(
