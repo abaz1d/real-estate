@@ -7,6 +7,7 @@ import {
   selectPropertis,
   readProperti,
 } from "@/features/properti/propertiSlice"
+import { getImgUrl } from "@/utils/helper"
 import ShareButton from "../global-components/share-button"
 import product1 from "@/assets/img/product/1.png"
 import product4 from "@/assets/img/product/4.png"
@@ -68,6 +69,12 @@ export default function ShopGridList() {
   useEffect(() => {
     fetchData()
   }, [cari])
+  const getImg = function (buffer) {
+    const gambars = getImgUrl(buffer)
+
+    return import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambars[0]
+  }
+
   const handleChange = (event) => {
     if (event === "increment") {
       setCari({
@@ -221,7 +228,11 @@ export default function ShopGridList() {
                               <Link to={`/product-details/${item.id_properti}`}>
                                 {/* <img src={item.gambar} alt={"gambar" + index} /> */}
                                 <img
-                                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                  src={
+                                    item.foto_produk === null
+                                      ? "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                      : getImg(item.foto_produk[0])
+                                  }
                                   alt={"gambar" + index}
                                 />
                               </Link>
@@ -319,7 +330,12 @@ export default function ShopGridList() {
                   </div> */}
                               <span>
                                 <i className="fa fa-clock me-2" />
-                                <label> {moment(item.di_buat).fromNow()}</label>
+                                <label>
+                                  {" "}
+                                  {item.di_edit === null
+                                    ? moment(item.di_buat).fromNow()
+                                    : moment(item.di_edit).fromNow()}
+                                </label>
                               </span>
                               <div className="product-hover-action">
                                 <ul>
@@ -449,7 +465,12 @@ export default function ShopGridList() {
                   </div> */}
                               <span>
                                 <i className="fa fa-clock me-2" />
-                                <label> {moment(item.di_buat).fromNow()}</label>
+                                <label>
+                                  {" "}
+                                  {item.di_edit === null
+                                    ? moment(item.di_buat).fromNow()
+                                    : moment(item.di_edit).fromNow()}
+                                </label>
                               </span>
                               <div className="product-hover-action">
                                 <ul>

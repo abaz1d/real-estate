@@ -1,7 +1,7 @@
 const currencyFormatter = new Intl.NumberFormat("id", {
   style: "currency",
   currency: "IDR",
-});
+})
 
 function currencyString(labelValue) {
   // Nine Zeroes for Billions
@@ -13,6 +13,18 @@ function currencyString(labelValue) {
     : // Three Zeroes for Thousands
     Math.abs(Number(labelValue)) >= 1.0e3
     ? Math.abs(Number(labelValue)) / 1.0e3 + " rb"
-    : Math.abs(Number(labelValue));
+    : Math.abs(Number(labelValue))
 }
-export { currencyFormatter, currencyString };
+
+const getImgUrl = function (buffer) {
+  if (buffer) {
+    var gambars = buffer.data
+      .map((b) => String.fromCharCode(b))
+      .join("")
+      .replace(/[{}]/g, "")
+      .replace(/"/g, "")
+      .split(",")
+    return gambars
+  }
+}
+export { currencyFormatter, currencyString, getImgUrl }

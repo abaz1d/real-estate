@@ -139,7 +139,12 @@ export default function ProductListingV1() {
                   </div> */}
                     <span>
                       <i className="fa fa-clock me-2" />
-                      <label> {moment(item.di_buat).fromNow()}</label>
+                      <label>
+                        {" "}
+                        {item.di_edit === null
+                          ? moment(item.di_buat).fromNow()
+                          : moment(item.di_edit).fromNow()}
+                      </label>
                     </span>
                     <div className="product-hover-action">
                       <ul>

@@ -88,7 +88,7 @@ module.exports = function (db) {
       } else {
         total_pages = parseInt(data[0].total / total_row_displayed) + 1;
       }
-      query = `SELECT id_properti, kategori, kota, provinsi, jenis_properti, total_harga, judul, kamar_tidur, kamar_mandi, luas_properti, di_buat, foto_produk[0] FROM properti`;
+      query = `SELECT id_properti, kategori, kota, provinsi, jenis_properti, total_harga, judul, kamar_tidur, kamar_mandi, luas_properti, di_buat,di_edit, foto_produk FROM properti`;
       if (search_data !== "") {
         query += ` WHERE kota ILIKE '%${search_data}%' OR provinsi ILIKE '%${search_data}%' OR total_harga ILIKE '%${search_data}%' OR judul ILIKE '%${search_data}%' OR luas_properti ILIKE '%${search_data}%' OR di_buat::text ILIKE '%${search_data}%' `;
       }
@@ -107,7 +107,7 @@ module.exports = function (db) {
         }
       }
       // query += ` ORDER BY ${sort_by} ${sort_mode} LIMIT ${total_row_displayed} OFFSET ${row_number};`;
-      query += ` ORDER BY id_properti ASC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
+      query += ` ORDER BY di_buat DESC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
       const { rows } = await db.query(query);
       res.json(new Response({ rows, total_pages }));
     } catch (e) {
@@ -248,7 +248,7 @@ module.exports = function (db) {
         id_user,
       } = req.body;
       const { rows } = await db.query(
-        `UPDATE properti SET judul = $1,deskripsi = $2,jenis_properti = $3,kategori = $4,status = $5,total_harga = $6,harga_tanah = $7,harga_bangunan = $8,pajak = $9,alamat = $10,kota = $11,provinsi = $12,kode_pos = $13,luas_properti = $14,jenis_sertifikat = $15,tahun_pembangunan = $16,daya_listrik = $17,jumlah_lantai = $18,jumlah_ruangan = $19,kamar_tidur = $20,kamar_mandi = $21, id_user = $22
+        `UPDATE properti SET judul = $1,deskripsi = $2,jenis_properti = $3,kategori = $4,status = $5,total_harga = $6,harga_tanah = $7,harga_bangunan = $8,pajak = $9,alamat = $10,kota = $11,provinsi = $12,kode_pos = $13,luas_properti = $14,jenis_sertifikat = $15,tahun_pembangunan = $16,daya_listrik = $17,jumlah_lantai = $18,jumlah_ruangan = $19,kamar_tidur = $20,kamar_mandi = $21, id_user = $22, di_edit = CURRENT_TIMESTAMP
       WHERE id_properti = $23 RETURNING (id_properti, judul)`,
         [
           judul,
@@ -290,7 +290,7 @@ module.exports = function (db) {
   router.get("/home", isLoggedIn, async function (req, res, next) {
     try {
       let sql =
-        "SELECT id_properti, kategori, kota, provinsi, jenis_properti, total_harga, judul, kamar_tidur, kamar_mandi, luas_properti, di_buat, foto_produk[0] FROM properti ORDER BY di_buat DESC LIMIT 15 OFFSET 0";
+        "SELECT id_properti, kategori, kota, provinsi, jenis_properti, total_harga, judul, kamar_tidur, kamar_mandi, luas_properti, di_buat, di_edit, foto_produk[0] FROM properti ORDER BY di_buat DESC LIMIT 15 OFFSET 0";
 
       const { rows } = await db.query(sql);
       res.json(new Response(rows, true));
