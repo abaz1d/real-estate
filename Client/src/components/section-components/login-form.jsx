@@ -22,11 +22,19 @@ export default function LoginForm() {
     })
   }
   const saveUser = async (e) => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     e.preventDefault()
     await dispatch(loginAsync(user))
     if (localStorage.getItem("user")) {
-      navigate("/my-account")
+      if (JSON.parse(localStorage.getItem("user")).userid) {
+        setUser({
+          input_user: "",
+          password: "",
+        })
+        navigate("/my-account")
+      }
     }
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   const style = {
     position: "absolute",

@@ -43,9 +43,25 @@ export default function RegisterForm() {
   }
 
   const saveUser = async (e) => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     e.preventDefault()
-    let data = await dispatch(createUser(user))
-    if (data.payload.username === user.username) navigate("/login")
+    let response = await dispatch(createUser(user))
+    if (
+      response.payload.username === user.username &&
+      response.payload.success
+    ) {
+      setUser({
+        nama_lengkap: "",
+        username: "",
+        email_user: "",
+        no_wa: "",
+        no_telephone: "",
+        password: "",
+        role: "seller",
+      })
+      navigate("/login")
+    }
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   const style = {
     position: "absolute",

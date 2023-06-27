@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import Swall from "sweetalert2"
 import * as API from "./propertiAPI"
 import {
   READ_PROPERTI,
@@ -26,6 +27,13 @@ export const readProperti = createAsyncThunk(READ_PROPERTI, async (arg) => {
       return arrayKosong
     }
   } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer:
+        "<span class='text-danger'>Kesalahan Membaca Data Properti</span>",
+    })
     console.error(error)
     return arrayKosong
   }
@@ -40,6 +48,13 @@ export const readDetailProperti = createAsyncThunk(
         return data.data
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Membaca Data Detail Properti</span>",
+      })
       console.error(error)
       return []
     }
@@ -59,6 +74,13 @@ export const createPropertiAsync = createAsyncThunk(
         throw new Error(JSON.stringify(data))
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Menambahkan Data Properti Baru</span>",
+      })
       console.error(error, "gagal")
     }
   },
@@ -75,6 +97,13 @@ export const removeProperti = createAsyncThunk(
         return properti
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Menghapus Data Properti</span>",
+      })
       console.erorr(error, "gagal")
     }
   },
@@ -84,6 +113,7 @@ export const updateProperti = createAsyncThunk(
   UPDATE_PROPERTI,
   async (properti) => {
     try {
+      //console.log("upd", properti)
       const { data } = await API.update(properti)
       if (data.success) {
         return data.data
@@ -91,6 +121,13 @@ export const updateProperti = createAsyncThunk(
         return properti
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Memperbarui Data Properti</span>",
+      })
       console.error(error, "gagal")
     }
   },

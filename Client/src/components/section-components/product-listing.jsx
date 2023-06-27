@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import moment from "moment"
 import { Link } from "react-router-dom"
-import { currencyString } from "@/utils/helper"
+import { currencyString, getImgUrl } from "@/utils/helper"
 import { useSelector, useDispatch } from "react-redux"
 import {
   selectPropertis,
@@ -21,6 +21,11 @@ export default function ProductListingV1() {
   useEffect(() => {
     dispatch(readProperti("home"))
   }, [dispatch])
+  const getImg = function (buffer) {
+    const gambars = getImgUrl(buffer)
+
+    return import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambars[0]
+  }
   return (
     <div>
       <div className="ltn__product-slider-area ltn__product-gutter pt-115 pb-70">
@@ -41,10 +46,18 @@ export default function ProductListingV1() {
               <div key={index} className="col-xl-4 col-sm-6 col-12">
                 <div className="ltn__product-item ltn__product-item-4 text-center---">
                   <div className="product-img go-top">
-                    <Link to={`/product-details/${item.id_properti}`}>
-                      {/* <img src={item.gambar} alt={"gambar" + index} /> */}
+                    <Link
+                      to={`/product-details/${item.id_properti}`}
+                      style={{ height: "250px" }}
+                    >
                       <img
-                        src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                        height={"auto"}
+                        width={"100%"}
+                        src={
+                          item.foto_produk === null
+                            ? "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                            : getImg(item.foto_produk[0])
+                        }
                         alt={"gambar" + index}
                       />
                     </Link>
@@ -170,8 +183,8 @@ export default function ProductListingV1() {
             {/*  */}
             <div className="ltn__pagination-area text-center">
               <div className="ltn__pagination">
-                <div className="btn-wrapper go-top">
-                  <Link className="btn btn-effect-3 bg-orange" to="/shop-grid">
+                <div className="btn-wrapper ">
+                  <Link className="btn btn-effect-3 bg-orange " to="/shop-grid">
                     Selengkapnya <i className="icon-next" />
                   </Link>
                 </div>

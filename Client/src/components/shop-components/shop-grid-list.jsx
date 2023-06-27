@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 import moment from "moment"
 import { Link, useSearchParams, useLocation } from "react-router-dom"
-import { currencyString } from "@/utils/helper"
+import { currencyString, getImgUrl } from "@/utils/helper"
 import { useSelector, useDispatch } from "react-redux"
 import {
   selectPropertis,
   readProperti,
 } from "@/features/properti/propertiSlice"
-import { getImgUrl } from "@/utils/helper"
 import ShareButton from "../global-components/share-button"
 import product1 from "@/assets/img/product/1.png"
 import product4 from "@/assets/img/product/4.png"
@@ -40,6 +39,7 @@ export default function ShopGridList() {
     searchData: "",
   })
   const fetchData = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     let data = await dispatch(
       readProperti({
         search_data: cari.searchData,
@@ -52,6 +52,7 @@ export default function ShopGridList() {
       }),
     )
     setTotalPages(data.payload.total_pages)
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   useEffect(() => {
     setCari({
@@ -225,9 +226,13 @@ export default function ShopGridList() {
                         <div key={index} className="col-lg-4 col-sm-6 col-12">
                           <div className="ltn__product-item ltn__product-item-4 text-center---">
                             <div className="product-img go-top">
-                              <Link to={`/product-details/${item.id_properti}`}>
-                                {/* <img src={item.gambar} alt={"gambar" + index} /> */}
+                              <Link
+                                to={`/product-details/${item.id_properti}`}
+                                style={{ height: "250px" }}
+                              >
                                 <img
+                                  height={"auto"}
+                                  width={"100%"}
                                   src={
                                     item.foto_produk === null
                                       ? "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
@@ -370,10 +375,18 @@ export default function ShopGridList() {
                         <div key={index} className="col-lg-12">
                           <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5">
                             <div className="product-img">
-                              <Link to={`/product-details/${item.id_properti}`}>
-                                {/* <img src={item.gambar} alt={"gambar" + index} /> */}
+                              <Link
+                                to={`/product-details/${item.id_properti}`}
+                                style={{ height: "250px" }}
+                              >
                                 <img
-                                  src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                  height={"auto"}
+                                  width={"100%"}
+                                  src={
+                                    item.foto_produk === null
+                                      ? "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                      : getImg(item.foto_produk[0])
+                                  }
                                   alt={"gambar" + index}
                                 />
                               </Link>

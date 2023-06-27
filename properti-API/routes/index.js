@@ -71,7 +71,6 @@ module.exports = function (db) {
                     // console.log("data", rows)
                     res.json(
                       new Response({
-                        foto: rows[0].foto_user,
                         nama_lengkap: rows[0].nama_lengkap,
                         kontak: rows[0].wa_telephone,
                         whislist: rows[0].total_whislist,
@@ -114,7 +113,6 @@ module.exports = function (db) {
                 );
                 res.json(
                   new Response({
-                    foto: rows[0].foto_user,
                     nama_lengkap: rows[0].nama_lengkap,
                     kontak: rows[0].wa_telephone,
                     whislist: rows[0].total_whislist,

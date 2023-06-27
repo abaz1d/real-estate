@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import moment from "moment"
 import { Link, useNavigate } from "react-router-dom"
+import { getImgUrl } from "@/utils/helper"
 import { useSelector, useDispatch } from "react-redux"
 import {
   selectUsers,
@@ -8,6 +9,7 @@ import {
   deleteStateUser,
 } from "@/features/user/userSlice"
 import { logoutAsync } from "@/features/auth/authSlice"
+import { updateUser } from "@/features/user/userSlice"
 import { removeProperti } from "@/features/properti/propertiSlice"
 import AddListing from "@/components/section-components/add-listing"
 import payment3 from "@/assets/img/icons/payment-3.png"
@@ -16,8 +18,20 @@ export default function MyAccount() {
   const user = JSON.parse(localStorage.getItem("user"))
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const detail_user = useSelector(selectUsers)
+  const [profileImage, setProfileImage] = useState(null)
+  const [oldFiles, setOldFiles] = useState(null)
+  const detail_users = useSelector(selectUsers)
+  const inputFileRef = useRef(null)
   const cellRef = useRef([])
+  const [akun, setAkun] = useState({
+    nama_lengkap: "",
+    username: "",
+    wa_user: "",
+    telephone_user: "",
+    role_user: "",
+    email_user: "",
+    alamat_user: "",
+  })
   let [totalPages, setTotalPages] = useState(0)
   let [idDelete, setIdDelete] = useState("-")
   let [isDelete, setIsDelete] = useState(false)
@@ -26,20 +40,75 @@ export default function MyAccount() {
     total_row_displayed: "3",
   })
   const fetchData = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     let data = await dispatch(readDetailUser({ ...cari, id: user.userid }))
 
+    if (data.payload.rows.length >= 1) {
+      let detail = data.payload.rows[0]
+      setAkun({
+        nama_lengkap: detail.nama_lengkap,
+        username: detail.username,
+        wa_user: detail.wa_telephone[0],
+        telephone_user: detail.wa_telephone[1],
+        role_user: detail.role,
+        email_user: detail.email_user,
+        alamat_user: detail.alamat !== null ? detail.alamat : "",
+      })
+      if (detail.foto_user !== null) {
+        const old_foto = await getImgUrl(detail.foto_user)
+        let file = await urlToFile(
+          import.meta.env.VITE_APP_BASE_API + "gambar_user/" + old_foto,
+          `user_${detail.id_user}`,
+        )
+        setProfileImage(file)
+        setOldFiles(old_foto)
+      }
+    }
     setTotalPages(data.payload.total_pages)
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   const logOut = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     await dispatch(logoutAsync())
     if (!localStorage.getItem("user")) {
       navigate("/login")
     }
+    document.querySelector(".quarter-overlay").style.display = "block"
   }
 
+  const handleProfileImageChange = (event) => {
+    const files = event.target.files
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"]
+    const maxSize = 2 * 1024 * 1024 // 2MB
+
+    const file = files[0]
+    const fileType = file.type
+    const fileSize = file.size
+
+    if (allowedTypes.includes(fileType) && fileSize <= maxSize) {
+      //console.log(file)
+      setProfileImage(file)
+    }
+  }
+
+  const urlToFile = function (url, filename) {
+    let contentType = url.split(/[#?]/)[0].split(".").pop().trim()
+    return fetch(url)
+      .then((response) => response.blob())
+      .then(
+        (blob) =>
+          new File([blob], filename + "." + contentType, {
+            type: `image/${contentType}`,
+          }),
+      ) // Mengganti "filename" dengan nama file yang diinginkan
+  }
   useEffect(() => {
     if (localStorage.getItem("user")) {
-      fetchData()
+      if (JSON.parse(localStorage.getItem("user")).userid !== undefined) {
+        fetchData()
+      } else {
+        navigate("/login")
+      }
     }
   }, [dispatch, cari])
   const handleChange = (event) => {
@@ -64,17 +133,49 @@ export default function MyAccount() {
     }
   }
   const deletePost = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     const data = await dispatch(removeProperti(idDelete))
     //console.log("delete data", data.payload === idDelete)
     if (data.payload === idDelete) {
       await dispatch(deleteStateUser(idDelete))
       setIsDelete(false)
     }
+    document.querySelector(".quarter-overlay").style.display = "none"
     //setIdDelete(event)
   }
   const deleteGet = (event) => {
     setIsDelete(true)
     setIdDelete(event)
+  }
+  const getImg = function (buffer) {
+    const gambars = getImgUrl(buffer)
+
+    return import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambars[0]
+  }
+  const changeForm = (event) => {
+    const target = event.target
+    const value = target.value
+    const name = target.name
+    //console.log(event.target);
+    setAkun({
+      ...akun,
+      [name]: value,
+    })
+  }
+  const saveAkun = async (e) => {
+    document.querySelector(".quarter-overlay").style.display = "block"
+    e.preventDefault()
+    if (profileImage !== null) {
+      await dispatch(
+        updateUser({
+          ...akun,
+          foto_user: profileImage,
+          old_files: oldFiles,
+          id_user: JSON.parse(localStorage.getItem("user")).userid,
+        }),
+      )
+    }
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   return (
     <div className="liton__wishlist-area pb-70">
@@ -136,8 +237,8 @@ export default function MyAccount() {
                           <p>
                             Hello{" "}
                             <strong>
-                              {detail_user.length >= 1
-                                ? detail_user[0].nama_lengkap
+                              {detail_users.length >= 1
+                                ? detail_users[0].nama_lengkap
                                 : "Nama Lengkap"}
                             </strong>
                             , Selamat Datang Kembali{" "}
@@ -153,25 +254,52 @@ export default function MyAccount() {
                       <div className="tab-pane fade" id="ltn_tab_1_2">
                         <div className="ltn__myaccount-tab-content-inner">
                           {/* comment-area */}
-                          <div className="ltn__comment-area mb-50">
-                            <div className="ltn-author-introducing clearfix">
-                              <div className="author-img">
-                                <img
-                                  src={
-                                    "https://www.tunatheme.com/tf/html/quarter-preview/quarter/img/blog/author.jpg"
-                                  }
-                                  alt="Author Gambar"
+                          <div className="ltn__comment-area mb-50 pt-5">
+                            <div className="ltn-author-introducing clearfix row">
+                              <div
+                                className="text-center col-md-4 profilepic border p-0 bg-dark"
+                                onClick={() => inputFileRef.current.click()}
+                              >
+                                {profileImage ? (
+                                  <img
+                                    src={URL.createObjectURL(profileImage)}
+                                    alt="Profile"
+                                  />
+                                ) : (
+                                  <img
+                                    src={
+                                      "https://www.tunatheme.com/tf/html/quarter-preview/quarter/img/blog/author.jpg"
+                                    }
+                                    alt="Author Gambar"
+                                  />
+                                )}
+
+                                <div className="profilepic__content">
+                                  <span className="profilepic__icon">
+                                    <i className="fas fa-camera"></i>
+                                  </span>
+                                  <span className="profilepic__text">
+                                    Edit Profile
+                                  </span>
+                                  {/* Add other content or styling */}
+                                </div>
+                                <input
+                                  type="file"
+                                  accept=".jpg, .jpeg, .png"
+                                  className="d-none"
+                                  ref={inputFileRef}
+                                  onChange={(e) => handleProfileImageChange(e)}
                                 />
                               </div>
-                              <div className="author-info">
+                              <div className="author-info col-md-8 ">
                                 <h6 className="text-uppercase">
-                                  {detail_user.length >= 1
-                                    ? detail_user[0].role
+                                  {detail_users.length >= 1
+                                    ? detail_users[0].role
                                     : "Role"}
                                 </h6>
                                 <h2>
-                                  {detail_user.length >= 1
-                                    ? detail_user[0].nama_lengkap
+                                  {detail_users.length >= 1
+                                    ? detail_users[0].nama_lengkap
                                     : "Nama Lengkap"}
                                 </h2>
                                 <div className="footer-address">
@@ -182,8 +310,8 @@ export default function MyAccount() {
                                       </div>
                                       <div className="footer-address-info">
                                         <p>
-                                          {detail_user.length >= 1
-                                            ? detail_user[0].alamat
+                                          {detail_users.length >= 1
+                                            ? detail_users[0].alamat
                                             : "Alamat"}
                                         </p>
                                       </div>
@@ -195,16 +323,17 @@ export default function MyAccount() {
                                       <div className="footer-address-info">
                                         <p>
                                           <a href="tel:+0123-456789">
-                                            {detail_user.length >= 1
-                                              ? detail_user[0]
+                                            {detail_users.length >= 1
+                                              ? detail_users[0]
                                                   .wa_telephone[0] ===
-                                                detail_user[0].wa_telephone[1]
-                                                ? detail_user[0].wa_telephone[0]
+                                                detail_users[0].wa_telephone[1]
+                                                ? detail_users[0]
+                                                    .wa_telephone[0]
                                                 : `${
-                                                    detail_user[0]
+                                                    detail_users[0]
                                                       .wa_telephone[0] +
                                                     "/" +
-                                                    detail_user[0]
+                                                    detail_users[0]
                                                       .wa_telephone[1]
                                                   }`
                                               : "Kontak"}
@@ -219,8 +348,8 @@ export default function MyAccount() {
                                       <div className="footer-address-info">
                                         <p>
                                           <a href="mailto:example@example.com">
-                                            {detail_user.length >= 1
-                                              ? detail_user[0].email_user
+                                            {detail_users.length >= 1
+                                              ? detail_users[0].email_user
                                               : "Email"}
                                           </a>
                                         </p>
@@ -231,104 +360,74 @@ export default function MyAccount() {
                               </div>
                             </div>
                             <div className="ltn__form-box">
-                              <form action="#">
+                              <form onSubmit={(e) => saveAkun(e)}>
                                 <div className="row mb-50">
                                   <div className="col-md-6">
-                                    <label>First name:</label>
+                                    <label>Nama Lengkap:</label>
                                     <input
                                       type="text"
-                                      name="ltn__name"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].nama_lengkap.split(
-                                              " ",
-                                            )[0]
-                                          : "First Name"
-                                      }
-                                      readOnly
-                                    />
-                                  </div>
-                                  <div className="col-md-6">
-                                    <label>Last name:</label>
-                                    <input
-                                      type="text"
-                                      name="ltn__lastname"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].nama_lengkap.split(
-                                              " ",
-                                            )[1]
-                                          : "Last Name"
-                                      }
-                                      readOnly
-                                    />
-                                  </div>
-                                  <div className="col-md-6">
-                                    <label>WhatsApp:</label>
-                                    <input
-                                      type="text"
-                                      name="ltn__lastname"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].wa_telephone[0]
-                                          : "Username"
-                                      }
-                                      readOnly
-                                    />
-                                  </div>
-                                  <div className="col-md-6">
-                                    <label>Telephone:</label>
-                                    <input
-                                      type="email"
-                                      name="ltn__lastname"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].wa_telephone[1]
-                                          : "Email"
-                                      }
-                                      readOnly
+                                      name="nama_lengkap"
+                                      value={akun.nama_lengkap}
+                                      onChange={(e) => changeForm(e)}
                                     />
                                   </div>
                                   <div className="col-md-6">
                                     <label>Username:</label>
                                     <input
                                       type="text"
-                                      name="ltn__lastname"
+                                      name="username"
+                                      value={akun.username}
+                                      onChange={(e) => changeForm(e)}
+                                    />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <label>WhatsApp:</label>
+                                    <input
+                                      type="text"
+                                      name="wa_user"
+                                      value={akun.wa_user}
+                                      onChange={(e) => changeForm(e)}
+                                    />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <label>Telephone:</label>
+                                    <input
+                                      type="text"
+                                      name="telephone_user"
+                                      value={akun.telephone_user}
+                                      onChange={(e) => changeForm(e)}
+                                    />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <label>Jabatan:</label>
+                                    <input
+                                      type="text"
+                                      name="role_user"
                                       value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].username
-                                          : "Username"
+                                        detail_users.length >= 1
+                                          ? detail_users[0].role
+                                          : "Jabatan/ Role"
                                       }
                                       readOnly
                                     />
                                   </div>
                                   <div className="col-md-6">
-                                    <label>Display Email:</label>
+                                    <label>Email:</label>
                                     <input
                                       type="email"
-                                      name="ltn__lastname"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].email_user
-                                          : "Email"
-                                      }
-                                      readOnly
+                                      name="email_user"
+                                      value={akun.email_user}
+                                      onChange={(e) => changeForm(e)}
                                     />
                                   </div>
                                   <div className="col-md-12">
                                     <label>Alamat:</label>
                                     <textarea
-                                      name="alamat"
+                                      name="alamat_user"
                                       cols="30"
                                       rows="10"
-                                      value={
-                                        detail_user.length >= 1
-                                          ? detail_user[0].alamat === null
-                                            ? ""
-                                            : detail_user[0].alamat
-                                          : "Alamat"
-                                      }
-                                      readOnly
+                                      value={akun.alamat_user}
+                                      onChange={(e) => changeForm(e)}
                                     ></textarea>
                                   </div>
                                   <div className="btn-wrapper">
@@ -360,16 +459,21 @@ export default function MyAccount() {
                                 </tr>
                               </thead>
                               <tbody>
-                                {detail_user.length >= 1 &&
-                                  detail_user.map((item, index) => (
+                                {detail_users.length >= 1 &&
+                                  detail_users.map((item, index) => (
                                     <tr key={index}>
                                       <td className="ltn__my-properties-img go-top">
                                         <Link
                                           to={`/product-details/${item.id_properti}`}
+                                          style={{ height: "250px" }}
                                         >
                                           <img
+                                            height={"auto"}
+                                            width={"100%"}
                                             src={
-                                              "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                              item.foto_produk === null
+                                                ? "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/product-3/1.jpg"
+                                                : getImg(item.foto_produk[0])
                                             }
                                             alt={"gambar" + index}
                                           />
@@ -427,7 +531,7 @@ export default function MyAccount() {
                                         <Link
                                           to={`/add-listing?id_properti=${item.id_properti}`}
                                         >
-                                          Edit
+                                          <i className="fa fa-edit" /> Edit
                                         </Link>
                                       </td>
                                       <td
@@ -438,13 +542,14 @@ export default function MyAccount() {
                                           deleteGet(item.id_properti)
                                         }
                                       >
-                                        <Link tp="#">
-                                          <i className="fa-solid fa-trash-can" />
+                                        <Link tp="#" className="text-danger">
+                                          <i className="fa-solid fa-trash-can" />{" "}
+                                          Delete
                                         </Link>
                                       </td>
                                     </tr>
                                   ))}
-                                {detail_user.length < 1 && (
+                                {detail_users.length < 1 && (
                                   <tr className="text-center text-secondary fs-2 w-100">
                                     <td colSpan={5}>
                                       Tidal Ada Data Di Temukan

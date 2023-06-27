@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import * as API from "./authAPI"
+import Swall from "sweetalert2"
 import { LOG_IN, LOG_OUT } from "@/utils/constants"
 
 const initialState = {
@@ -10,14 +11,20 @@ const initialState = {
 
 export const logoutAsync = createAsyncThunk(LOG_OUT, async () => {
   try {
-    localStorage.removeItem("user")
     const { data } = await API.logout()
+    localStorage.removeItem("user")
     if (data.success) {
       return "user"
     } else {
       throw new Error(JSON.stringify(data))
     }
   } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer: "<span class='text-danger'>Kesalahan Log Out</span>",
+    })
     console.error(error)
     return ""
   }
@@ -32,6 +39,12 @@ export const loginAsync = createAsyncThunk(LOG_IN, async (user) => {
       throw new Error(JSON.stringify(data))
     }
   } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer: "<span class='text-danger'>Kesalahan Log In</span>",
+    })
     console.error(error)
     return {}
   }

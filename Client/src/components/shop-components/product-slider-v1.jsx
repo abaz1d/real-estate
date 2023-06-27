@@ -60,7 +60,7 @@ export default function ProductSliderV1(props) {
   }
   return (
     <>
-      <div className="ltn__img-slider-area mb-90">
+      <div className="ltn__img-slider-area mb-25 mt-50">
         <div className="container-fluid">
           <Slider
             {...settings}
@@ -70,6 +70,7 @@ export default function ProductSliderV1(props) {
               <div key={index} className="col-lg-12">
                 <div className="ltn__img-slide-item-4">
                   <a
+                    className="d-flex justify-content-center"
                     href={
                       import.meta.env.VITE_APP_BASE_API +
                       "gambar_properti/" +
@@ -78,6 +79,8 @@ export default function ProductSliderV1(props) {
                     data-rel="lightcase:myCollection"
                   >
                     <img
+                      height={"250px"}
+                      width={"auto"}
                       src={
                         import.meta.env.VITE_APP_BASE_API +
                         "gambar_properti/" +

@@ -1,4 +1,5 @@
 import React from "react"
+import Swall from "sweetalert2"
 
 const ShareButton = (props) => {
   const handleShare = (e) => {
@@ -15,6 +16,13 @@ const ShareButton = (props) => {
           console.log("Page shared successfully")
         })
         .catch((error) => {
+          Swall.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error}`,
+            footer:
+              "<span class='text-danger'>Kesalahan Membagikan URL Properti</span>",
+          })
           console.error("Error sharing page:", error)
         })
     } else {

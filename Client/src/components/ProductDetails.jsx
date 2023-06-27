@@ -27,10 +27,12 @@ const Product_Details = () => {
   }
 
   const fetchData = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     let data = await dispatch(readDetailProperti(id))
     if (data.payload.length === 0) {
       navigate("/shop-grid")
     }
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   useEffect(() => {
     fetchData()

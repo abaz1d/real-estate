@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import { getImgUrl } from "@/utils/helper"
 import {
   createProperti,
   updateProperti,
@@ -46,6 +47,7 @@ export default function AddListing(props) {
     kamar_mandi: "",
     // lain
   })
+  const [oldFiles, setOldFiles] = useState([])
   const [files, setFiles] = useState([])
 
   const resetForm = () => {
@@ -93,12 +95,10 @@ export default function AddListing(props) {
       const fileSize = file.size
 
       if (allowedTypes.includes(fileType) && fileSize <= maxSize) {
+        //console.log(file)
         selectedImages.push(file)
       }
     }
-    //setSelectedFiles(selectedImages);
-
-    //const newFiles = [...event.target.files]
     setFiles((prevFiles) => [...prevFiles, ...selectedImages])
     //console.log(`Uploading`, files, event)
   }
@@ -119,7 +119,19 @@ export default function AddListing(props) {
       [name]: value,
     })
   }
+  const urlToFile = function (url, filename) {
+    let contentType = url.split(/[#?]/)[0].split(".").pop().trim()
+    return fetch(url)
+      .then((response) => response.blob())
+      .then(
+        (blob) =>
+          new File([blob], filename + "." + contentType, {
+            type: `image/${contentType}`,
+          }),
+      ) // Mengganti "filename" dengan nama file yang diinginkan
+  }
   const fetchData = async () => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     let data = await dispatch(
       readDetailProperti(searchParams.get("id_properti")),
     )
@@ -153,11 +165,31 @@ export default function AddListing(props) {
         kamar_mandi: detail.kamar_mandi,
         // lain
       })
+      if (detail.foto_produk !== null) {
+        const gambars = await getImgUrl(detail.foto_produk[0])
+        const newUrl = await Promise.all(
+          gambars.map(async (gambar, index) => {
+            let files = await urlToFile(
+              import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambar,
+              `gambar_${index}`,
+            )
+            //console.log("files", files)
+            setOldFiles((prevOldFiles) => [...prevOldFiles, gambar])
+            return files
+          }),
+        )
+        setFiles(newUrl)
+      }
     }
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
   useEffect(() => {
     if (searchParams.get("id_properti") !== null) {
-      fetchData()
+      if (localStorage.getItem("user")) {
+        if (JSON.parse(localStorage.getItem("user")).userid !== undefined) {
+          fetchData()
+        }
+      }
     }
   }, [searchParams])
   const handleClick = (e, data) => {
@@ -193,27 +225,32 @@ export default function AddListing(props) {
     }
   }, [])
   const saveProperti = async (e) => {
+    document.querySelector(".quarter-overlay").style.display = "block"
     e.preventDefault()
-    if (searchParams.get("id_properti") !== null) {
-      await dispatch(
-        updateProperti({
-          ...properti,
-          foto_produk: files,
-          id_user: JSON.parse(localStorage.getItem("user")).userid,
-          id_properti: searchParams.get("id_properti"),
-        }),
-      )
-    } else {
-      await dispatch(
-        createProperti({
-          ...properti,
-          foto_produk: files,
-          id_user: JSON.parse(localStorage.getItem("user")).userid,
-        }),
-      )
+    if (files.length > 0) {
+      if (searchParams.get("id_properti") !== null) {
+        await dispatch(
+          updateProperti({
+            ...properti,
+            foto_produk: files,
+            old_files: oldFiles,
+            id_user: JSON.parse(localStorage.getItem("user")).userid,
+            id_properti: searchParams.get("id_properti"),
+          }),
+        )
+      } else {
+        await dispatch(
+          createProperti({
+            ...properti,
+            foto_produk: files,
+            id_user: JSON.parse(localStorage.getItem("user")).userid,
+          }),
+        )
+      }
+      resetForm()
+      navigate("/my-account")
     }
-    resetForm()
-    navigate("/my-account")
+    document.querySelector(".quarter-overlay").style.display = "none"
   }
 
   return (
@@ -453,7 +490,6 @@ export default function AddListing(props) {
                       name="filename"
                       className="btn theme-btn-3 mb-10 w-100"
                       multiple
-                      required
                       accept=".jpg, .jpeg, .png"
                       onChange={(e) => handleFileUpload(e)}
                     />
@@ -466,7 +502,7 @@ export default function AddListing(props) {
                           right: "4%",
                           top: "2vh",
                           paddingTop: "3.5px",
-                          zIndex: "99999",
+                          zIndex: "99",
                         }}
                       >
                         <i className="fa fa-xmark fa-lg mb-0 text-danger" />{" "}

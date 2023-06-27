@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import * as API from "./userAPI"
+import Swall from "sweetalert2"
 import {
   READ_USER,
   CREATE_USER,
@@ -27,6 +28,12 @@ export const readUser = createAsyncThunk(READ_USER, async (arg) => {
       return arrayKosong
     }
   } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer: "<span class='text-danger'>Kesalahan Membaca Data User</span>",
+    })
     console.error(error)
     return arrayKosong
   }
@@ -41,6 +48,13 @@ export const readDetailUser = createAsyncThunk(
         return data.data
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Membaca Data Detail User</span>",
+      })
       console.error(error)
       return []
     }
@@ -51,15 +65,22 @@ export const createUserAsync = createAsyncThunk(
   CREATE_USER,
   async ({ id, user }) => {
     try {
-      const { data } = await API.create(user)
+      var { data } = await API.create(user)
       if (data.success) {
-        return { ...data.data[0], id }
+        return { ...data.data[0], id, success: data.success }
       } else {
         throw new Error(JSON.stringify(data))
       }
     } catch (error) {
+      Swall.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error}`,
+        footer:
+          "<span class='text-danger'>Kesalahan Menambahkan Data User Baru</span>",
+      })
       console.error(error)
-      return { ...user, id }
+      return { ...user, id, success: data.success }
     }
   },
 )
@@ -72,23 +93,33 @@ export const removeUser = createAsyncThunk(REMOVE_USER, async (id_user) => {
       return id_user
     }
   } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer: "<span class='text-danger'>Kesalahan Menghapus Data User</span>",
+    })
     console.log(error, "gagal")
   }
 })
 
-export const updateUser = createAsyncThunk(
-  UPDATE_USER,
-  async ({ _id, title, complete }) => {
-    try {
-      const { data } = await API.update(_id, title, complete)
-      if (data.success) {
-        return data.data
-      }
-    } catch (error) {
-      console.log(error, "gagal")
+export const updateUser = createAsyncThunk(UPDATE_USER, async (users) => {
+  try {
+    const { data } = await API.update(users)
+    if (data.success) {
+      return data.data
     }
-  },
-)
+  } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      footer:
+        "<span class='text-danger'>Kesalahan Memperbarui Data User</span>",
+    })
+    console.log(error, "gagal")
+  }
+})
 
 export const userSlice = createSlice({
   name: "user",
@@ -137,12 +168,12 @@ export const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "idle"
-        state.users = state.users.map((item) => {
-          if (item._id === action.payload._id) {
-            return { ...action.payload, sent: true }
-          }
-          return item
-        })
+        // state.users = state.users.map((item) => {
+        //   if (item.id_user === action.payload.id_user) {
+        //     return { ...action.payload, sent: true }
+        //   }
+        //   return item
+        // })
       })
   },
 })
@@ -155,9 +186,9 @@ export const deleteStateUser = (id_properti) => (dispatch, getState) => {
   dispatch(remove(id_properti))
 }
 export const createUser = (user) => (dispatch, getState) => {
-  // const id = Date.now()
+  const id = Date.now()
   dispatch(create({ ...user, id }))
-  // return dispatch(createUserAsync({ id, user }))
+  return dispatch(createUserAsync({ id, user }))
 }
 
 export default userSlice.reducer

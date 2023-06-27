@@ -2,9 +2,49 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const fs = require("fs");
+var path = require("path");
+const multer = require("multer");
 const { isTokenValid, Response } = require("../helpers/util");
 
 /* GET home page. */
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, path.join(__dirname, "..", "public", "gambar_user"));
+    } else {
+      //cb(null, path.join(__dirname, "..", "public", "file_sk"));
+    }
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + Date.now() + path.extname(file.originalname)); //Appending extension
+  },
+});
+const upload = multer({ storage: storage }).any();
+const multi_upload = multer({
+  storage,
+  // limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg" ||
+      file.mimetype == "application/pdf"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      const err = new Error("Only .png, .jpg, and .jpeg format allowed!");
+      err.name = "ExtensionError";
+      console.log("error", err);
+      return cb(err);
+    }
+  },
+}).any();
 module.exports = function (db) {
   router.get("/", async function (req, res, next) {
     try {
@@ -42,7 +82,7 @@ module.exports = function (db) {
         total_pages = parseInt(data[0].total / total_row_displayed) + 1;
       }
 
-      query = `SELECT u.nama_lengkap, u.id_user, u.email_user, u.username, u.role, u.wa_telephone, u.foto_user, u.tgl_buat, u.alamat, u.total_whislist, u.total_cart ,p.id_properti, p.jenis_properti, p.judul, p.kota, p.provinsi, p.total_harga, p.kategori, p.status, p.di_buat, p.foto_produk[0] FROM users u LEFT JOIN properti p  ON u.id_user = p.id_user WHERE u.id_user = '${req.params.id}' ORDER BY p.id_properti ASC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
+      query = `SELECT u.nama_lengkap, u.id_user, u.email_user, u.username, u.role, u.wa_telephone, u.foto_user, u.tgl_buat, u.alamat, u.total_whislist, u.total_cart ,p.id_properti, p.jenis_properti, p.judul, p.kota, p.provinsi, p.total_harga, p.kategori, p.status, p.di_buat, p.foto_produk FROM users u LEFT JOIN properti p  ON u.id_user = p.id_user WHERE u.id_user = '${req.params.id}' ORDER BY p.id_properti ASC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
       const { rows } = await db.query(query);
       //console.log(rows, req.params);
       res.json(new Response({ rows, total_pages }));
@@ -129,82 +169,88 @@ module.exports = function (db) {
   });
   router.put("/edit/:id", async function (req, res, next) {
     try {
-      if (Object.keys(req.body).length > 4) {
-        console.log("password Baru");
-        const { email_user, username, password, role } = req.body;
-        const email_terpakai = await db.query(
-          "SELECT * FROM users WHERE email_user = $1 AND id_user != $2",
-          [email_user, req.params.id]
-        );
-        if (email_terpakai.rows.length > 0)
-          return res.json(
-            new Response({ message: "e-mail has been registered" }, false)
-          );
-        const username_terpakai = await db.query(
-          "SELECT * FROM users WHERE username = $1 AND id_user != $2",
-          [username, req.params.id]
-        );
-        if (username_terpakai.rows.length > 0)
-          return res.json(
-            new Response({ message: "username has been registered" }, false)
-          );
-
-        bcrypt.hash(password, saltRounds, async function (err, hash) {
-          if (err)
-            return res.json(new Response({ message: "failed hash" }, false));
-          const { rows } = await db.query(
-            `UPDATE users SET 
-          email_user = $1,
-          username = $2,
-          password = $3,
-          role = $4
-          WHERE id_user = $5 RETURNING *;`,
-            [email_user, username, hash, role, req.params.id]
-          );
-          res.json(
-            new Response({
-              data: rows[0],
+      multi_upload(req, res, function (err) {
+        const {
+          nama_lengkap,
+          username,
+          wa_user,
+          telephone_user,
+          role_user,
+          email_user,
+          alamat_user,
+          old_files,
+        } = req.body;
+        if (err instanceof multer.MulterError) {
+          // A Multer error occurred when uploading.
+          res
+            .status(500)
+            .send({
+              error: { message: `Multer uploading error: ${err.message}` },
             })
+            .end();
+          return;
+        } else if (err) {
+          // An unknown error occurred when uploading.
+          if (err.name == "ExtensionError") {
+            res
+              .status(413)
+              .send({ error: { message: err.message } })
+              .end();
+          } else {
+            res
+              .status(500)
+              .send({
+                error: {
+                  message: `unknown uploading error: ${err.message}`,
+                },
+              })
+              .end();
+          }
+          return;
+        }
+        if (old_files != "null" && req.files.length > 0) {
+          let deletePath = path.join(
+            __dirname,
+            "..",
+            "public",
+            "gambar_user",
+            old_files
           );
-        });
-      } else {
-        console.log("Password Lama");
-        const { email_user, username, role } = req.body;
-        const email_terpakai = await db.query(
-          "SELECT * FROM users WHERE email_user = $1 AND id_user != $2",
-          [email_user, req.params.id]
+          if (fs.existsSync(deletePath)) {
+            fs.unlink(deletePath, (err) => {
+              if (err) if (err) throw new Error(err);
+              console.log(`Image deleted successfully`);
+            });
+          } else {
+            console.log("File tidak ditemukan");
+          }
+        }
+        db.query(
+          `UPDATE users SET foto_user = $1,nama_lengkap = $2,username = $3,wa_telephone = ARRAY [$4, $5],email_user = $6,alamat = $7 WHERE id_user = $8 RETURNING (id_user)`,
+          [
+            req.files[0].filename,
+            nama_lengkap,
+            username,
+            wa_user,
+            telephone_user,
+            email_user,
+            alamat_user,
+            req.params.id,
+          ],
+          (err, rows) => {
+            if (err) throw new Error(err);
+            let data = rows.rows;
+            res.json(new Response(data));
+          }
         );
-        if (email_terpakai.rows.length > 0)
-          return res.json(
-            new Response({ message: "e-mail has been registered" }, false)
-          );
-        const username_terpakai = await db.query(
-          "SELECT * FROM users WHERE username = $1 AND id_user != $2",
-          [username, req.params.id]
-        );
-        if (username_terpakai.rows.length > 0)
-          return res.json(
-            new Response({ message: "username has been registered" }, false)
-          );
-
-        const { rows } = await db.query(
-          `UPDATE users SET 
-        email_user = $1,
-        username = $2,
-        role = $3
-        WHERE id_user = $4 RETURNING *;`,
-          [email_user, username, role, req.params.id]
-        );
-        res.json(
-          new Response({
-            data: rows[0],
-          })
-        );
-      }
+      });
     } catch (e) {
-      console.error(e);
+      console.log("error", e);
       res.json(
-        new Response({ message: "failed edit user" + e.toString() }, false)
+        new Response(
+          { message: "failed update properti " + e.toString() },
+          false
+        )
       );
     }
   });

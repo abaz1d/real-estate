@@ -57,7 +57,7 @@ export default function BannerV6() {
   }
 
   return (
-    <div className="ltn__slider-area ltn__slider-4 position-relative  ltn__primary-bg">
+    <div className="ltn__slider-area ltn__slider-4 position-relative  ltn__primary-bg overflow-hidden">
       <div className="ltn__slide-animation-active">
         <video
           autoPlay

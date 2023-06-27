@@ -70,6 +70,62 @@ font-family: 'Poppins', sans-serif;
 /* ====================================================
     Gutter Code 
 ==================================================== */
+.profilepic {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 0 auto;
+  cursor: pointer;
+  text-shadow: 1px 1px 5px black, 0 0 5px black, 0 0 15px black;
+}
+
+.profilepic:hover .profilepic__content {
+  opacity: 1;
+  /* background-color: black; */
+}
+
+.profilepic:hover img {
+  opacity: .5;
+}
+
+.profilepic__image {
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+}
+
+.profilepic__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+
+.profilepic__icon {
+  color: white;
+  padding-bottom: 8px;
+}
+
+.fas {
+  font-size: 20px;
+}
+
+.profilepic__text {
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 50%;
+  text-align: center;
+}
+
 .container,
 .container-fluid {
   padding-right: 15px;
@@ -17716,7 +17772,8 @@ input.cart-plus-minus-box {
   left: 0;
   top: 0;
   z-index: 9999999;
-  background-color: #071c1f;
+  background-color: #f8f9fa;
+  background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -18060,7 +18117,6 @@ input.cart-plus-minus-box {
   height: 100%;
   left: 0;
   display: none;
-  background: #222;
 }
 .cv-spinner {
   height: 100%;
@@ -18071,10 +18127,10 @@ input.cart-plus-minus-box {
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px #ddd solid;
+  /* border: 4px #ddd solid;
   border-top: 4px solid;
-  border-radius: 50%;
-  animation: sp-anime 0.8s infinite linear;
+  border-radius: 50%; */
+  animation: sp-anime 1.5s infinite linear;
   border-top-color: var(--ltn__secondary-color);
 }
 @keyframes sp-anime {
