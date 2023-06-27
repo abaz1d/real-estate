@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Swall from "sweetalert2"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { loginAsync } from "@/features/auth/authSlice"
@@ -28,6 +29,11 @@ export default function LoginForm() {
       await dispatch(loginAsync(user))
       if (localStorage.getItem("user")) {
         if (JSON.parse(localStorage.getItem("user")).userid) {
+          Swall.fire({
+            icon: "success",
+            confirmButtonColor: "#ff5a3c",
+            text: `Selamat Datang ${user.input_user}`,
+          })
           setUser({
             input_user: "",
             password: "",

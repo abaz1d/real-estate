@@ -26,11 +26,13 @@ request.interceptors.request.use(function (config) {
 
 export const LoggedIn = () => {
   const user = localStorage.getItem("user")
-  const userid = JSON.parse(localStorage.getItem("user")).userid
+  const userid = JSON.parse(localStorage.getItem("user"))
+    ? JSON.parse(localStorage.getItem("user")).userid
+    : undefined
+  // console.log("userid: ", !user && userid == undefined)
   return (
     <Fragment>
-      {!user ||
-        (userid == undefined && <Navigate to="/login" replace={true} />)}
+      {!user && userid == undefined && <Navigate to="/login" replace={true} />}
     </Fragment>
   )
 }

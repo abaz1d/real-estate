@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react"
+import Swall from "sweetalert2"
 import { updateUser } from "@/features/user/userSlice"
 import { useDispatch } from "react-redux"
 
@@ -43,6 +44,11 @@ const ProfileUser = ({
         )
 
         if (response.payload.success) {
+          Swall.fire({
+            icon: "success",
+            confirmButtonColor: "#ff5a3c",
+            text: `Akun Anda Berhasil di Perbarui`,
+          })
           fetchData()
         } else {
           if (

@@ -84,7 +84,7 @@ export const createUserAsync = createAsyncThunk(
           "<span class='text-danger'>Kesalahan Menambahkan Data User Baru</span>",
       })
       console.error(error)
-      return { ...user, id, success: data.success }
+      return { ...user, id, success: data.success, message: data.data.message }
     }
   },
 )

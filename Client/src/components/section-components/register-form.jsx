@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Swall from "sweetalert2"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { createUser } from "@/features/user/userSlice"
@@ -51,6 +52,11 @@ export default function RegisterForm() {
         response.payload.username === user.username &&
         response.payload.success
       ) {
+        Swall.fire({
+          icon: "success",
+          confirmButtonColor: "#ff5a3c",
+          text: `Akun Anda Berhasil di Buat, Silahkan Login`,
+        })
         setUser({
           nama_lengkap: "",
           username: "",
@@ -61,6 +67,13 @@ export default function RegisterForm() {
           role: "seller",
         })
         navigate("/login")
+      } else {
+        if (response.payload.message === "username has been registered") {
+          setUser({
+            ...user,
+            username: "",
+          })
+        }
       }
       document.querySelector(".quarter-overlay").style.display = "none"
     } catch (error) {

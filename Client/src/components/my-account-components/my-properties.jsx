@@ -63,7 +63,8 @@ const MyProperties = ({
           </thead>
           <tbody>
             {detail_users &&
-              detail_users.length >= 1 &&
+            detail_users.length >= 1 &&
+            detail_users[0].id_properti ? (
               detail_users.map((item, index) => (
                 <tr key={index}>
                   <td className="ltn__my-properties-img go-top">
@@ -136,8 +137,8 @@ const MyProperties = ({
                     </Link>
                   </td>
                 </tr>
-              ))}
-            {detail_users && detail_users.length < 1 && (
+              ))
+            ) : (
               <tr className="text-center text-secondary fs-2 w-100">
                 <td colSpan={5}>Tidal Ada Data Di Temukan</td>
               </tr>
