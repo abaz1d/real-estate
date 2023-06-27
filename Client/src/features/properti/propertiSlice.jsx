@@ -31,6 +31,7 @@ export const readProperti = createAsyncThunk(READ_PROPERTI, async (arg) => {
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer:
         "<span class='text-danger'>Kesalahan Membaca Data Properti</span>",
     })
@@ -52,6 +53,7 @@ export const readDetailProperti = createAsyncThunk(
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Membaca Data Detail Properti</span>",
       })
@@ -78,10 +80,11 @@ export const createPropertiAsync = createAsyncThunk(
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Menambahkan Data Properti Baru</span>",
       })
-      console.error(error, "gagal")
+      console.error("Kesalahan Menambahkan Data Properti Baru", error)
     }
   },
 )
@@ -94,17 +97,19 @@ export const removeProperti = createAsyncThunk(
       if (data.success) {
         return id_properti
       } else {
-        return properti
+        throw new Error(JSON.stringify(data))
       }
     } catch (error) {
       Swall.fire({
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Menghapus Data Properti</span>",
       })
       console.erorr(error, "gagal")
+      return id_properti
     }
   },
 )
@@ -125,10 +130,11 @@ export const updateProperti = createAsyncThunk(
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Memperbarui Data Properti</span>",
       })
-      console.error(error, "gagal")
+      console.error("Kesalahan Memperbarui Data Properti", error)
     }
   },
 )

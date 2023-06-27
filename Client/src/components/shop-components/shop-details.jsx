@@ -10,9 +10,8 @@ import other15 from "@/assets/img/others/15.jpg"
 import other16 from "@/assets/img/others/16.jpg"
 import banner2 from "@/assets/img/banner/2.jpg"
 
-export default function ShopDetails(props) {
-  const images = props.images
-  const propertis = props.properti
+export default function ShopDetails({ images, properti, userPic }) {
+  const propertis = properti
   const tinjauan_umum = useRef(null)
   const detail_properti = useRef(null)
   const dokumentasi_properti = useRef(null)
@@ -864,7 +863,13 @@ export default function ShopDetails(props) {
                   >
                     <div className="ltn__author-widget-inner text-center">
                       <img
-                        src="https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"
+                        src={
+                          userPic[0]
+                            ? import.meta.env.VITE_APP_BASE_API +
+                              "gambar_user/" +
+                              userPic[0]
+                            : "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"
+                        }
                         alt="gambar"
                       />
                       <h5 className="text-uppercase">{item.nama_lengkap}</h5>

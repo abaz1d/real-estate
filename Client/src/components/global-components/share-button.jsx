@@ -20,6 +20,7 @@ const ShareButton = (props) => {
             icon: "error",
             title: "Oops...",
             text: `${error}`,
+            confirmButtonColor: "#ff5a3c",
             footer:
               "<span class='text-danger'>Kesalahan Membagikan URL Properti</span>",
           })

@@ -21,20 +21,25 @@ export default function LoginForm() {
       [name]: value,
     })
   }
-  const saveUser = async (e) => {
-    document.querySelector(".quarter-overlay").style.display = "block"
-    e.preventDefault()
-    await dispatch(loginAsync(user))
-    if (localStorage.getItem("user")) {
-      if (JSON.parse(localStorage.getItem("user")).userid) {
-        setUser({
-          input_user: "",
-          password: "",
-        })
-        navigate("/my-account")
+  const SignIn = async (e) => {
+    try {
+      document.querySelector(".quarter-overlay").style.display = "block"
+      e.preventDefault()
+      await dispatch(loginAsync(user))
+      if (localStorage.getItem("user")) {
+        if (JSON.parse(localStorage.getItem("user")).userid) {
+          setUser({
+            input_user: "",
+            password: "",
+          })
+          navigate("/my-account")
+        }
       }
+      document.querySelector(".quarter-overlay").style.display = "none"
+    } catch (error) {
+      document.querySelector(".quarter-overlay").style.display = "none"
+      console.error("SignIn", error)
     }
-    document.querySelector(".quarter-overlay").style.display = "none"
   }
   const style = {
     position: "absolute",
@@ -82,7 +87,7 @@ export default function LoginForm() {
             <div className="col-lg-6">
               <div className="account-login-inner">
                 <form
-                  onSubmit={(e) => saveUser(e)}
+                  onSubmit={(e) => SignIn(e)}
                   className="ltn__form-box contact-form-box"
                 >
                   <input

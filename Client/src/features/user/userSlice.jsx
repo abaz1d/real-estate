@@ -5,6 +5,7 @@ import {
   READ_USER,
   CREATE_USER,
   UPDATE_USER,
+  UPDATE_PASS,
   REMOVE_USER,
   READ_DETAIL_USER,
 } from "@/utils/constants"
@@ -32,6 +33,7 @@ export const readUser = createAsyncThunk(READ_USER, async (arg) => {
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer: "<span class='text-danger'>Kesalahan Membaca Data User</span>",
     })
     console.error(error)
@@ -52,6 +54,7 @@ export const readDetailUser = createAsyncThunk(
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Membaca Data Detail User</span>",
       })
@@ -76,6 +79,7 @@ export const createUserAsync = createAsyncThunk(
         icon: "error",
         title: "Oops...",
         text: `${error}`,
+        confirmButtonColor: "#ff5a3c",
         footer:
           "<span class='text-danger'>Kesalahan Menambahkan Data User Baru</span>",
       })
@@ -97,6 +101,7 @@ export const removeUser = createAsyncThunk(REMOVE_USER, async (id_user) => {
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer: "<span class='text-danger'>Kesalahan Menghapus Data User</span>",
     })
     console.log(error, "gagal")
@@ -105,19 +110,45 @@ export const removeUser = createAsyncThunk(REMOVE_USER, async (id_user) => {
 
 export const updateUser = createAsyncThunk(UPDATE_USER, async (users) => {
   try {
-    const { data } = await API.update(users)
+    var { data } = await API.update(users)
     if (data.success) {
-      return data.data
+      return data
+    } else {
+      throw new Error(JSON.stringify(data))
     }
   } catch (error) {
     Swall.fire({
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer:
         "<span class='text-danger'>Kesalahan Memperbarui Data User</span>",
     })
-    console.log(error, "gagal")
+    console.error("Kesalahan Memperbarui Data User", error)
+    return data
+  }
+})
+
+export const updatePass = createAsyncThunk(UPDATE_PASS, async (users) => {
+  try {
+    var { data } = await API.update_pass(users)
+    if (data.success) {
+      return data
+    } else {
+      throw new Error(JSON.stringify(data))
+    }
+  } catch (error) {
+    Swall.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
+      footer:
+        "<span class='text-danger'>Kesalahan Memperbarui Password User</span>",
+    })
+    console.error(">Kesalahan Memperbarui Password User", error)
+    return data
   }
 })
 
@@ -141,8 +172,8 @@ export const userSlice = createSlice({
       })
       .addCase(readUser.fulfilled, (state, action) => {
         state.status = "idle"
-        //console.log("action", action)
         state.users = action.payload
+        //console.log("action", action)
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = "idle"
@@ -167,7 +198,7 @@ export const userSlice = createSlice({
         )
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.status = "idle"
+        //state.status = "idle"
         // state.users = state.users.map((item) => {
         //   if (item.id_user === action.payload.id_user) {
         //     return { ...action.payload, sent: true }

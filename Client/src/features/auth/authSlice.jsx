@@ -23,6 +23,7 @@ export const logoutAsync = createAsyncThunk(LOG_OUT, async () => {
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer: "<span class='text-danger'>Kesalahan Log Out</span>",
     })
     console.error(error)
@@ -43,6 +44,7 @@ export const loginAsync = createAsyncThunk(LOG_IN, async (user) => {
       icon: "error",
       title: "Oops...",
       text: `${error}`,
+      confirmButtonColor: "#ff5a3c",
       footer: "<span class='text-danger'>Kesalahan Log In</span>",
     })
     console.error(error)

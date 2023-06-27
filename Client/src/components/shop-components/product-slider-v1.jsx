@@ -19,8 +19,7 @@ function SamplePrevArrow(props) {
   )
 }
 
-export default function ProductSliderV1(props) {
-  const images = props.images
+export default function ProductSliderV1({ images }) {
   const settings = {
     className: "center",
     centerMode: true,
@@ -86,7 +85,7 @@ export default function ProductSliderV1(props) {
                         "gambar_properti/" +
                         item
                       }
-                      alt="gambar"
+                      alt={"gambar" + index}
                     />
                   </a>
                 </div>

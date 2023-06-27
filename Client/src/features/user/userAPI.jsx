@@ -7,7 +7,7 @@ export const read = (arg) => {
 
 export const read_detail = (user) =>
   request.get(
-    `users/details/${user.id}?page_number=${user.page_number}&total_row_displayed=${user.total_row_displayed}`,
+    `users/details/${user.id}?page_number=${user.page_number}&total_row_displayed=${user.total_row_displayed}&search_data=${user.searchData}`,
   )
 
 export const create = (user) => request.post("users/add", user)
@@ -25,7 +25,14 @@ export const update = (users) => {
   formData.append(`old_files`, users.old_files)
 
   const headers = { "Content-Type": "multipart/form-data" }
-  return request.put(`users/edit/${users.id_user}`, formData, headers)
+  return request.put(
+    `users/edit/${users.id_user}?username=${users.username}`,
+    formData,
+    headers,
+  )
 }
+
+export const update_pass = (users) =>
+  request.put(`users/pass/${users.id_user}`, users)
 
 export const remove = (_id) => request.delete(`users/${_id}`)

@@ -64,7 +64,7 @@ module.exports = function (db) {
   });
   router.get("/details/:id", async function (req, res, next) {
     try {
-      const { page_number, total_row_displayed } = req.query;
+      const { page_number, total_row_displayed, search_data } = req.query;
       let row_number;
       if (page_number < 2) {
         row_number = 0;
@@ -72,6 +72,9 @@ module.exports = function (db) {
         row_number = (page_number - 1) * total_row_displayed;
       }
       let query = `SELECT COUNT(u.id_user) AS total FROM users u LEFT JOIN properti p  ON u.id_user = p.id_user WHERE u.id_user = '${req.params.id}'`;
+      if (search_data !== "") {
+        query += ` AND p.kota ILIKE '%${search_data}%' OR p.provinsi ILIKE '%${search_data}%' OR p.total_harga ILIKE '%${search_data}%' OR p.judul ILIKE '%${search_data}%' OR p.luas_properti ILIKE '%${search_data}%' OR p.di_buat::text ILIKE '%${search_data}%' `;
+      }
 
       const totalPage = await db.query(query);
       let data = totalPage.rows;
@@ -82,7 +85,13 @@ module.exports = function (db) {
         total_pages = parseInt(data[0].total / total_row_displayed) + 1;
       }
 
-      query = `SELECT u.nama_lengkap, u.id_user, u.email_user, u.username, u.role, u.wa_telephone, u.foto_user, u.tgl_buat, u.alamat, u.total_whislist, u.total_cart ,p.id_properti, p.jenis_properti, p.judul, p.kota, p.provinsi, p.total_harga, p.kategori, p.status, p.di_buat, p.foto_produk FROM users u LEFT JOIN properti p  ON u.id_user = p.id_user WHERE u.id_user = '${req.params.id}' ORDER BY p.id_properti ASC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
+      query = `SELECT u.nama_lengkap, u.id_user, u.email_user, u.username, u.role, u.wa_telephone, u.foto_user, u.tgl_buat, u.alamat, u.total_whislist, u.total_cart ,p.id_properti, p.jenis_properti, p.judul, p.kota, p.provinsi, p.total_harga, p.kategori, p.status, p.di_buat, p.foto_produk FROM users u LEFT JOIN properti p  ON u.id_user = p.id_user WHERE u.id_user = '${req.params.id}' `;
+
+      if (search_data !== "") {
+        query += ` AND p.kota ILIKE '%${search_data}%' OR p.provinsi ILIKE '%${search_data}%' OR p.total_harga ILIKE '%${search_data}%' OR p.judul ILIKE '%${search_data}%' OR p.luas_properti ILIKE '%${search_data}%' OR p.di_buat::text ILIKE '%${search_data}%' `;
+      }
+
+      query += `ORDER BY p.id_properti ASC LIMIT ${total_row_displayed} OFFSET ${row_number};`;
       const { rows } = await db.query(query);
       //console.log(rows, req.params);
       res.json(new Response({ rows, total_pages }));
@@ -169,81 +178,99 @@ module.exports = function (db) {
   });
   router.put("/edit/:id", async function (req, res, next) {
     try {
-      multi_upload(req, res, function (err) {
-        const {
-          nama_lengkap,
-          username,
-          wa_user,
-          telephone_user,
-          role_user,
-          email_user,
-          alamat_user,
-          old_files,
-        } = req.body;
-        if (err instanceof multer.MulterError) {
-          // A Multer error occurred when uploading.
-          res
-            .status(500)
-            .send({
-              error: { message: `Multer uploading error: ${err.message}` },
-            })
-            .end();
-          return;
-        } else if (err) {
-          // An unknown error occurred when uploading.
-          if (err.name == "ExtensionError") {
-            res
-              .status(413)
-              .send({ error: { message: err.message } })
-              .end();
-          } else {
-            res
-              .status(500)
-              .send({
-                error: {
-                  message: `unknown uploading error: ${err.message}`,
-                },
-              })
-              .end();
+      db.query(
+        "SELECT id_user, username FROM users WHERE username = $1 AND id_user != $2",
+        [req.query.username, req.params.id],
+        (err, rows2) => {
+          if (err) {
+            throw new Error(err);
           }
-          return;
-        }
-        if (old_files != "null" && req.files.length > 0) {
-          let deletePath = path.join(
-            __dirname,
-            "..",
-            "public",
-            "gambar_user",
-            old_files
-          );
-          if (fs.existsSync(deletePath)) {
-            fs.unlink(deletePath, (err) => {
-              if (err) if (err) throw new Error(err);
-              console.log(`Image deleted successfully`);
+          if (rows2.rows.length > 0) {
+            return res.json(
+              new Response({ message: "username has been registered" }, false)
+            );
+          } else {
+            multi_upload(req, res, function (err) {
+              const {
+                nama_lengkap,
+                username,
+                wa_user,
+                telephone_user,
+                role_user,
+                email_user,
+                alamat_user,
+                old_files,
+              } = req.body;
+
+              if (err instanceof multer.MulterError) {
+                // A Multer error occurred when uploading.
+                res
+                  .status(500)
+                  .send({
+                    error: {
+                      message: `Multer uploading error: ${err.message}`,
+                    },
+                  })
+                  .end();
+                return;
+              } else if (err) {
+                // An unknown error occurred when uploading.
+                if (err.name == "ExtensionError") {
+                  res
+                    .status(413)
+                    .send({ error: { message: err.message } })
+                    .end();
+                } else {
+                  res
+                    .status(500)
+                    .send({
+                      error: {
+                        message: `unknown uploading error: ${err.message}`,
+                      },
+                    })
+                    .end();
+                }
+                return;
+              }
+              if (old_files != "null" && req.files.length > 0) {
+                let deletePath = path.join(
+                  __dirname,
+                  "..",
+                  "public",
+                  "gambar_user",
+                  old_files
+                );
+                if (fs.existsSync(deletePath)) {
+                  fs.unlink(deletePath, (err) => {
+                    if (err) if (err) throw new Error(err);
+                    console.log(`Image deleted successfully`);
+                  });
+                } else {
+                  console.log("File tidak ditemukan");
+                }
+              }
+              db.query(
+                `UPDATE users SET foto_user = $1,nama_lengkap = $2,username = $3,wa_telephone = ARRAY [$4, $5],email_user = $6,alamat = $7 WHERE id_user = $8 RETURNING (id_user)`,
+                [
+                  req.files[0].filename,
+                  nama_lengkap,
+                  username,
+                  wa_user,
+                  telephone_user,
+                  email_user,
+                  alamat_user,
+                  req.params.id,
+                ],
+                (err, rows) => {
+                  if (err) throw new Error(err);
+                  let data = rows.rows;
+                  res.json(new Response(data));
+                }
+              );
             });
-          } else {
-            console.log("File tidak ditemukan");
           }
         }
-        db.query(
-          `UPDATE users SET foto_user = $1,nama_lengkap = $2,username = $3,wa_telephone = ARRAY [$4, $5],email_user = $6,alamat = $7 WHERE id_user = $8 RETURNING (id_user)`,
-          [
-            req.files[0].filename,
-            nama_lengkap,
-            username,
-            wa_user,
-            telephone_user,
-            email_user,
-            alamat_user,
-            req.params.id,
-          ],
-          (err, rows) => {
-            if (err) throw new Error(err);
-            let data = rows.rows;
-            res.json(new Response(data));
-          }
-        );
-      });
+      );
     } catch (e) {
       console.log("error", e);
       res.json(
@@ -254,11 +281,119 @@ module.exports = function (db) {
       );
     }
   });
+  router.put("/pass/:id", async function (req, res, next) {
+    try {
+      const { current_password, new_password } = req.body;
+      db.query(
+        "SELECT id_user, password FROM users WHERE id_user = $1",
+        [req.params.id],
+        (err, rows2) => {
+          if (err) {
+            throw new Error(err);
+          }
+
+          if (rows2.rows.length == 0) {
+            return res.json(
+              new Response({ message: "user tidak di temukan" }, false)
+            );
+          } else {
+            var data = rows2;
+            bcrypt.compare(
+              current_password,
+              data.rows[0].password,
+              async function (err, result) {
+                if (err) throw new Error(err);
+
+                if (!result) {
+                  return res.json(
+                    new Response({ message: "password lama salah" }, false)
+                  );
+                } else {
+                  bcrypt.compare(
+                    new_password,
+                    data.rows[0].password,
+                    async function (err, result) {
+                      if (err) throw new Error(err);
+
+                      if (result) {
+                        return res.json(
+                          new Response(
+                            {
+                              message:
+                                "password baru tidak boleh sama dengan password lama",
+                            },
+                            false
+                          )
+                        );
+                      } else {
+                        bcrypt.hash(
+                          new_password,
+                          saltRounds,
+                          async function (err, hash) {
+                            if (err) {
+                              console.error(err);
+                              return res.json(
+                                new Response(
+                                  { message: "failed hash", err },
+                                  false
+                                )
+                              );
+                            }
+                            const { rows } = await db.query(
+                              `UPDATE public.users SET password = $1 WHERE id_user = $2 RETURNING id_user`,
+                              [hash, req.params.id]
+                            );
+                            // console.log("data", rows)
+                            res.json(new Response(rows));
+                          }
+                        );
+                      }
+                    }
+                  );
+                }
+              }
+            );
+          }
+        }
+      );
+    } catch (e) {
+      console.log("error", e);
+      res.json(
+        new Response({ message: "failed update change " + e.toString() }, false)
+      );
+    }
+  });
   router.delete("/delete/:id", async function (req, res, next) {
     try {
-      const { rows } = await db.query("DELETE FROM users WHERE id_user = $1", [
-        req.params.id,
-      ]);
+      const { rows } = await db.query(
+        "DELETE FROM users WHERE id_user = $1 RETURNING foto_user",
+        [req.params.id]
+      );
+
+      if (rows.length > 0 && rows[0].foto_user !== null) {
+        let images = rows[0].foto_user
+          .toString()
+          .replace(/[{}]/g, "")
+          .replace(/"/g, "")
+          .split(",");
+        for (var i = 0; i < images.length; i++) {
+          let deletePath = path.join(
+            __dirname,
+            "..",
+            "public",
+            "gambar_properti",
+            images[i]
+          );
+          if (fs.existsSync(deletePath)) {
+            fs.unlink(deletePath, (err) => {
+              if (err) if (err) throw new Error(err);
+              console.log(`Image deleted successfully`, deletePath);
+            });
+          } else {
+            console.log("File tidak ditemukan");
+          }
+        }
+      }
       res.json(new Response({ message: "Berhasil menghapus User" }, true));
     } catch (e) {
       res.json(

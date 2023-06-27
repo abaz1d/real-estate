@@ -42,26 +42,31 @@ export default function RegisterForm() {
     }
   }
 
-  const saveUser = async (e) => {
-    document.querySelector(".quarter-overlay").style.display = "block"
-    e.preventDefault()
-    let response = await dispatch(createUser(user))
-    if (
-      response.payload.username === user.username &&
-      response.payload.success
-    ) {
-      setUser({
-        nama_lengkap: "",
-        username: "",
-        email_user: "",
-        no_wa: "",
-        no_telephone: "",
-        password: "",
-        role: "seller",
-      })
-      navigate("/login")
+  const registerUser = async (e) => {
+    try {
+      document.querySelector(".quarter-overlay").style.display = "block"
+      e.preventDefault()
+      let response = await dispatch(createUser(user))
+      if (
+        response.payload.username === user.username &&
+        response.payload.success
+      ) {
+        setUser({
+          nama_lengkap: "",
+          username: "",
+          email_user: "",
+          no_wa: "",
+          no_telephone: "",
+          password: "",
+          role: "seller",
+        })
+        navigate("/login")
+      }
+      document.querySelector(".quarter-overlay").style.display = "none"
+    } catch (error) {
+      document.querySelector(".quarter-overlay").style.display = "none"
+      console.error("registerUser", error)
     }
-    document.querySelector(".quarter-overlay").style.display = "none"
   }
   const style = {
     position: "absolute",
@@ -108,7 +113,7 @@ export default function RegisterForm() {
           <div className="col-lg-6 offset-lg-3">
             <div className="account-login-inner">
               <form
-                onSubmit={(e) => saveUser(e)}
+                onSubmit={(e) => registerUser(e)}
                 className="ltn__form-box contact-form-box"
               >
                 <input

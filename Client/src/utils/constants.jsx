@@ -7,6 +7,7 @@ export const READ_DETAIL_PROPERTI = "properti/read_detail_properti"
 export const READ_USER = "user/read_user"
 export const CREATE_USER = "user/create_user"
 export const UPDATE_USER = "user/update_user"
+export const UPDATE_PASS = "user/update_pass"
 export const REMOVE_USER = "user/remove_user"
 export const READ_DETAIL_USER = "user/read_detail_user"
 

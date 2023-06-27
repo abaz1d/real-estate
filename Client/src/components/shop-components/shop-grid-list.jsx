@@ -39,20 +39,25 @@ export default function ShopGridList() {
     searchData: "",
   })
   const fetchData = async () => {
-    document.querySelector(".quarter-overlay").style.display = "block"
-    let data = await dispatch(
-      readProperti({
-        search_data: cari.searchData,
-        kategori: cari.kategori,
-        jenis_properti: cari.jenisProperti,
-        page_number: cari.pageNumber,
-        kota: cari.kota,
-        provinsi: cari.provinsi,
-        total_row_displayed: "15",
-      }),
-    )
-    setTotalPages(data.payload.total_pages)
-    document.querySelector(".quarter-overlay").style.display = "none"
+    try {
+      document.querySelector(".quarter-overlay").style.display = "block"
+      let data = await dispatch(
+        readProperti({
+          search_data: cari.searchData,
+          kategori: cari.kategori,
+          jenis_properti: cari.jenisProperti,
+          page_number: cari.pageNumber,
+          kota: cari.kota,
+          provinsi: cari.provinsi,
+          total_row_displayed: "15",
+        }),
+      )
+      setTotalPages(data.payload.total_pages)
+      document.querySelector(".quarter-overlay").style.display = "none"
+    } catch (error) {
+      document.querySelector(".quarter-overlay").style.display = "none"
+      console.error("fetchData Shop Grid", error)
+    }
   }
   useEffect(() => {
     setCari({

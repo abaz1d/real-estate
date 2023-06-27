@@ -131,57 +131,62 @@ export default function AddListing(props) {
       ) // Mengganti "filename" dengan nama file yang diinginkan
   }
   const fetchData = async () => {
-    document.querySelector(".quarter-overlay").style.display = "block"
-    let data = await dispatch(
-      readDetailProperti(searchParams.get("id_properti")),
-    )
-    if (data.payload.length > 0) {
-      let detail = data.payload[0]
-      setProperti({
-        judul: detail.judul,
-        deskripsi: detail.deskripsi,
-        jenis_properti: detail.jenis_properti,
-        kategori: detail.kategori,
-        status: detail.status,
-        total_harga: detail.total_harga,
-        harga_tanah: detail.harga_tanah,
-        harga_bangunan: detail.harga_bangunan,
-        pajak: detail.pajak,
-        //foto 6/10,
-        // video berbentuk link,
-        alamat: detail.alamat,
-        kota: detail.kota,
-        provinsi: detail.provinsi,
-        kode_pos: detail.kode_pos,
-        //latitude,
-        //longitude,
-        luas_properti: detail.luas_properti,
-        jenis_sertifikat: detail.jenis_sertifikat,
-        tahun_pembangunan: detail.tahun_pembangunan,
-        daya_listrik: detail.daya_listrik,
-        jumlah_lantai: detail.jumlah_lantai,
-        jumlah_ruangan: detail.jumlah_ruangan,
-        kamar_tidur: detail.kamar_tidur,
-        kamar_mandi: detail.kamar_mandi,
-        // lain
-      })
-      if (detail.foto_produk !== null) {
-        const gambars = await getImgUrl(detail.foto_produk[0])
-        const newUrl = await Promise.all(
-          gambars.map(async (gambar, index) => {
-            let files = await urlToFile(
-              import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambar,
-              `gambar_${index}`,
-            )
-            //console.log("files", files)
-            setOldFiles((prevOldFiles) => [...prevOldFiles, gambar])
-            return files
-          }),
-        )
-        setFiles(newUrl)
+    try {
+      document.querySelector(".quarter-overlay").style.display = "block"
+      let data = await dispatch(
+        readDetailProperti(searchParams.get("id_properti")),
+      )
+      if (data.payload.length > 0) {
+        let detail = data.payload[0]
+        setProperti({
+          judul: detail.judul,
+          deskripsi: detail.deskripsi,
+          jenis_properti: detail.jenis_properti,
+          kategori: detail.kategori,
+          status: detail.status,
+          total_harga: detail.total_harga,
+          harga_tanah: detail.harga_tanah,
+          harga_bangunan: detail.harga_bangunan,
+          pajak: detail.pajak,
+          //foto 6/10,
+          // video berbentuk link,
+          alamat: detail.alamat,
+          kota: detail.kota,
+          provinsi: detail.provinsi,
+          kode_pos: detail.kode_pos,
+          //latitude,
+          //longitude,
+          luas_properti: detail.luas_properti,
+          jenis_sertifikat: detail.jenis_sertifikat,
+          tahun_pembangunan: detail.tahun_pembangunan,
+          daya_listrik: detail.daya_listrik,
+          jumlah_lantai: detail.jumlah_lantai,
+          jumlah_ruangan: detail.jumlah_ruangan,
+          kamar_tidur: detail.kamar_tidur,
+          kamar_mandi: detail.kamar_mandi,
+          // lain
+        })
+        if (detail.foto_produk !== null) {
+          const gambars = await getImgUrl(detail.foto_produk[0])
+          const newUrl = await Promise.all(
+            gambars.map(async (gambar, index) => {
+              let files = await urlToFile(
+                import.meta.env.VITE_APP_BASE_API + "gambar_properti/" + gambar,
+                `gambar_${index}`,
+              )
+              //console.log("files", files)
+              setOldFiles((prevOldFiles) => [...prevOldFiles, gambar])
+              return files
+            }),
+          )
+          setFiles(newUrl)
+        }
       }
+      document.querySelector(".quarter-overlay").style.display = "none"
+    } catch (error) {
+      document.querySelector(".quarter-overlay").style.display = "none"
+      console.error("fetchData Add Listing", error)
     }
-    document.querySelector(".quarter-overlay").style.display = "none"
   }
   useEffect(() => {
     if (searchParams.get("id_properti") !== null) {
@@ -225,32 +230,37 @@ export default function AddListing(props) {
     }
   }, [])
   const saveProperti = async (e) => {
-    document.querySelector(".quarter-overlay").style.display = "block"
-    e.preventDefault()
-    if (files.length > 0) {
-      if (searchParams.get("id_properti") !== null) {
-        await dispatch(
-          updateProperti({
-            ...properti,
-            foto_produk: files,
-            old_files: oldFiles,
-            id_user: JSON.parse(localStorage.getItem("user")).userid,
-            id_properti: searchParams.get("id_properti"),
-          }),
-        )
-      } else {
-        await dispatch(
-          createProperti({
-            ...properti,
-            foto_produk: files,
-            id_user: JSON.parse(localStorage.getItem("user")).userid,
-          }),
-        )
+    try {
+      document.querySelector(".quarter-overlay").style.display = "block"
+      e.preventDefault()
+      if (files.length > 0) {
+        if (searchParams.get("id_properti") !== null) {
+          await dispatch(
+            updateProperti({
+              ...properti,
+              foto_produk: files,
+              old_files: oldFiles,
+              id_user: JSON.parse(localStorage.getItem("user")).userid,
+              id_properti: searchParams.get("id_properti"),
+            }),
+          )
+        } else {
+          await dispatch(
+            createProperti({
+              ...properti,
+              foto_produk: files,
+              id_user: JSON.parse(localStorage.getItem("user")).userid,
+            }),
+          )
+        }
+        resetForm()
+        navigate("/my-account")
       }
-      resetForm()
-      navigate("/my-account")
+      document.querySelector(".quarter-overlay").style.display = "none"
+    } catch (error) {
+      document.querySelector(".quarter-overlay").style.display = "none"
+      console.error("saveProperti", error)
     }
-    document.querySelector(".quarter-overlay").style.display = "none"
   }
 
   return (

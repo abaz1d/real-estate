@@ -360,7 +360,7 @@ module.exports = function (db) {
         "DELETE FROM properti WHERE id_properti = $1 RETURNING foto_produk",
         [req.params.id]
       );
-      if (rows.length > 0) {
+      if (rows.length > 0 && rows[0].foto_produk !== null) {
         let images = rows[0].foto_produk[0]
           .toString()
           .replace(/[{}]/g, "")
@@ -386,6 +386,7 @@ module.exports = function (db) {
       }
       res.json(new Response({ message: "Berhasil menghapus User" }, true));
     } catch (e) {
+      console.error(e);
       res.json(
         new Response({ message: "failed add user " + e.toString() }, false)
       );

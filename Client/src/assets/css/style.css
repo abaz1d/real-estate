@@ -137,6 +137,10 @@ font-family: 'Poppins', sans-serif;
   margin-right: -15px;
 }
 
+.swal2-container{
+z-index: 9999
+}
+
 .col,
 .col-1,
 .col-10,
