@@ -51,6 +51,7 @@ export default function ProductListingV1() {
                       style={{ height: "250px" }}
                     >
                       <img
+                        loading="lazy"
                         height={"auto"}
                         width={"100%"}
                         src={
@@ -137,7 +138,7 @@ export default function ProductListingV1() {
                     {/* <div className="real-estate-agent go-top">
                     <div className="agent-img">
                       <Link to="/team-details">
-                        <img
+                        <img loading="lazy"
                           src={ "assets/img/blog/author.jpg"}
                           alt="#"
                         />
@@ -213,7 +214,7 @@ export default function ProductListingV1() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={product7} alt="#" />
+                          <img loading="lazy" src={product7} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5>
@@ -241,7 +242,7 @@ export default function ProductListingV1() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={payment} alt="#" />
+                            <img loading="lazy" src={payment} alt="#" />
                           </div>
                         </div>
                       </div>
@@ -275,7 +276,7 @@ export default function ProductListingV1() {
                     <div className="row">
                       <div className="col-lg-6 col-12">
                         <div className="modal-product-img">
-                          <img src={product4} alt="#" />
+                          <img loading="lazy" src={product4} alt="#" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-12">
@@ -414,7 +415,7 @@ export default function ProductListingV1() {
                     <div className="row">
                       <div className="col-12">
                         <div className="modal-product-img">
-                          <img src={product1} alt="#" />
+                          <img loading="lazy" src={product1} alt="#" />
                         </div>
                         <div className="modal-product-info go-top">
                           <h5 className="go-top">
@@ -448,7 +449,7 @@ export default function ProductListingV1() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={payment} alt="#" />
+                            <img loading="lazy" src={payment} alt="#" />
                           </div>
                         </div>
                       </div>

@@ -66,6 +66,7 @@ export default function BannerV6() {
           id="myVideo"
           onLoadStart={loadImage.bind(this)}
           style={videoStyle}
+          loading="lazy"
         >
           <source src={videoIntro} type="video/mp4" />
         </video>

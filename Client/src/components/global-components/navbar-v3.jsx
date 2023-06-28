@@ -117,7 +117,7 @@ export default function NavbarV3() {
                 <div className="site-logo-wrap">
                   <div className="site-logo go-top">
                     <Link to="/">
-                      <img src={logo2} alt="Logo" />
+                      <img loading="lazy" src={logo2} alt="Logo" />
                     </Link>
                   </div>
                   <div className="get-support clearfix d-none">
@@ -247,7 +247,7 @@ export default function NavbarV3() {
                     <div className="ltn__drop-menu user-menu p-1">
                       <ul>
                         <li>
-                          <Link to="#">
+                          <Link to="#" aria-label="user">
                             <i className="icon-user" />
                           </Link>
                           <ul className="go-top">
@@ -302,7 +302,7 @@ export default function NavbarV3() {
           <div className="ltn__utilize-menu-head sticky-top bg-white">
             <div className="site-logo">
               <Link to="/">
-                <img src={logo} alt="Logo" />
+                <img loading="lazy" src={logo} alt="Logo" />
               </Link>
             </div>
             <button className="ltn__utilize-close" aria-label="close-button">
@@ -422,7 +422,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={product1} alt="Gambar" />
+                  <img loading="lazy" src={product1} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -438,7 +438,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={product2} alt="Gambar" />
+                  <img loading="lazy" src={product2} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -454,7 +454,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={product3} alt="Gambar" />
+                  <img loading="lazy" src={product3} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />
@@ -470,7 +470,7 @@ export default function NavbarV3() {
             <div className="mini-cart-item clearfix">
               <div className="mini-cart-img go-top">
                 <Link to="/product-details">
-                  <img src={product4} alt="Gambar" />
+                  <img loading="lazy" src={product4} alt="Gambar" />
                 </Link>
                 <span className="mini-cart-item-delete">
                   <i className="icon-cancel" />

@@ -12,7 +12,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={icon10} alt="Icon Gambar" />
+                  <img loading="lazy" src={icon10} alt="Icon Gambar" />
                 </div>
                 <h3>Email Address</h3>
                 <p>
@@ -24,7 +24,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={icon11} alt="Icon Gambar" />
+                  <img loading="lazy" src={icon11} alt="Icon Gambar" />
                 </div>
                 <h3>Phone Number</h3>
                 <p>
@@ -35,7 +35,7 @@ class ContactInfo extends Component {
             <div className="col-lg-4">
               <div className="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
                 <div className="ltn__contact-address-icon">
-                  <img src={icon12} alt="Icon Gambar" />
+                  <img loading="lazy" src={icon12} alt="Icon Gambar" />
                 </div>
                 <h3>Office Address</h3>
                 <p>

@@ -19,7 +19,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={product1} alt="#" />
+                            <img loading="lazy" src={product1} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">
@@ -46,7 +46,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={product2} alt="#" />
+                            <img loading="lazy" src={product2} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">
@@ -71,7 +71,7 @@ class CaetV1 extends Component {
                         <td className="cart-product-remove">x</td>
                         <td className="cart-product-image">
                           <Link to="/product-details">
-                            <img src={product3} alt="#" />
+                            <img loading="lazy" src={product3} alt="#" />
                           </Link>
                         </td>
                         <td className="cart-product-info">

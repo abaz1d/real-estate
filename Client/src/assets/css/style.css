@@ -70,6 +70,15 @@ font-family: 'Poppins', sans-serif;
 /* ====================================================
     Gutter Code 
 ==================================================== */
+.profilepic-detail {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
 .profilepic {
   position: relative;
   width: 200px;
@@ -5067,11 +5076,6 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 /* ----------------------------------------------------
     Author Widget
 ---------------------------------------------------- */
-.ltn__author-widget-inner img {
-  margin-bottom: 25px;
-  max-width: 140px;
-  border-radius: 100%;
-}
 
 .ltn__author-widget-inner p {
   font-size: 14px;

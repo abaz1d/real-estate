@@ -218,7 +218,7 @@ export default function LoginForm() {
                             first order, <br /> Use discount code at checkout
                           </p>
                           <div className="payment-method">
-                            <img src={payment} alt="#" />
+                            <img loading="lazy" src={payment} alt="#" />
                           </div>
                         </div>
                       </div>

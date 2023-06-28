@@ -25,7 +25,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={team4} alt="gambar" />
+                  <img loading="lazy" src={team4} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>
@@ -57,7 +57,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={team2} alt="gambar" />
+                  <img loading="lazy" src={team2} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>
@@ -89,7 +89,7 @@ class TeamV1 extends Component {
             <div className="col-lg-4 col-sm-6">
               <div className="ltn__team-item ltn__team-item-3---">
                 <div className="team-img">
-                  <img src={team5} alt="gambar" />
+                  <img loading="lazy" src={team5} alt="gambar" />
                 </div>
                 <div className="team-info">
                   <h4>

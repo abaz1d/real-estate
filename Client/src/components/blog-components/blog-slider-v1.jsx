@@ -33,7 +33,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={blog1} alt="#" />
+                    <img loading="lazy" src={blog1} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -83,7 +83,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={blog2} alt="#" />
+                    <img loading="lazy" src={blog2} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -133,7 +133,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={blog3} alt="#" />
+                    <img loading="lazy" src={blog3} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -183,7 +183,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={blog4} alt="#" />
+                    <img loading="lazy" src={blog4} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">
@@ -233,7 +233,7 @@ class BlogSlider extends Component {
               <div className="ltn__blog-item ltn__blog-item-3">
                 <div className="ltn__blog-img">
                   <Link to="/blog-details">
-                    <img src={blog5} alt="#" />
+                    <img loading="lazy" src={blog5} alt="#" />
                   </Link>
                 </div>
                 <div className="ltn__blog-brief">

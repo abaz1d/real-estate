@@ -514,7 +514,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img src={other10} alt="#" />
+                                  <img loading="lazy" src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -574,7 +574,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img src={other10} alt="#" />
+                                  <img loading="lazy" src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -631,7 +631,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img src={other10} alt="#" />
+                                  <img loading="lazy" src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -688,7 +688,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             <div className="row">
                               <div className="col-lg-7">
                                 <div className="apartments-plan-img">
-                                  <img src={other10} alt="#" />
+                                  <img loading="lazy" src={other10} alt="#" />
                                 </div>
                               </div>
                               <div className="col-lg-5">
@@ -756,6 +756,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             data-rel="lightcase:myCollection"
                           >
                             <img
+                              loading="lazy"
                               className="mb-30"
                               src={
                                 images.length !== 0
@@ -778,6 +779,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             data-rel="lightcase:myCollection"
                           >
                             <img
+                              loading="lazy"
                               className="mb-30"
                               src={
                                 images.length !== 0
@@ -802,6 +804,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                             data-rel="lightcase:myCollection"
                           >
                             <img
+                              loading="lazy"
                               className="mb-30"
                               src={
                                 images.length !== 0
@@ -862,16 +865,19 @@ export default function ShopDetails({ images, properti, userPic }) {
                     ref={hubungi_owner}
                   >
                     <div className="ltn__author-widget-inner text-center">
-                      <img
-                        src={
-                          userPic[0]
-                            ? import.meta.env.VITE_APP_BASE_API +
-                              "gambar_user/" +
-                              userPic[0]
-                            : "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"
-                        }
-                        alt="gambar"
-                      />
+                      <div className="profilepic-detail">
+                        <img
+                          loading="lazy"
+                          src={
+                            userPic[0]
+                              ? import.meta.env.VITE_APP_BASE_API +
+                                "gambar_user/" +
+                                userPic[0]
+                              : "https://tunatheme.com/tf/react/quarter-preview/quarter/assets/img/team/4.jpg"
+                          }
+                          alt="gambar"
+                        />
+                      </div>
                       <h5 className="text-uppercase">{item.nama_lengkap}</h5>
                       <small>
                         Bergabung Sejak:{" "}
@@ -931,7 +937,7 @@ export default function ShopDetails({ images, properti, userPic }) {
                   {/* Banner Widget */}
                   <div className="widget ltn__banner-widget d-none go-top">
                     <Link to="/shop">
-                      <img src={banner2} alt="#" />
+                      <img loading="lazy" src={banner2} alt="#" />
                     </Link>
                   </div>
                 </aside>

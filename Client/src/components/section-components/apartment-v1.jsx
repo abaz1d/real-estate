@@ -81,7 +81,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={other10} alt="#" />
+                          <img loading="lazy" src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -124,7 +124,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={other10} alt="#" />
+                          <img loading="lazy" src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={other10} alt="#" />
+                          <img loading="lazy" src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -210,7 +210,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={other10} alt="#" />
+                          <img loading="lazy" src={other10} alt="#" />
                         </div>
                       </div>
                     </div>
@@ -253,7 +253,7 @@ class ApartmentV1 extends Component {
                       </div>
                       <div className="col-lg-6">
                         <div className="apartments-plan-img">
-                          <img src={other10} alt="#" />
+                          <img loading="lazy" src={other10} alt="#" />
                         </div>
                       </div>
                     </div>

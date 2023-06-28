@@ -86,9 +86,14 @@ const ProfileUser = ({
             onClick={() => inputFileRef.current.click()}
           >
             {profileImage ? (
-              <img src={URL.createObjectURL(profileImage)} alt="Profile" />
+              <img
+                loading="lazy"
+                src={URL.createObjectURL(profileImage)}
+                alt="Profile"
+              />
             ) : (
               <img
+                loading="lazy"
                 src={
                   "https://www.tunatheme.com/tf/html/quarter-preview/quarter/img/blog/author.jpg"
                 }

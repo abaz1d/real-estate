@@ -36,7 +36,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={testimoni1} alt="#" />
+                      <img loading="lazy" src={testimoni1} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Jacob William</h5>
@@ -58,7 +58,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={testimoni2} alt="#" />
+                      <img loading="lazy" src={testimoni2} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Kelian Anderson</h5>
@@ -80,7 +80,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={testimoni3} alt="#" />
+                      <img loading="lazy" src={testimoni3} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>Adam Joseph</h5>
@@ -102,7 +102,7 @@ class Testimonial extends Component {
                   </p>
                   <div className="ltn__testimoni-info-inner">
                     <div className="ltn__testimoni-img">
-                      <img src={testimoni4} alt="#" />
+                      <img loading="lazy" src={testimoni4} alt="#" />
                     </div>
                     <div className="ltn__testimoni-name-designation">
                       <h5>James Carter</h5>

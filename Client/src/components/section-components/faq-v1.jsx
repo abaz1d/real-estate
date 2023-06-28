@@ -57,7 +57,11 @@ export default function FaqV1() {
                   >
                     <div className="card-body">
                       <div className="ltn__video-img alignleft">
-                        <img src={bg17} alt="video popup bg gambar" />
+                        <img
+                          loading="lazy"
+                          src={bg17}
+                          alt="video popup bg gambar"
+                        />
                         <a
                           className="ltn__video-icon-2 ltn__video-icon-2-small ltn__video-icon-2-border----"
                           href="https://www.youtube.com/embed/LjCzPp-MK48?autoplay=1&showinfo=0"
@@ -264,7 +268,7 @@ export default function FaqV1() {
               {/* Banner Widget */}
               <div className="widget ltn__banner-widget go-top">
                 <Link to="shop.html">
-                  <img src={banner3} alt="Banner gambar" />
+                  <img loading="lazy" src={banner3} alt="Banner gambar" />
                 </Link>
               </div>
             </aside>

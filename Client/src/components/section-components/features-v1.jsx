@@ -38,7 +38,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
               <div className="ltn__feature-icon">
-                <img src={icon21} alt="#" />
+                <img loading="lazy" src={icon21} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>
@@ -59,7 +59,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1 active">
               <div className="ltn__feature-icon">
-                <img src={icon22} alt="#" />
+                <img loading="lazy" src={icon22} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>
@@ -80,7 +80,7 @@ export default function FeaturesV1(props) {
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
               <div className="ltn__feature-icon">
-                <img src={icon23} alt="#" />
+                <img loading="lazy" src={icon23} alt="#" />
               </div>
               <div className="ltn__feature-info">
                 <h3>

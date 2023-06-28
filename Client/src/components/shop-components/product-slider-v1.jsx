@@ -78,6 +78,7 @@ export default function ProductSliderV1({ images }) {
                     data-rel="lightcase:myCollection"
                   >
                     <img
+                      loading="lazy"
                       height={"250px"}
                       width={"auto"}
                       src={

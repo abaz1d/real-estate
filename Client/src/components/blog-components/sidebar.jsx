@@ -21,7 +21,7 @@ class Sidebar extends Component {
           {/* Author Widget */}
           <div className="widget ltn__author-widget">
             <div className="ltn__author-widget-inner text-center">
-              <img src={team4} alt="Image" />
+              <img loading="lazy" src={team4} alt="Image" />
               <h5>Rosalina D. Willaimson</h5>
               <small>Traveller/Photographer</small>
               <div className="product-ratting">
@@ -136,7 +136,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix go-top">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={product1} alt="#" />
+                      <img loading="lazy" src={product1} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -185,7 +185,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={product2} alt="#" />
+                      <img loading="lazy" src={product2} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -232,7 +232,7 @@ class Sidebar extends Component {
                 <div className="top-rated-product-item clearfix">
                   <div className="top-rated-product-img">
                     <Link to="/product-details">
-                      <img src={product3} alt="#" />
+                      <img loading="lazy" src={product3} alt="#" />
                     </Link>
                   </div>
                   <div className="top-rated-product-info">
@@ -321,12 +321,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={product6} alt="#" />
+                      <img loading="lazy" src={product6} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={author} alt="#" />
+                          <img loading="lazy" src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -372,12 +372,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={product4} alt="#" />
+                      <img loading="lazy" src={product4} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={author} alt="#" />
+                          <img loading="lazy" src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -423,12 +423,12 @@ class Sidebar extends Component {
                 <div className="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                   <div className="product-img">
                     <Link to="/product-details">
-                      <img src={product5} alt="#" />
+                      <img loading="lazy" src={product5} alt="#" />
                     </Link>
                     <div className="real-estate-agent">
                       <div className="agent-img">
                         <Link to="/team-details">
-                          <img src={author} alt="#" />
+                          <img loading="lazy" src={author} alt="#" />
                         </Link>
                       </div>
                     </div>
@@ -482,7 +482,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={team5} alt="#" />
+                      <img loading="lazy" src={team5} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -508,7 +508,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={team6} alt="#" />
+                      <img loading="lazy" src={team6} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -534,7 +534,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={team7} alt="#" />
+                      <img loading="lazy" src={team7} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -560,7 +560,7 @@ class Sidebar extends Component {
                 <div className="popular-post-widget-item clearfix">
                   <div className="popular-post-widget-img">
                     <Link to="/blog-details">
-                      <img src={team8} alt="#" />
+                      <img loading="lazy" src={team8} alt="#" />
                     </Link>
                   </div>
                   <div className="popular-post-widget-brief">
@@ -753,7 +753,7 @@ class Sidebar extends Component {
           {/* Banner Widget */}
           <div className="widget ltn__banner-widget d-none go-top">
             <Link to="/shop">
-              <img src={banner2} alt="#" />
+              <img loading="lazy" src={banner2} alt="#" />
             </Link>
           </div>
         </aside>

@@ -73,6 +73,7 @@ const MyProperties = ({
                       style={{ height: "250px" }}
                     >
                       <img
+                        loading="lazy"
                         height={"auto"}
                         width={"100%"}
                         src={

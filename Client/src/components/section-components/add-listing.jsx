@@ -526,6 +526,7 @@ export default function AddListing(props) {
                           className="col-md-3 col-4 position-relative me-2 my-3"
                         >
                           <img
+                            loading="lazy"
                             src={URL.createObjectURL(file)}
                             alt={file.name}
                           />

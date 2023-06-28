@@ -55,7 +55,7 @@ class Footer_v1 extends Component {
                 <div className="footer-widget footer-about-widget">
                   <div className="footer-logo">
                     <div className="site-logo">
-                      <img src={logo2} alt="Logo" />
+                      <img loading="lazy" src={logo2} alt="Logo" />
                     </div>
                   </div>
                   <p>
@@ -204,7 +204,7 @@ class Footer_v1 extends Component {
                     </form>
                   </div>
                   <h5 className="mt-30">We Accept</h5>
-                  <img src={payment} alt="Payment gambar" />
+                  <img loading="lazy" src={payment} alt="Payment gambar" />
                 </div>
               </div>
             </div>
