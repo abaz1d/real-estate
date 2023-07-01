@@ -267,7 +267,6 @@ export default function ProductListingV1() {
                   aria-label="Close"
                 >
                   <span aria-hidden="true">×</span>
-                  {/* <i class="fas fa-times"></i> */}
                 </button>
               </div>
               <div className="modal-body">
