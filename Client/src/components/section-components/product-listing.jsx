@@ -135,22 +135,6 @@ export default function ProductListingV1() {
                     </ul>
                   </div>
                   <div className="product-info-bottom">
-                    {/* <div className="real-estate-agent go-top">
-                    <div className="agent-img">
-                      <Link to="/team-details">
-                        <img loading="lazy"
-                          src={ "assets/img/blog/author.jpg"}
-                          alt="#"
-                        />
-                      </Link>
-                    </div>
-                    <div className="agent-brief">
-                      <h6>
-                        <Link to="/team-details">William Seklo</Link>
-                      </h6>
-                      <small>Estate Agents</small>
-                    </div>
-                  </div> */}
                     <span>
                       <i className="fa fa-clock me-2" />
                       <label>
