@@ -10,8 +10,9 @@ const { pool } = require("./helpers/util");
 pool.connect((err) => {
   if (err) {
     console.log("e database", err);
+  } else {
+    console.log("Connect DB successfully");
   }
-  console.log("Connect DB successfully");
 });
 
 var allowCrossDomain = function (req, res, next) {

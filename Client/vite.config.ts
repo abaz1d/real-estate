@@ -6,9 +6,12 @@ import react from "@vitejs/plugin-react"
 export default defineConfig(({ command, mode }) => ({
   plugins: [react()],
   server: {
-    open: true,
+    open: false,
     host: "0.0.0.0",
     port: 3000,
+  },
+  preview: {
+    port: 3001,
   },
   resolve: {
     alias: {

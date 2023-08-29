@@ -379,7 +379,9 @@ export default function AddListing(props) {
                           onChange={(e) => handleChange(e)}
                           className="nice-select"
                         >
-                          <option value="">Jenis Properti</option>
+                          <option value="" disabled>
+                            Jenis Properti
+                          </option>
                           <option value="Rumah">Rumah</option>
                           <option value="Apartemen">Apartemen</option>
                           <option value="Tanah">Tanah</option>
@@ -444,7 +446,6 @@ export default function AddListing(props) {
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
                           type="text"
-                          required
                           name="pajak"
                           value={properti.pajak}
                           onChange={handleChange}
@@ -455,7 +456,6 @@ export default function AddListing(props) {
                     <div className="col-md-6">
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
-                          required
                           type="text"
                           name="harga_tanah"
                           value={properti.harga_tanah}
@@ -468,7 +468,6 @@ export default function AddListing(props) {
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
                           type="text"
-                          required
                           name="harga_bangunan"
                           value={properti.harga_bangunan}
                           onChange={handleChange}
@@ -497,6 +496,7 @@ export default function AddListing(props) {
                   >
                     <input
                       type="file"
+                      required={oldFiles.length == 0 || files.length == 0}
                       name="filename"
                       className="btn theme-btn-3 mb-10 w-100"
                       multiple
@@ -716,7 +716,6 @@ export default function AddListing(props) {
                     <div className="col-md-6">
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
-                          required
                           type="text"
                           name="tahun_pembangunan"
                           value={properti.tahun_pembangunan}
@@ -728,7 +727,6 @@ export default function AddListing(props) {
                     <div className="col-md-6">
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
-                          required
                           type="text"
                           name="daya_listrik"
                           value={properti.daya_listrik}
@@ -740,7 +738,6 @@ export default function AddListing(props) {
                     <div className="col-md-6">
                       <div className="input-item">
                         <select
-                          required
                           name="jumlah_lantai"
                           value={properti.jumlah_lantai}
                           onChange={handleChange}
@@ -765,7 +762,6 @@ export default function AddListing(props) {
                     <div className="col-md-6">
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
-                          required
                           type="text"
                           name="jumlah_ruangan"
                           value={properti.jumlah_ruangan}
@@ -778,7 +774,6 @@ export default function AddListing(props) {
                       <div className="input-item input-item-name ltn__custom-icon">
                         <input
                           type="text"
-                          required
                           name="kamar_tidur"
                           value={properti.kamar_tidur}
                           onChange={handleChange}
@@ -791,7 +786,6 @@ export default function AddListing(props) {
                         <input
                           type="text"
                           name="kamar_mandi"
-                          required
                           value={properti.kamar_mandi}
                           onChange={handleChange}
                           placeholder="Jumlah Kamar Mandi"

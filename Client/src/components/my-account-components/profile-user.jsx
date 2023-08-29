@@ -90,6 +90,7 @@ const ProfileUser = ({
                 loading="lazy"
                 src={URL.createObjectURL(profileImage)}
                 alt="Profile"
+                className="bg-white border"
               />
             ) : (
               <img
@@ -119,12 +120,12 @@ const ProfileUser = ({
           <div className="author-info col-md-8 ">
             <h6 className="text-uppercase">
               {detail_users && detail_users.length >= 1
-                ? detail_users[0].role
+                ? detail_users[0]?.role
                 : "Role"}
             </h6>
             <h2>
               {detail_users && detail_users.length >= 1
-                ? detail_users[0].nama_lengkap
+                ? detail_users[0]?.nama_lengkap
                 : "Nama Lengkap"}
             </h2>
             <div className="footer-address">
@@ -136,7 +137,7 @@ const ProfileUser = ({
                   <div className="footer-address-info">
                     <p>
                       {detail_users && detail_users.length >= 1
-                        ? detail_users[0].alamat
+                        ? detail_users[0]?.alamat
                         : "Alamat"}
                     </p>
                   </div>
@@ -150,18 +151,18 @@ const ProfileUser = ({
                       <a
                         href={`tel:${
                           detail_users && detail_users.length >= 1
-                            ? detail_users[0].wa_telephone[0]
+                            ? detail_users[0]?.wa_telephone[0]
                             : ""
                         }`}
                       >
                         {detail_users && detail_users.length >= 1
-                          ? detail_users[0].wa_telephone[0] ===
-                            detail_users[0].wa_telephone[1]
-                            ? detail_users[0].wa_telephone[0]
+                          ? detail_users[0]?.wa_telephone[0] ===
+                            detail_users[0]?.wa_telephone[1]
+                            ? detail_users[0]?.wa_telephone[0]
                             : `${
-                                detail_users[0].wa_telephone[0] +
+                                detail_users[0]?.wa_telephone[0] +
                                 " / " +
-                                detail_users[0].wa_telephone[1]
+                                detail_users[0]?.wa_telephone[1]
                               }`
                           : "Kontak"}
                       </a>
@@ -177,12 +178,12 @@ const ProfileUser = ({
                       <a
                         href={`mailto:${
                           detail_users && detail_users.length >= 1
-                            ? detail_users[0].email_user
+                            ? detail_users[0]?.email_user
                             : "Email"
                         }`}
                       >
                         {detail_users && detail_users.length >= 1
-                          ? detail_users[0].email_user
+                          ? detail_users[0]?.email_user
                           : "Email"}
                       </a>
                     </p>
@@ -237,8 +238,8 @@ const ProfileUser = ({
                   type="text"
                   name="role_user"
                   value={
-                    detail_users && detail_users.length >= 1
-                      ? detail_users[0].role
+                    detail_users && detail_users?.length >= 1
+                      ? detail_users[0]?.role ?? "Jabatan/ Role"
                       : "Jabatan/ Role"
                   }
                   readOnly

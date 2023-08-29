@@ -49,11 +49,14 @@ export default function MyAccount() {
         setAkun({
           nama_lengkap: detail.nama_lengkap,
           username: detail.username,
-          wa_user: detail.wa_telephone[0],
-          telephone_user: detail.wa_telephone[1],
+          wa_user:
+            detail.wa_telephone?.length ?? false ? detail.wa_telephone[0] : "",
+          telephone_user:
+            detail.wa_telephone?.length ?? false ? detail.wa_telephone[1] : "",
           role_user: detail.role,
           email_user: detail.email_user,
-          alamat_user: detail.alamat !== null ? detail.alamat : "",
+          // alamat_user: detail.alamat !== null ? detail.alamat : "",
+          alamat_user: detail.alamat ?? "",
         })
         if (detail.foto_user !== null) {
           const old_foto = await getImgUrl(detail.foto_user)
